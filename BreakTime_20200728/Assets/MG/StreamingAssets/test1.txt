@@ -1,0 +1,6 @@
+librarian,
+red_cloak,
+red_cloak,
+librarian,
+red_cloak,
+wolf
