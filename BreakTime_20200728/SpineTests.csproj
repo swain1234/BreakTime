@@ -11,7 +11,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{01BAEB9D-AC8C-46B0-436B-48FD93DF93AD}</ProjectGuid>
+    <ProjectGuid>{8BDA5042-D4B0-51E1-128C-A31E319210EA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>SpineTests</AssemblyName>
@@ -261,7 +261,7 @@
       <HintPath>C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/15.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
-      <HintPath>C:/MyGit/BreakTime/BreakTime/Library/PackageCache/com.unity.ext.nunit@1.0.0/net35/unity-custom/nunit.framework.dll</HintPath>
+      <HintPath>C:/MyGit/BreakTime_20200728/BreakTime/BreakTime_20200728/Library/PackageCache/com.unity.ext.nunit@1.0.0/net35/unity-custom/nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.5f1/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>
@@ -618,21 +618,21 @@
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.5f1/Editor/Data/MonoBleedingEdge/lib/mono/unityscript/Boo.Lang.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.TestRunner">
-      <HintPath>C:/MyGit/BreakTime/BreakTime/Library/ScriptAssemblies/UnityEngine.TestRunner.dll</HintPath>
+      <HintPath>C:/MyGit/BreakTime_20200728/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/UnityEngine.TestRunner.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.TestRunner">
-      <HintPath>C:/MyGit/BreakTime/BreakTime/Library/ScriptAssemblies/UnityEditor.TestRunner.dll</HintPath>
+      <HintPath>C:/MyGit/BreakTime_20200728/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/UnityEditor.TestRunner.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
-      <HintPath>C:/MyGit/BreakTime/BreakTime/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+      <HintPath>C:/MyGit/BreakTime_20200728/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>C:/MyGit/BreakTime/BreakTime/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+      <HintPath>C:/MyGit/BreakTime_20200728/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="spine-unity.csproj">
-      <Project>{6FA368DE-A233-F745-82BC-024513A2554B}</Project>
+      <Project>{918B9786-AA8D-69A5-A4FF-68D00C1A7D25}</Project>
       <Name>spine-unity</Name>
     </ProjectReference>
   </ItemGroup>
