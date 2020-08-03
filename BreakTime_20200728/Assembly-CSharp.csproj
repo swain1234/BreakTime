@@ -63,7 +63,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\HJ\Scripts\Cam.cs" />
+    <Compile Include="Assets\HJ\Scripts\Finalmove1.cs" />
     <Compile Include="Assets\HJ\Scripts\Pjump.cs" />
+    <Compile Include="Assets\HJ\Scripts\PlayerAnim.cs" />
     <Compile Include="Assets\HJ\Scripts\Pmove1.cs" />
     <Compile Include="Assets\HJ\Scripts\TestJump.cs" />
     <Compile Include="Assets\HJ\Scripts\TestMove.cs" />
@@ -108,50 +110,25 @@
     <Compile Include="Assets\MG\Scripts\sample.cs" />
     <Compile Include="Assets\MG\Scripts\ssee.cs" />
     <Compile Include="Assets\MG\Scripts\test.cs" />
-    <Compile Include="Assets\spine-csharp\Properties\AssemblyInfo.cs" />
-    <Compile Include="Assets\spine-csharp\src\Animation.cs" />
-    <Compile Include="Assets\spine-csharp\src\AnimationState.cs" />
-    <Compile Include="Assets\spine-csharp\src\AnimationStateData.cs" />
-    <Compile Include="Assets\spine-csharp\src\Atlas.cs" />
-    <Compile Include="Assets\spine-csharp\src\Attachments\AtlasAttachmentLoader.cs" />
-    <Compile Include="Assets\spine-csharp\src\Attachments\Attachment.cs" />
-    <Compile Include="Assets\spine-csharp\src\Attachments\AttachmentLoader.cs" />
-    <Compile Include="Assets\spine-csharp\src\Attachments\AttachmentType.cs" />
-    <Compile Include="Assets\spine-csharp\src\Attachments\BoundingBoxAttachment.cs" />
-    <Compile Include="Assets\spine-csharp\src\Attachments\ClippingAttachment.cs" />
-    <Compile Include="Assets\spine-csharp\src\Attachments\MeshAttachment.cs" />
-    <Compile Include="Assets\spine-csharp\src\Attachments\PathAttachment.cs" />
-    <Compile Include="Assets\spine-csharp\src\Attachments\PointAttachment.cs" />
-    <Compile Include="Assets\spine-csharp\src\Attachments\RegionAttachment.cs" />
-    <Compile Include="Assets\spine-csharp\src\Attachments\VertexAttachment.cs" />
-    <Compile Include="Assets\spine-csharp\src\BlendMode.cs" />
-    <Compile Include="Assets\spine-csharp\src\Bone.cs" />
-    <Compile Include="Assets\spine-csharp\src\BoneData.cs" />
-    <Compile Include="Assets\spine-csharp\src\Collections\OrderedDictionary.cs" />
-    <Compile Include="Assets\spine-csharp\src\ConstraintData.cs" />
-    <Compile Include="Assets\spine-csharp\src\Event.cs" />
-    <Compile Include="Assets\spine-csharp\src\EventData.cs" />
-    <Compile Include="Assets\spine-csharp\src\ExposedList.cs" />
-    <Compile Include="Assets\spine-csharp\src\IUpdatable.cs" />
-    <Compile Include="Assets\spine-csharp\src\IkConstraint.cs" />
-    <Compile Include="Assets\spine-csharp\src\IkConstraintData.cs" />
-    <Compile Include="Assets\spine-csharp\src\Json.cs" />
-    <Compile Include="Assets\spine-csharp\src\MathUtils.cs" />
-    <Compile Include="Assets\spine-csharp\src\PathConstraint.cs" />
-    <Compile Include="Assets\spine-csharp\src\PathConstraintData.cs" />
-    <Compile Include="Assets\spine-csharp\src\Skeleton.cs" />
-    <Compile Include="Assets\spine-csharp\src\SkeletonBinary.cs" />
-    <Compile Include="Assets\spine-csharp\src\SkeletonBounds.cs" />
-    <Compile Include="Assets\spine-csharp\src\SkeletonClipping.cs" />
-    <Compile Include="Assets\spine-csharp\src\SkeletonData.cs" />
-    <Compile Include="Assets\spine-csharp\src\SkeletonJson.cs" />
-    <Compile Include="Assets\spine-csharp\src\Skin.cs" />
-    <Compile Include="Assets\spine-csharp\src\Slot.cs" />
-    <Compile Include="Assets\spine-csharp\src\SlotData.cs" />
-    <Compile Include="Assets\spine-csharp\src\TransformConstraint.cs" />
-    <Compile Include="Assets\spine-csharp\src\TransformConstraintData.cs" />
-    <Compile Include="Assets\spine-csharp\src\Triangulator.cs" />
-    <Compile Include="Assets\spine-csharp\tests\src\AnimationStateTests.cs" />
+    <Compile Include="Assets\Samples\Cinemachine\2.6.0\Cinemachine Example Scenes\Scenes\3rdPersonWithAimMode\ActivateOnKeypress.cs" />
+    <Compile Include="Assets\Samples\Cinemachine\2.6.0\Cinemachine Example Scenes\Scenes\CameraMagnets\CameraMagnetProperty.cs" />
+    <Compile Include="Assets\Samples\Cinemachine\2.6.0\Cinemachine Example Scenes\Scenes\CameraMagnets\CameraMagnetTargetController.cs" />
+    <Compile Include="Assets\Samples\Cinemachine\2.6.0\Cinemachine Example Scenes\Scenes\DualTarget\MoveAimTarget.cs" />
+    <Compile Include="Assets\Samples\Cinemachine\2.6.0\Cinemachine Example Scenes\Scenes\DualTarget\PointAtAimTarget.cs" />
+    <Compile Include="Assets\Samples\Cinemachine\2.6.0\Cinemachine Example Scenes\Scenes\Scripting\ScriptingExample.cs" />
+    <Compile Include="Assets\Samples\Cinemachine\2.6.0\Cinemachine Example Scenes\Scenes\Trigger volumes\GenericTrigger.cs" />
+    <Compile Include="Assets\Samples\Cinemachine\2.6.0\Cinemachine Example Scenes\Shared\Models\UnityCharacter\Scripts\CharacterMovement.cs" />
+    <Compile Include="Assets\Samples\Cinemachine\2.6.0\Cinemachine Example Scenes\Shared\Models\UnityCharacter\Scripts\CharacterMovement2D.cs" />
+    <Compile Include="Assets\Samples\Cinemachine\2.6.0\Cinemachine Example Scenes\Shared\Models\UnityCharacter\Scripts\CharacterMovementNoCamera.cs" />
+    <Compile Include="Assets\Samples\Cinemachine\2.6.0\Cinemachine Example Scenes\Shared\Scripts\ActivateCamOnPlay.cs" />
+    <Compile Include="Assets\Samples\Cinemachine\2.6.0\Cinemachine Example Scenes\Shared\Scripts\ActivateCameraWithDistance.cs" />
+    <Compile Include="Assets\Samples\Cinemachine\2.6.0\Cinemachine Example Scenes\Shared\Scripts\ExampleHelpWindow.cs" />
+    <Compile Include="Assets\Samples\Cinemachine\2.6.0\Cinemachine Example Scenes\Shared\Scripts\InvokeEventFromInspector.cs" />
+    <Compile Include="Assets\Samples\Cinemachine\2.6.0\Cinemachine Example Scenes\Shared\Scripts\MixingCameraBlend.cs" />
+    <Compile Include="Assets\Samples\Cinemachine\2.6.0\Cinemachine Example Scenes\Shared\Scripts\PlayerMove.cs" />
+    <Compile Include="Assets\Samples\Cinemachine\2.6.0\Cinemachine Example Scenes\Shared\Scripts\PlayerMoveOnSphere.cs" />
+    <Compile Include="Assets\Samples\Cinemachine\2.6.0\Cinemachine Example Scenes\Shared\Scripts\PlayerMovePhysics.cs" />
+    <Compile Include="Assets\Samples\Cinemachine\2.6.0\Cinemachine Example Scenes\Shared\Scripts\SpawnInCircle.cs" />
     <None Include="Assets\Spine\version.txt" />
     <None Include="Assets\MG\Animation\ManResource.atlas.txt" />
     <None Include="Assets\HJ\VCU\Manual.txt" />
@@ -687,70 +664,76 @@
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.5f1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Xml.Serialization.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipeline.Universal.ShaderLibrary">
-      <HintPath>C:/MyGit/BreakTime_20200728/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
+      <HintPath>D:/Upontail/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline.Editor">
-      <HintPath>C:/MyGit/BreakTime_20200728/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+      <HintPath>D:/Upontail/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Universal.Shaders">
-      <HintPath>C:/MyGit/BreakTime_20200728/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Shaders.dll</HintPath>
+      <HintPath>D:/Upontail/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Shaders.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VSCode.Editor">
-      <HintPath>C:/MyGit/BreakTime_20200728/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+      <HintPath>D:/Upontail/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Core.Editor">
-      <HintPath>C:/MyGit/BreakTime_20200728/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Editor.dll</HintPath>
+      <HintPath>D:/Upontail/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Core.Runtime">
-      <HintPath>C:/MyGit/BreakTime_20200728/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Runtime.dll</HintPath>
+      <HintPath>D:/Upontail/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>C:/MyGit/BreakTime_20200728/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>D:/Upontail/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Universal.Runtime">
-      <HintPath>C:/MyGit/BreakTime_20200728/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
+      <HintPath>D:/Upontail/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Universal.Editor">
-      <HintPath>C:/MyGit/BreakTime_20200728/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Editor.dll</HintPath>
+      <HintPath>D:/Upontail/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>C:/MyGit/BreakTime_20200728/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+      <HintPath>D:/Upontail/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
-      <HintPath>C:/MyGit/BreakTime_20200728/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+      <HintPath>D:/Upontail/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>C:/MyGit/BreakTime_20200728/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+      <HintPath>D:/Upontail/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Postprocessing.Editor">
-      <HintPath>C:/MyGit/BreakTime_20200728/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Unity.Postprocessing.Editor.dll</HintPath>
+      <HintPath>D:/Upontail/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Unity.Postprocessing.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
-      <HintPath>C:/MyGit/BreakTime_20200728/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+      <HintPath>D:/Upontail/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary">
-      <HintPath>C:/MyGit/BreakTime_20200728/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll</HintPath>
+      <HintPath>D:/Upontail/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Sprite.Editor">
-      <HintPath>C:/MyGit/BreakTime_20200728/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
+      <HintPath>D:/Upontail/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Postprocessing.Runtime">
-      <HintPath>C:/MyGit/BreakTime_20200728/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Unity.Postprocessing.Runtime.dll</HintPath>
+      <HintPath>D:/Upontail/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Unity.Postprocessing.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Tilemap.Editor">
-      <HintPath>C:/MyGit/BreakTime_20200728/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
+      <HintPath>D:/Upontail/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.ShaderGraph.Editor">
-      <HintPath>C:/MyGit/BreakTime_20200728/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Unity.ShaderGraph.Editor.dll</HintPath>
+      <HintPath>D:/Upontail/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Unity.ShaderGraph.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Core.ShaderLibrary">
-      <HintPath>C:/MyGit/BreakTime_20200728/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Unity.RenderPipelines.Core.ShaderLibrary.dll</HintPath>
+      <HintPath>D:/Upontail/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Unity.RenderPipelines.Core.ShaderLibrary.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:/MyGit/BreakTime_20200728/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>D:/Upontail/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
-      <HintPath>C:/MyGit/BreakTime_20200728/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+      <HintPath>D:/Upontail/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Cinemachine">
+      <HintPath>D:/Upontail/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
+    </Reference>
+    <Reference Include="com.unity.cinemachine.editor">
+      <HintPath>D:/Upontail/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
