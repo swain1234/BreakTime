@@ -64,8 +64,10 @@
   <ItemGroup>
     <Compile Include="Assets\HJ\Scripts\Cam.cs" />
     <Compile Include="Assets\HJ\Scripts\Finalmove1.cs" />
+    <Compile Include="Assets\HJ\Scripts\P1_Move.cs" />
     <Compile Include="Assets\HJ\Scripts\Pjump.cs" />
     <Compile Include="Assets\HJ\Scripts\PlayerAnim.cs" />
+    <Compile Include="Assets\HJ\Scripts\PlayerJump.cs" />
     <Compile Include="Assets\HJ\Scripts\Pmove1.cs" />
     <Compile Include="Assets\HJ\Scripts\TestJump.cs" />
     <Compile Include="Assets\HJ\Scripts\TestMove.cs" />
@@ -134,7 +136,9 @@
     <None Include="Assets\HJ\VCU\Manual.txt" />
     <None Include="Assets\MG\StreamingAssets\test1.txt" />
     <None Include="Assets\MG\StreamingAssets\test.txt" />
+    <None Include="Assets\HJ\Animation\RedGirl\RedGirl.atlas.txt" />
     <None Include="Assets\MG\Animation\ManResource.json.txt" />
+    <None Include="Assets\HJ\Animation\RedGirl\RedGirl.json.txt" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
@@ -669,6 +673,9 @@
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>D:/Upontail/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Cinemachine">
+      <HintPath>D:/Upontail/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.RenderPipelines.Universal.Shaders">
       <HintPath>D:/Upontail/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Shaders.dll</HintPath>
     </Reference>
@@ -717,6 +724,9 @@
     <Reference Include="Unity.2D.Tilemap.Editor">
       <HintPath>D:/Upontail/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="com.unity.cinemachine.editor">
+      <HintPath>D:/Upontail/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.ShaderGraph.Editor">
       <HintPath>D:/Upontail/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Unity.ShaderGraph.Editor.dll</HintPath>
     </Reference>
@@ -728,12 +738,6 @@
     </Reference>
     <Reference Include="UnityEditor.UI">
       <HintPath>D:/Upontail/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="Cinemachine">
-      <HintPath>D:/Upontail/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
-    </Reference>
-    <Reference Include="com.unity.cinemachine.editor">
-      <HintPath>D:/Upontail/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

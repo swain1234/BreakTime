@@ -222,7 +222,7 @@ MonoBehaviour:
   animation: {fileID: -984123605047401459}
   currentAnimation: idle
   layer: 0
-  timeScale: 1
+  timeScale: 1.5
 --- !u!1102 &-1290581010924899875
 AnimatorState:
   serializedVersion: 5
@@ -391,13 +391,13 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: isJump
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -765,7 +765,7 @@ AnimatorStateMachine:
     m_Position: {x: 530, y: -10, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 5716103293152781787}
-    m_Position: {x: 510, y: 170, z: 0}
+    m_Position: {x: 560, y: 180, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -1290581010924899875}
     m_Position: {x: 520, y: -80, z: 0}
