@@ -190,7 +190,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 72ece51f2901e7445ab60da3685d6b5f, type: 3}
   m_Name: 
@@ -328,7 +328,7 @@ GameObject:
   - component: {fileID: 986406183}
   - component: {fileID: 986406185}
   - component: {fileID: 986406184}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Tilemap
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -1011,9 +1011,10 @@ GameObject:
   - component: {fileID: 1731955655}
   - component: {fileID: 1731955657}
   - component: {fileID: 1731955656}
-  m_Layer: 0
+  - component: {fileID: 1731955658}
+  m_Layer: 8
   m_Name: New SkeletonAnimation
-  m_TagString: Untagged
+  m_TagString: Player1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1026,7 +1027,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1731955648}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.63246465, y: 1.2185837, z: 0}
+  m_LocalPosition: {x: 0.86, y: 2.24, z: 0}
   m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1186,7 +1187,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 9999
-  m_GravityScale: 2
+  m_GravityScale: 1.5
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -1211,6 +1212,24 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1731955658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1731955648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de9102ae3c20b58469f5bd19f5bbfd5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpPower: 12
+  currentCount: 0
+  jumpCount: 1
+  rayDistance: 0.3
+  isJump: 0
+  rayPosition: -0.1
 --- !u!1 &1888066505
 GameObject:
   m_ObjectHideFlags: 3
@@ -1313,7 +1332,7 @@ GameObject:
   - component: {fileID: 1944394352}
   - component: {fileID: 1944394354}
   - component: {fileID: 1944394346}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Player1
   m_TagString: Player1
   m_Icon: {fileID: 0}
@@ -1332,7 +1351,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 631055f4e63187a4793e981734e2897a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerJumpPower: 15
+  PlayerJumpPower: 10
   isJump: 0
   jumpCount: 0
   maxDistance: 0.6
@@ -1382,7 +1401,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 1000000
-  m_GravityScale: 3
+  m_GravityScale: 2
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -1447,7 +1466,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1944394344}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.2, y: -0.58, z: 0}
+  m_LocalPosition: {x: -7.58, y: 0.99, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1992,7 +2011,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2041483922}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a2fba25a5cd15594e8f050a11e386c80, type: 3}
   m_Name: 
@@ -2009,7 +2028,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2041483922}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 45e653bab7fb20e499bda25e1b646fea, type: 3}
   m_Name: 
