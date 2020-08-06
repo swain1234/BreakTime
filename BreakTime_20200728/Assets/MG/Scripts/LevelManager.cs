@@ -13,6 +13,7 @@ public class LevelManager : MonoBehaviour
     private float time = 0; // 깜박이는 효과를 위한 변수
     private GameObject child; // 선택하는 자식오브젝트
     private SceneChanage sceneChange;
+    private FadeManager fadeManager;
 
     void Start()
     {
@@ -20,6 +21,7 @@ public class LevelManager : MonoBehaviour
         child = transform.GetChild(num).gameObject;
         childScript.text = child.GetComponent<LevelParent>().levelData.Script;
         sampleImage.sprite = child.GetComponent<LevelParent>().levelData.Icon;
+        fadeManager = FindObjectOfType<FadeManager>();
         StartCoroutine(SelectEffect());
     }
 
@@ -78,8 +80,23 @@ public class LevelManager : MonoBehaviour
 
     public void LevelSceneChange()
     {
-        sceneChange.ChangeScene(child.GetComponent<LevelParent>().levelData.LevelName);
-        gameObject.SetActive(false);
+        StartCoroutine(SceneTransfer());
+        //줌아웃 후 책넘기기 효과
+        //페이드아웃
+
+
+        //sceneChange.ChangeScene(child.GetComponent<LevelParent>().levelData.LevelName);
+        //sceneChange.ChangeScene("stage");
+        //gameObject.SetActive(false);
     }
 
+    IEnumerator SceneTransfer()
+    {
+        //책 효과
+        fadeManager.FadeOut();
+        yield return new WaitForSeconds(1f);
+        fadeManager.FadeIn();
+        yield return new WaitForSeconds(0.5f);
+
+    }
 }

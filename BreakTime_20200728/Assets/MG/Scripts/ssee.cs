@@ -1,4 +1,7 @@
-﻿using System.Collections; using System.Collections.Generic; using UnityEngine; using UnityEngine.UI;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
 using System.IO;
 using System.Text;
 
@@ -31,7 +34,11 @@ public class ssee : MonoBehaviour
 
         List<Dictionary<string, object>> data = CSVReader.Read("Dialogue");
 
-        for (var i = 0; i < data.Count; i++)         {             tArray.Add((string)data[i]["script"]);             iArray.Add((string)data[i]["character"]);         }
+        for (var i = 0; i < data.Count; i++)
+        {
+            tArray.Add((string)data[i]["script"]);
+            iArray.Add((string)data[i]["character"]);
+        }
 
         DisplayNextSentence();
     }
