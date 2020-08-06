@@ -1,0 +1,118 @@
+
+RedGirl.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+forest_1
+  rotate: true
+  xy: 400, 710
+  size: 316, 404
+  orig: 380, 441
+  offset: 24, 29
+  index: -1
+ob_1
+  rotate: false
+  xy: 767, 797
+  size: 229, 228
+  orig: 238, 232
+  offset: 0, 0
+  index: -1
+ob_10
+  rotate: false
+  xy: 90, 191
+  size: 339, 266
+  orig: 342, 266
+  offset: 3, 0
+  index: -1
+ob_11
+  rotate: 270
+  xy: 852, 152
+  size: 155, 172
+  orig: 196, 194
+  offset: 22, 0
+  index: -1
+ob_12
+  rotate: true
+  xy: 1, 427
+  size: 251, 329
+  orig: 277, 333
+  offset: 0, 4
+  index: -1
+ob_13
+  rotate: false
+  xy: 322, 469
+  size: 79, 209
+  orig: 86, 209
+  offset: 0, 0
+  index: -1
+ob_14
+  rotate: false
+  xy: 183, 254
+  size: 68, 185
+  orig: 72, 189
+  offset: 0, 4
+  index: -1
+ob_15
+  rotate: false
+  xy: 1, 677
+  size: 400, 347
+  orig: 400, 347
+  offset: 0, 0
+  index: -1
+ob_3
+  rotate: false
+  xy: 400, 420
+  size: 495, 374
+  orig: 495, 376
+  offset: 0, 2
+  index: -1
+ob_4
+  rotate: false
+  xy: 486, 566
+  size: 233, 158
+  orig: 234, 158
+  offset: 0, 0
+  index: -1
+ob_5
+  rotate: 180
+  xy: 397, 194
+  size: 167, 265
+  orig: 167, 265
+  offset: 0, 0
+  index: -1
+ob_6
+  rotate: false
+  xy: 793, 292
+  size: 230, 223
+  orig: 230, 223
+  offset: 0, 0
+  index: -1
+ob_6_1
+  rotate: false
+  xy: 563, 199
+  size: 230, 223
+  orig: 230, 223
+  offset: 0, 0
+  index: -1
+ob_6_CloseEyes
+  rotate: false
+  xy: 550, 120
+  size: 224, 90
+  orig: 230, 223
+  offset: 0, 86
+  index: -1
+ob_8
+  rotate: false
+  xy: 880, 522
+  size: 144, 286
+  orig: 146, 286
+  offset: 2, 0
+  index: -1
+ob_9
+  rotate: true
+  xy: 1, 160
+  size: 180, 115
+  orig: 180, 115
+  offset: 0, 0
+  index: -1

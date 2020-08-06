@@ -3,7 +3,12 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Ground
+  - Player1
+  - Doodle
+  - Cam1
+  - Player2
   layers:
   - Default
   - TransparentFX
@@ -13,10 +18,10 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - Player1
+  - Player2
+  - Ground
+  - Doodle
   - 
   - 
   - 

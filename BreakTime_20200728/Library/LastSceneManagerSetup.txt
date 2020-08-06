@@ -1,5 +1,9 @@
 sceneSetups:
+<<<<<<< HEAD
 - path: Assets/MG/Scenes/Level.unity
+=======
+- path: Assets/HJ/Scenes/SampleScene.unity
+>>>>>>> 40d9b6c4620bac9d0791167e64cfe3c0561ccfff
   isLoaded: 1
   isActive: 1
   isSubScene: 0
