@@ -28,12 +28,7 @@ public class TestMove : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.normalized.x * stopSpeed, rb.velocity.y);
         }
 
-        // 방향 전환
-        //if (Input.GetButtonDown("Move1"))
-        //{
-        //    spriteRenderer.flipX = Input.GetAxisRaw("Move1") == -1;
-
-        //}
+      
 
         if (Input.GetAxisRaw("Move1") < 0)
         {

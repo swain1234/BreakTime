@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Spine.Unity;
+using Cinemachine.Utility;
+using Cinemachine.Editor;
 
 public class P1_Move : MonoBehaviour
 {
@@ -10,6 +12,7 @@ public class P1_Move : MonoBehaviour
     Rigidbody2D rigid;
     Animator animator;
     SkeletonAnimation skeleton;
+    CinemachineCameraOffset cam;
     bool faceLeft = true;
 
     // Start is called before the first frame update
@@ -17,7 +20,7 @@ public class P1_Move : MonoBehaviour
     {
         rigid = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        //skeleton = GetComponent<SkeletonAnimation>();
+        cam = GetComponentInChildren<CinemachineCameraOffset>();
         skeleton = GetComponentInChildren<SkeletonAnimation>();
     }
 
@@ -45,20 +48,28 @@ public class P1_Move : MonoBehaviour
         }
 
         // 애니메이션
-        if(animator.GetBool("isJump") == true)
+        // 점프 중에는 isMove - false
+        if (animator.GetBool("isJump"))
         {
             animator.SetBool("isMove", false);
+
         }
+        // 이동 중
         else
         {
-            if(Mathf.Abs(rigid.velocity.x) < 0.3)
+            // 이동속도가 0.1 이하일 경우 isMove - false
+            if (Mathf.Abs(rigid.velocity.x) < 0.3)
             {
                 animator.SetBool("isMove", false);
+
             }
+            // 그 외에는 isMove - true
             else
             {
                 animator.SetBool("isMove", true);
+          
             }
+
         }
 
     }

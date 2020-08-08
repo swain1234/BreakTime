@@ -43,10 +43,12 @@ public class PlayerJump : MonoBehaviour
                 //Debug.Log("Ground");
                 animator.SetBool("isJump", false);
                 animator.SetBool("isJumpDown", false);
+                animator.SetBool("isJumpUp", false);
                 currentCount = 0;
                 return;
             }
         }
+        
     }
 
     private void FixedUpdate()
@@ -79,14 +81,14 @@ public class PlayerJump : MonoBehaviour
         }
 
         Jump();
-
+        
         // JumpDown
-        if (rigid.velocity.y < 0)
+        if (rigid.velocity.y < -0.01)
         {
             animator.SetBool("isJumpDown", true);
+            //animator.SetBool("isJump", true);
         }
-        
-        
+
     }
 
     void Jump()
