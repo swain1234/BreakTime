@@ -3,13 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "spine-unity-examples", "spine-unity-examples.csproj", "{736545A1-A9CF-A9FD-902D-C934EBB0990D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{CD5821F3-3AC7-CA54-C3F8-41E977B1A9CD}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "spine-unity", "spine-unity.csproj", "{918B9786-AA8D-69A5-A4FF-68D00C1A7D25}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "spine-unity-editor", "spine-unity-editor.csproj", "{3176A901-3083-AA37-BC5C-495F07872B16}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{CD5821F3-3AC7-CA54-C3F8-41E977B1A9CD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpineTests", "SpineTests.csproj", "{8BDA5042-D4B0-51E1-128C-A31E319210EA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "spine-unity-editor", "spine-unity-editor.csproj", "{3176A901-3083-AA37-BC5C-495F07872B16}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "spine-unity-examples-editor", "spine-unity-examples-editor.csproj", "{C9093ABE-96A6-CD94-A8B2-ABFCA49EE134}"
 EndProject
@@ -23,22 +21,18 @@ Global
 		{736545A1-A9CF-A9FD-902D-C934EBB0990D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{736545A1-A9CF-A9FD-902D-C934EBB0990D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{736545A1-A9CF-A9FD-902D-C934EBB0990D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CD5821F3-3AC7-CA54-C3F8-41E977B1A9CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CD5821F3-3AC7-CA54-C3F8-41E977B1A9CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CD5821F3-3AC7-CA54-C3F8-41E977B1A9CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CD5821F3-3AC7-CA54-C3F8-41E977B1A9CD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{918B9786-AA8D-69A5-A4FF-68D00C1A7D25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{918B9786-AA8D-69A5-A4FF-68D00C1A7D25}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{918B9786-AA8D-69A5-A4FF-68D00C1A7D25}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{918B9786-AA8D-69A5-A4FF-68D00C1A7D25}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD5821F3-3AC7-CA54-C3F8-41E977B1A9CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD5821F3-3AC7-CA54-C3F8-41E977B1A9CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD5821F3-3AC7-CA54-C3F8-41E977B1A9CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD5821F3-3AC7-CA54-C3F8-41E977B1A9CD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3176A901-3083-AA37-BC5C-495F07872B16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3176A901-3083-AA37-BC5C-495F07872B16}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3176A901-3083-AA37-BC5C-495F07872B16}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3176A901-3083-AA37-BC5C-495F07872B16}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8BDA5042-D4B0-51E1-128C-A31E319210EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8BDA5042-D4B0-51E1-128C-A31E319210EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8BDA5042-D4B0-51E1-128C-A31E319210EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8BDA5042-D4B0-51E1-128C-A31E319210EA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C9093ABE-96A6-CD94-A8B2-ABFCA49EE134}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C9093ABE-96A6-CD94-A8B2-ABFCA49EE134}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C9093ABE-96A6-CD94-A8B2-ABFCA49EE134}.Release|Any CPU.ActiveCfg = Release|Any CPU

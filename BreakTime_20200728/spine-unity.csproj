@@ -160,7 +160,6 @@
     <None Include="Assets\Spine\Runtime\spine-unity\Shaders\Outline\Spine-Skeleton-Lit-Outline.shader" />
     <None Include="Assets\Spine\Runtime\spine-unity\Shaders\Outline\Sprite\SpritesVertexLit-Outline.shader" />
     <None Include="Assets\Spine\Runtime\spine-unity\Shaders\CGIncludes\Spine-Skeleton-Lit-Common.cginc" />
-    <None Include="Assets\Spine\Runtime\spine-csharp\add spine-csharp here.txt" />
     <None Include="Assets\Spine\Runtime\spine-unity\Shaders\Utility\HiddenPass.shader" />
     <None Include="Assets\Spine\Runtime\spine-unity\Shaders\Sprite\CGIncludes\ShaderShared.cginc" />
     <None Include="Assets\Spine\Runtime\spine-unity\Shaders\Outline\Spine-Skeleton-Fill-Outline.shader" />
