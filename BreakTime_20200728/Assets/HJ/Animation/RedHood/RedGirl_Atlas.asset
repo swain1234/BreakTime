@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6b194f808b1af6499c93410e504af42, type: 3}
   m_Name: RedGirl_Atlas
   m_EditorClassIdentifier: 
-  atlasFile: {fileID: 4900000, guid: f8d0f488988c93342b5e89c7b2622877, type: 3}
+  atlasFile: {fileID: 4900000, guid: b995a895485575b4e9d37f5d8d4283d3, type: 3}
   materials:
-  - {fileID: 2100000, guid: 70f27e736c6bf4d4a8136e392aed9a94, type: 2}
+  - {fileID: 2100000, guid: 2c4e7c51f0bc4b843af8abaf2a02132c, type: 2}

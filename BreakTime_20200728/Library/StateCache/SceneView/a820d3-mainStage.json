@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 ﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":true,"audioPlay":false,"sceneViewState":{"showFog":true,"showMaterialUpdate":false,"showSkybox":true,"showFlares":true,"showImageEffects":true,"showParticleSystems":true},"in2DMode":true,"pivot":{"x":808.4640502929688,"y":517.242431640625,"z":-90.09083557128906},"rotation":{"x":0.0,"y":0.0,"z":0.0,"w":1.0},"size":676.4851684570313,"orthographic":true}
+=======
+﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":true,"audioPlay":false,"sceneViewState":{"showFog":true,"showMaterialUpdate":false,"showSkybox":true,"showFlares":true,"showImageEffects":true,"showParticleSystems":true},"in2DMode":true,"pivot":{"x":-0.7924339771270752,"y":3.050471782684326,"z":-93.30320739746094},"rotation":{"x":0.0,"y":0.0,"z":0.0,"w":1.0},"size":2.744330883026123,"orthographic":true}
+>>>>>>> hj
