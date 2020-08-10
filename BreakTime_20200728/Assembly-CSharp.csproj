@@ -136,14 +136,12 @@
     <Compile Include="Assets\Samples\Cinemachine\2.6.0\Cinemachine Example Scenes\Shared\Scripts\PlayerMovePhysics.cs" />
     <Compile Include="Assets\Samples\Cinemachine\2.6.0\Cinemachine Example Scenes\Shared\Scripts\SpawnInCircle.cs" />
     <None Include="Assets\Spine\version.txt" />
-    <None Include="Assets\HJ\Animation\test\RedGirl.atlas.txt" />
+    <None Include="Assets\HJ\Animation\Girl\RedGirl.atlas.txt" />
     <None Include="Assets\HJ\VCU\Manual.txt" />
     <None Include="Assets\MG\StreamingAssets\test1.txt" />
     <None Include="Assets\MG\StreamingAssets\test.txt" />
-    <None Include="Assets\HJ\Animation\RedHood\RedGirl.json.txt" />
     <None Include="Assets\HJ\Animation\Librarian\ManResource.json.txt" />
-    <None Include="Assets\HJ\Animation\test\RedGirl.json.txt" />
-    <None Include="Assets\HJ\Animation\RedHood\RedGirl.atlas.txt" />
+    <None Include="Assets\HJ\Animation\Girl\RedGirl.json.txt" />
     <None Include="Assets\HJ\Animation\Librarian\ManResource.atlas.txt" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
