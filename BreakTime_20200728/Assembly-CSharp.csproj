@@ -62,6 +62,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Book-Page Curl\scripts\AutoFlip.cs" />
+    <Compile Include="Assets\Book-Page Curl\scripts\Book.cs" />
     <Compile Include="Assets\HJ\Scripts\Cam.cs" />
     <Compile Include="Assets\HJ\Scripts\Finalmove1.cs" />
     <Compile Include="Assets\HJ\Scripts\Librarian\P1_Move.cs" />
@@ -102,6 +104,7 @@
     <Compile Include="Assets\HJ\VCU\Scripts\3D\SmoothFollowCamera.cs" />
     <Compile Include="Assets\HJ\VCU\Scripts\Base\VirtualCamera.cs" />
     <Compile Include="Assets\MG\Scripts\CSVReader.cs" />
+    <Compile Include="Assets\MG\Scripts\Convert.cs" />
     <Compile Include="Assets\MG\Scripts\CsSky.cs" />
     <Compile Include="Assets\MG\Scripts\FadeManager.cs" />
     <Compile Include="Assets\MG\Scripts\LevelData.cs" />
