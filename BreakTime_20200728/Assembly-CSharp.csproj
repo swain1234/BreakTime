@@ -111,6 +111,7 @@
     <Compile Include="Assets\MG\Scripts\LevelManager.cs" />
     <Compile Include="Assets\MG\Scripts\LevelParent.cs" />
     <Compile Include="Assets\MG\Scripts\SceneChanage.cs" />
+    <Compile Include="Assets\MG\Scripts\TestBookControl.cs" />
     <Compile Include="Assets\MG\Scripts\TextureManager.cs" />
     <Compile Include="Assets\MG\Scripts\Title.cs" />
     <Compile Include="Assets\MG\Scripts\TransferMap.cs" />

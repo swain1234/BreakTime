@@ -26,7 +26,7 @@ public class TextureManager : MonoBehaviour
             rawImage.texture = rt;
             RenderTexture.active = rt;
             GetComponent<Camera>().targetTexture = null;
-            RenderTexture.active = null; // JC: added to avoid errors
+            RenderTexture.active = null;
         }
     }
 }

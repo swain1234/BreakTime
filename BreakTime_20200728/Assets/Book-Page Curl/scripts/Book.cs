@@ -41,12 +41,11 @@ public class Book : MonoBehaviour {
     public Image NextPageClip;
     public Image Shadow;
     public Image ShadowLTR;
-    public Image Left;
-    public Image LeftNext;
-    public Image Right;
-    public Image RightNext;
+    public RawImage Left;
+    public RawImage LeftNext;
+    public RawImage Right;
 
-    public RawImage aaa;
+    public RawImage RightNext;
 
     public UnityEvent OnFlip;
     float radius1, radius2;
@@ -160,7 +159,7 @@ public class Book : MonoBehaviour {
         Right.transform.SetParent(ClippingPlane.transform, true);
         
         Left.transform.SetParent(BookPanel.transform, true);
-        aaa.transform.SetParent(BookPanel.transform, true);
+        RightNext.transform.SetParent(BookPanel.transform, true);
         //RightNext.transform.SetParent(BookPanel.transform, true);
         c = Calc_C_Position(followLocation);
         Vector3 t1;
@@ -180,8 +179,8 @@ public class Book : MonoBehaviour {
 
         NextPageClip.transform.eulerAngles = new Vector3(0, 0, T0_T1_Angle + 90);
         NextPageClip.transform.position = BookPanel.TransformPoint(t1);
-        aaa.transform.SetParent(NextPageClip.transform, true);
-        //RightNext.transform.SetParent(NextPageClip.transform, true);
+        RightNext.transform.SetParent(NextPageClip.transform, true);
+
         Left.transform.SetParent(ClippingPlane.transform, true);
         Left.transform.SetAsFirstSibling();
 
@@ -251,20 +250,24 @@ public class Book : MonoBehaviour {
         Left.gameObject.SetActive(true);
         Left.rectTransform.pivot = new Vector2(0, 0);
         //Left.transform.position = RightNext.transform.position;
-        Left.transform.position = aaa.transform.position;
+        Left.transform.position = RightNext.transform.position;
         Left.transform.eulerAngles = new Vector3(0, 0, 0);
-        Left.sprite = (currentPage < bookPages.Length) ? bookPages[currentPage] : background;
+        //Left.sprite = (currentPage < bookPages.Length) ? bookPages[currentPage] : background;
+        //Left.texture = ConvertSpriteToTexture((currentPage < bookPages.Length) ? bookPages[currentPage] : background);
+        Left.texture = RightNext.texture;
+
         Left.transform.SetAsFirstSibling();
         
         Right.gameObject.SetActive(true);
         //Right.transform.position = RightNext.transform.position;
-        Right.transform.position = aaa.transform.position;
+        Right.transform.position = RightNext.transform.position;
         Right.transform.eulerAngles = new Vector3(0, 0, 0);
-        Right.sprite = (currentPage < bookPages.Length - 1) ? bookPages[currentPage + 1] : background;
+        //Right.sprite = (currentPage < bookPages.Length - 1) ? bookPages[currentPage + 1] : background;
+        Right.texture = ConvertSpriteToTexture((currentPage < bookPages.Length - 1) ? bookPages[currentPage + 1] : background);
 
         //RightNext.sprite = (currentPage < bookPages.Length - 2) ? bookPages[currentPage + 2] : background;
-        //aaa.texture = ConvertSpriteToTexture((currentPage < bookPages.Length - 2) ? bookPages[currentPage + 2] : background);
-        aaa.texture = ConvertSpriteToTexture((currentPage < bookPages.Length - 2) ? bookPages[currentPage + 2] : background);
+        //RightNext.texture = ConvertSpriteToTexture((currentPage < bookPages.Length - 2) ? bookPages[currentPage + 2] : background);
+        RightNext.texture = ConvertSpriteToTexture((currentPage < bookPages.Length - 2) ? bookPages[currentPage + 2] : background);
 
         LeftNext.transform.SetAsFirstSibling();
         if (enableShadowEffect) Shadow.gameObject.SetActive(true);
@@ -288,7 +291,9 @@ public class Book : MonoBehaviour {
 
         Right.gameObject.SetActive(true);
         Right.transform.position = LeftNext.transform.position;
-        Right.sprite = bookPages[currentPage - 1];
+        //Right.sprite = bookPages[currentPage - 1];
+        //Right.texture = RightNext.texture;
+        Right.texture = ConvertSpriteToTexture(bookPages[currentPage - 1]);
         Right.transform.eulerAngles = new Vector3(0, 0, 0);
         Right.transform.SetAsFirstSibling();
 
@@ -296,12 +301,14 @@ public class Book : MonoBehaviour {
         Left.rectTransform.pivot = new Vector2(1, 0);
         Left.transform.position = LeftNext.transform.position;
         Left.transform.eulerAngles = new Vector3(0, 0, 0);
-        Left.sprite = (currentPage >= 2) ? bookPages[currentPage - 2] : background;
+        //Left.sprite = (currentPage >= 2) ? bookPages[currentPage - 2] : background;
+        Left.texture = ConvertSpriteToTexture((currentPage >= 2) ? bookPages[currentPage - 2] : background);
 
-        LeftNext.sprite = (currentPage >= 3) ? bookPages[currentPage - 3] : background;
+        //LeftNext.sprite = (currentPage >= 3) ? bookPages[currentPage - 3] : background;
+        
 
         //RightNext.transform.SetAsFirstSibling();
-        aaa.transform.SetAsFirstSibling();
+        RightNext.transform.SetAsFirstSibling();
         if (enableShadowEffect) ShadowLTR.gameObject.SetActive(true);
         UpdateBookLTRToPoint(f);
     }
@@ -361,9 +368,10 @@ public class Book : MonoBehaviour {
 
     void UpdateSprites()
     {
-        LeftNext.sprite= (currentPage > 0 && currentPage <= bookPages.Length) ? bookPages[currentPage-1] : background;
+        //LeftNext.sprite = (currentPage > 0 && currentPage <= bookPages.Length) ? bookPages[currentPage-1] : background;
+        LeftNext.texture = ConvertSpriteToTexture((currentPage > 0 && currentPage <= bookPages.Length) ? bookPages[currentPage - 1] : background);
         //RightNext.sprite=(currentPage>=0 &&currentPage<bookPages.Length) ? bookPages[currentPage] : background;
-        aaa.texture = ConvertSpriteToTexture((currentPage >= 0 && currentPage < bookPages.Length) ? bookPages[currentPage] : background);
+        RightNext.texture = ConvertSpriteToTexture((currentPage >= 0 && currentPage < bookPages.Length) ? bookPages[currentPage] : background);
 
     }
     public void TweenForward()
@@ -386,7 +394,7 @@ public class Book : MonoBehaviour {
         Right.gameObject.SetActive(false);
         Right.transform.SetParent(BookPanel.transform, true);
         //RightNext.transform.SetParent(BookPanel.transform, true);
-        aaa.transform.SetParent(BookPanel.transform, true);
+        RightNext.transform.SetParent(BookPanel.transform, true);
         UpdateSprites();
         Shadow.gameObject.SetActive(false);
         ShadowLTR.gameObject.SetActive(false);
@@ -402,7 +410,7 @@ public class Book : MonoBehaviour {
                 {
                     UpdateSprites();
                     //RightNext.transform.SetParent(BookPanel.transform);
-                    aaa.transform.SetParent(BookPanel.transform);
+                    RightNext.transform.SetParent(BookPanel.transform);
                     Right.transform.SetParent(BookPanel.transform);
 
                     Left.gameObject.SetActive(false);
