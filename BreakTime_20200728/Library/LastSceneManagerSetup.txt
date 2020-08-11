@@ -1,13 +1,5 @@
 sceneSetups:
-<<<<<<< HEAD
-- path: Assets/MG/Scenes/Level.unity
-=======
-<<<<<<< HEAD
 - path: Assets/HJ/Scenes/SampleScene.unity
-=======
-- path: Assets/Book-Page Curl/Example/scenes/Example_2_Controled Flipping.unity
->>>>>>> 9ed07ad3854f68b413e93361c409d9f7efee4439
->>>>>>> refs/remotes/origin/master
   isLoaded: 1
   isActive: 1
   isSubScene: 0
