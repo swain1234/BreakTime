@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 ﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":true,"audioPlay":false,"sceneViewState":{"showFog":true,"showMaterialUpdate":false,"showSkybox":true,"showFlares":true,"showImageEffects":true,"showParticleSystems":true},"in2DMode":true,"pivot":{"x":0.0,"y":0.0,"z":-10.0},"rotation":{"x":0.0,"y":0.0,"z":0.0,"w":1.0},"size":10.0,"orthographic":true}
 =======
 <<<<<<< HEAD
@@ -7,3 +8,6 @@
 ﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":true,"audioPlay":false,"sceneViewState":{"showFog":true,"showMaterialUpdate":false,"showSkybox":true,"showFlares":true,"showImageEffects":true,"showParticleSystems":true},"in2DMode":true,"pivot":{"x":-0.7924339771270752,"y":3.050471782684326,"z":-93.30320739746094},"rotation":{"x":0.0,"y":0.0,"z":0.0,"w":1.0},"size":2.744330883026123,"orthographic":true}
 >>>>>>> hj
 >>>>>>> f8e03cf3d26964371764463bd7bd1a2208f88bdb
+=======
+﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":true,"audioPlay":false,"sceneViewState":{"showFog":true,"showMaterialUpdate":false,"showSkybox":true,"showFlares":true,"showImageEffects":true,"showParticleSystems":true},"in2DMode":true,"pivot":{"x":3.164480447769165,"y":2.8484079837799074,"z":-95.16271209716797},"rotation":{"x":0.0,"y":0.0,"z":0.0,"w":1.0},"size":5.442237377166748,"orthographic":true}
+>>>>>>> hj

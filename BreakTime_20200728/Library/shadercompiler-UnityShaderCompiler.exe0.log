@@ -1,5 +1,6 @@
 Base path: 'C:/Program Files/Unity/Hub/Editor/2019.4.5f1/Editor/Data', plugins path 'C:/Program Files/Unity/Hub/Editor/2019.4.5f1/Editor/Data/PlaybackEngines'
 Cmd: initializeCompiler
+<<<<<<< HEAD
 Cmd: preprocess
   insize=1641 outsize=1641 ok=1
 Cmd: preprocess
@@ -121,3 +122,5 @@ Cmd: compileSnippet
 >>>>>>> f8e03cf3d26964371764463bd7bd1a2208f88bdb
 >>>>>>> 9ed07ad3854f68b413e93361c409d9f7efee4439
 >>>>>>> refs/remotes/origin/master
+=======
+>>>>>>> hj
