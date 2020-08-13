@@ -200,9 +200,6 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: isMove
-    m_EventTreshold: 0
-  - m_ConditionMode: 2
     m_ConditionEvent: isJumpDown
     m_EventTreshold: 0
   - m_ConditionMode: 2
@@ -299,11 +296,11 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: JumpDown
-  m_Speed: 0.8
+  m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
-  - {fileID: 8556338031383033313}
   - {fileID: -5186917322590167686}
+  - {fileID: 8556338031383033313}
   m_StateMachineBehaviours:
   - {fileID: 8930378075662121093}
   m_Position: {x: 50, y: 50, z: 0}
@@ -500,25 +497,25 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: isJump
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: isJumpUp
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: isJumpDown
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -559,9 +556,9 @@ AnimatorState:
   m_Speed: 1.25
   m_CycleOffset: 0
   m_Transitions:
-  - {fileID: -6864822579902921684}
   - {fileID: 7856606144783980645}
   - {fileID: -2896876316227473687}
+  - {fileID: -6864822579902921684}
   m_StateMachineBehaviours:
   - {fileID: -4764250172159891730}
   m_Position: {x: 50, y: 50, z: 0}
@@ -892,7 +889,7 @@ AnimatorStateTransition:
     m_ConditionEvent: isJumpDown
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: isMove
+    m_ConditionEvent: isJump
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -4026913826512982102}
@@ -1159,9 +1156,6 @@ AnimatorStateTransition:
   - m_ConditionMode: 2
     m_ConditionEvent: isJumpDown
     m_EventTreshold: 0
-  - m_ConditionMode: 1
-    m_ConditionEvent: isMove
-    m_EventTreshold: 0
   - m_ConditionMode: 2
     m_ConditionEvent: isJump
     m_EventTreshold: 0
@@ -1194,7 +1188,7 @@ MonoBehaviour:
   animation: {fileID: 7622411739922259958}
   currentAnimation: JumpDown
   layer: 0
-  timeScale: 0.8
+  timeScale: 1
 --- !u!1102 &9049431490668596394
 AnimatorState:
   serializedVersion: 5
@@ -1207,8 +1201,8 @@ AnimatorState:
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 8254773362145962263}
-  - {fileID: -5631678133780837599}
   - {fileID: 7339581317053026772}
+  - {fileID: -5631678133780837599}
   m_StateMachineBehaviours:
   - {fileID: 4846045085181481745}
   m_Position: {x: 50, y: 50, z: 0}

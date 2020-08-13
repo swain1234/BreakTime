@@ -64,9 +64,10 @@
   <ItemGroup>
     <Compile Include="Assets\HJ\Scripts\Cam.cs" />
     <Compile Include="Assets\HJ\Scripts\Finalmove1.cs" />
-    <Compile Include="Assets\HJ\Scripts\Librarian\P1_Move.cs" />
-    <Compile Include="Assets\HJ\Scripts\Librarian\PlayerJump.cs" />
     <Compile Include="Assets\HJ\Scripts\Pjump.cs" />
+    <Compile Include="Assets\HJ\Scripts\Player\P1_Move.cs" />
+    <Compile Include="Assets\HJ\Scripts\Player\P2_Move.cs" />
+    <Compile Include="Assets\HJ\Scripts\Player\PlayerJump.cs" />
     <Compile Include="Assets\HJ\Scripts\PlayerSpine\PlayerAnim.cs" />
     <Compile Include="Assets\HJ\Scripts\Pmove1.cs" />
     <Compile Include="Assets\HJ\Scripts\TestJump.cs" />
