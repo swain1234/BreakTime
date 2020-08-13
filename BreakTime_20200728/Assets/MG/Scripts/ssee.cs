@@ -29,10 +29,14 @@ public class ssee : MonoBehaviour
     {
         t_num = 0; // 초기화
         i_num = 0;
+
+        currentImage.rectTransform.position = new Vector2(-6.66f, -2.66f);
+        dialogueText.rectTransform.position = new Vector2(4, -5.33f);
+
         tArray = new List<string>();
         iArray = new List<string>();
 
-        List<Dictionary<string, object>> data = CSVReader.Read("Dialogue");
+        List<Dictionary<string, object>> data = CSVReader.Read("A_Sweetie_in_Red_Start");
 
         for (var i = 0; i < data.Count; i++)
         {
@@ -64,6 +68,15 @@ public class ssee : MonoBehaviour
                 nextImage = Resources.Load(i_sentence, typeof(Sprite)) as Sprite;
                 currentImage.sprite = nextImage;
                 sentence = tArray[t_num++];
+                if (i_num - 2 >= 0)
+                {
+                    if (i_sentence != iArray[i_num - 1])
+                    {
+                        currentImage.rectTransform.position = new Vector2(-currentImage.rectTransform.position.x, currentImage.rectTransform.position.y);
+                        dialogueText.rectTransform.position = new Vector2(-dialogueText.rectTransform.position.x, currentImage.rectTransform.position.y);
+                    }
+                }
+
                 StartCoroutine(TypeSentence(sentence));
             }
         }

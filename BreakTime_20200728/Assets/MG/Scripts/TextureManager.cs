@@ -8,24 +8,27 @@ public class TextureManager : MonoBehaviour
     private int resWidth = 1600;
     private int resHeight = 1200;
 
-    [SerializeField] RawImage rawImage;
+    [SerializeField] RawImage fakeImage;
+    private Camera cameraManager;
 
     void Awake()
     {
         resWidth = Screen.width;
         resHeight = Screen.height;
+        cameraManager = GetComponent<Camera>();
     }
 
     void LateUpdate()
     {
-        if(Input.GetKeyDown("k"))
+        if(Input.GetKeyDown("z")) // 클리어 후 결과 화면 카메라2 삽화처럼 삽입
         {
             RenderTexture rt = new RenderTexture(resWidth, resHeight, 24);
-            GetComponent<Camera>().targetTexture = rt;
-            GetComponent<Camera>().Render();
-            rawImage.texture = rt;
+            cameraManager.targetTexture = rt;
+            cameraManager.Render();
+
+            fakeImage.texture = rt;
             RenderTexture.active = rt;
-            GetComponent<Camera>().targetTexture = null;
+            cameraManager.targetTexture = null;
             RenderTexture.active = null;
         }
     }
