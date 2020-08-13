@@ -11,18 +11,18 @@ public class TestBookControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown("z"))
-        {
-            //book.rectTransform.sizeDelta = new Vector2(upImage.rectTransform.sizeDelta.x, progress);
-            //book.gameObject.transform.localScale = new Vector2(3, 3);
-            StartCoroutine(ChangeBookScale());    
+        //if(Input.GetKeyDown("z"))
+        //{
+        //    //book.rectTransform.sizeDelta = new Vector2(upImage.rectTransform.sizeDelta.x, progress);
+        //    //book.gameObject.transform.localScale = new Vector2(3, 3);
+        //    StartCoroutine(ChangeBookScale());    
 
-            //book.gameObject.transform.position = new Vector2(book.transform.position.x - 100, book.transform.position.y);
-        }
-        if(Input.GetKeyDown("x"))
-        {
-            ResetBookScale();
-        }
+        //    //book.gameObject.transform.position = new Vector2(book.transform.position.x - 100, book.transform.position.y);
+        //}
+        //if(Input.GetKeyDown("x"))
+        //{
+        //    ResetBookScale();
+        //}
         
     }
     IEnumerator ChangeBookScale()
