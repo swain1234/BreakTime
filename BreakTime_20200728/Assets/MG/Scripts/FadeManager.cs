@@ -5,11 +5,24 @@ using UnityEngine.UI;
 
 public class FadeManager : MonoBehaviour
 {
+    static public FadeManager instance;
+
     public Image black;
 
     private Color color;
 
     private WaitForSeconds waitTime = new WaitForSeconds(0.01f);
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            DontDestroyOnLoad(this.gameObject);
+            instance = this;
+        }
+        else
+            Destroy(this.gameObject);
+    }
 
     public void FadeOut(float _speed = 0.02f)
     {
