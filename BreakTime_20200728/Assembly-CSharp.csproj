@@ -106,6 +106,7 @@
     <Compile Include="Assets\MG\Scripts\CSVReader.cs" />
     <Compile Include="Assets\MG\Scripts\Convert.cs" />
     <Compile Include="Assets\MG\Scripts\CsSky.cs" />
+    <Compile Include="Assets\MG\Scripts\DialogueManager.cs" />
     <Compile Include="Assets\MG\Scripts\FadeManager.cs" />
     <Compile Include="Assets\MG\Scripts\FakeTextureManager.cs" />
     <Compile Include="Assets\MG\Scripts\LevelData.cs" />
@@ -113,14 +114,12 @@
     <Compile Include="Assets\MG\Scripts\LevelParent.cs" />
     <Compile Include="Assets\MG\Scripts\SceneChanage.cs" />
     <Compile Include="Assets\MG\Scripts\ScrollViewPractice.cs" />
-    <Compile Include="Assets\MG\Scripts\TestBookControl.cs" />
     <Compile Include="Assets\MG\Scripts\TextureManager.cs" />
     <Compile Include="Assets\MG\Scripts\Title.cs" />
     <Compile Include="Assets\MG\Scripts\TransferMap.cs" />
     <Compile Include="Assets\MG\Scripts\UIText.cs" />
     <Compile Include="Assets\MG\Scripts\UITextInspector.cs" />
     <Compile Include="Assets\MG\Scripts\sample.cs" />
-    <Compile Include="Assets\MG\Scripts\ssee.cs" />
     <Compile Include="Assets\MG\Scripts\test.cs" />
     <Compile Include="Assets\MG\Scripts\wide.cs" />
     <Compile Include="Assets\Samples\Cinemachine\2.6.0\Cinemachine Example Scenes\Scenes\3rdPersonWithAimMode\ActivateOnKeypress.cs" />

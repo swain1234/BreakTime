@@ -528,7 +528,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8e904d13273d974889b51cbf50f3995, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rawImage: {fileID: 116099498}
+  fakeImage: {fileID: 0}
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -930,7 +930,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1859912502
 MonoBehaviour:
   m_ObjectHideFlags: 0

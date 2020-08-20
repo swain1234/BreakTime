@@ -5,8 +5,10 @@ using UnityEngine.UI;
 using System.IO;
 using System.Text;
 
-public class ssee : MonoBehaviour
+public class DialogueManager : MonoBehaviour
 {
+    static public DialogueManager instance;
+
     [SerializeField] Text dialogueText;
     [SerializeField] Image currentImage;
     Sprite nextImage;
@@ -18,6 +20,17 @@ public class ssee : MonoBehaviour
     bool isCoroutine = false; // 코루틴 동작여부를 확인하는 bool변수
     string sentence = ""; // 다음문장을 출력할때  쓸 변수
     string i_sentence = ""; // 다음 이미지 출력위한 변수
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            DontDestroyOnLoad(this.gameObject);
+            instance = this;
+        }
+        else
+            Destroy(this.gameObject);
+    }
 
     private void Start()
     {

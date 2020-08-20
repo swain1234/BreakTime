@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
@@ -81,13 +82,6 @@ public class LevelManager : MonoBehaviour
     public void LevelSceneChange()
     {
         StartCoroutine(SceneTransfer());
-        //줌아웃 후 책넘기기 효과
-        //페이드아웃
-
-
-        //sceneChange.ChangeScene(child.GetComponent<LevelParent>().levelData.LevelName);
-        //sceneChange.ChangeScene("stage");
-        //gameObject.SetActive(false);
     }
 
     IEnumerator SceneTransfer()
@@ -95,6 +89,34 @@ public class LevelManager : MonoBehaviour
         //책 효과
         fadeManager.FadeOut();
         yield return new WaitForSeconds(1f);
+        SceneManager.LoadScene("stage");
+        string a = child.GetComponent<LevelParent>().levelData.LevelName;
+        switch(a)
+        {
+            case "1":
+                //좌표넣기
+                Debug.Log(a);
+                break;
+            case "2":
+                break;
+            case "3":
+                break;
+            case "4":
+                break;
+            case "5":
+                break;
+            case "6":
+                break;
+            case "7":
+                break;
+            case "8":
+                break;
+            case "9":
+                break;
+            case "10":
+                break;
+
+        }
         fadeManager.FadeIn();
         yield return new WaitForSeconds(0.5f);
 
