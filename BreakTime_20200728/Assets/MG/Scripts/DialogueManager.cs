@@ -2,14 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using System.IO;
-using System.Text;
+using TMPro;
 
 public class DialogueManager : MonoBehaviour
 {
-    static public DialogueManager instance;
-
-    [SerializeField] Text dialogueText;
+    [SerializeField] TextMeshProUGUI resourceText;
     [SerializeField] Image currentImage;
     Sprite nextImage;
 
@@ -21,17 +18,6 @@ public class DialogueManager : MonoBehaviour
     string sentence = ""; // 다음문장을 출력할때  쓸 변수
     string i_sentence = ""; // 다음 이미지 출력위한 변수
 
-    private void Awake()
-    {
-        if (instance == null)
-        {
-            DontDestroyOnLoad(this.gameObject);
-            instance = this;
-        }
-        else
-            Destroy(this.gameObject);
-    }
-
     private void Start()
     {
         tArray = new List<string>();
@@ -42,9 +28,6 @@ public class DialogueManager : MonoBehaviour
     {
         t_num = 0; // 초기화
         i_num = 0;
-
-        currentImage.rectTransform.position = new Vector2(-6.66f, -2.66f);
-        dialogueText.rectTransform.position = new Vector2(4, -5.33f);
 
         tArray = new List<string>();
         iArray = new List<string>();
@@ -70,7 +53,7 @@ public class DialogueManager : MonoBehaviour
         if (isCoroutine) // 다른 코루틴이랑 겹칠수도있음 조심
         {
             StopAllCoroutines();
-            dialogueText.text = sentence;
+            resourceText.text = sentence;
             isCoroutine = false;
         }
         else
@@ -81,14 +64,6 @@ public class DialogueManager : MonoBehaviour
                 nextImage = Resources.Load(i_sentence, typeof(Sprite)) as Sprite;
                 currentImage.sprite = nextImage;
                 sentence = tArray[t_num++];
-                if (i_num - 2 >= 0)
-                {
-                    if (i_sentence != iArray[i_num - 1])
-                    {
-                        currentImage.rectTransform.position = new Vector2(-currentImage.rectTransform.position.x, currentImage.rectTransform.position.y);
-                        dialogueText.rectTransform.position = new Vector2(-dialogueText.rectTransform.position.x, currentImage.rectTransform.position.y);
-                    }
-                }
 
                 StartCoroutine(TypeSentence(sentence));
             }
@@ -99,10 +74,10 @@ public class DialogueManager : MonoBehaviour
     {
         isCoroutine = true;
 
-        dialogueText.text = "";
+        resourceText.text = "";
         foreach (char letter in sentence.ToCharArray())
         {
-            dialogueText.text += letter;
+            resourceText.text += letter;
             yield return new WaitForSeconds(0.04f);
         }
 
@@ -111,8 +86,8 @@ public class DialogueManager : MonoBehaviour
 
     void EndDialogue() // 대화가 끝났을때 연출
     {
-        //animator.SetBool("IsOpen", false);
-        Debug.Log("end");
+        //창닫고 wide연출시작
+        //레벨클리어시 다시 화면원래대로돌리고 대화연출 후 책넘기는연출
     }
 
     private void Update()

@@ -15,6 +15,7 @@ public class LevelManager : MonoBehaviour
     private GameObject child; // 선택하는 자식오브젝트
     private SceneChanage sceneChange;
     private FadeManager fadeManager;
+    private Title title;
 
     void Start()
     {
@@ -23,6 +24,7 @@ public class LevelManager : MonoBehaviour
         childScript.text = child.GetComponent<LevelParent>().levelData.Script;
         sampleImage.sprite = child.GetComponent<LevelParent>().levelData.Icon;
         fadeManager = FindObjectOfType<FadeManager>();
+        title = FindObjectOfType<Title>();
         StartCoroutine(SelectEffect());
     }
 
@@ -38,26 +40,32 @@ public class LevelManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.RightArrow))
         {
-            child.GetComponent<Image>().color = new Color(1, 1, 1, 1);
-            num++;
-            if (num >= transform.childCount - 1)
-                num = 0;
-            child = transform.GetChild(num).gameObject;
+            if (title.isTitle == false) // 수정필요
+            {
+                child.GetComponent<Image>().color = new Color(1, 1, 1, 1);
+                num++;
+                if (num >= transform.childCount - 1)
+                    num = 0;
+                child = transform.GetChild(num).gameObject;
 
-            childScript.text = child.GetComponent<LevelParent>().levelData.Script;
-            sampleImage.sprite = child.GetComponent<LevelParent>().levelData.Icon;
+                childScript.text = child.GetComponent<LevelParent>().levelData.Script;
+                sampleImage.sprite = child.GetComponent<LevelParent>().levelData.Icon;
+            }
         }
 
         else if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            child.GetComponent<Image>().color = new Color(1, 1, 1, 1);
-            num--;
-            if (num < 0)
-                num = transform.childCount - 2;
-            child = transform.GetChild(num).gameObject;
+            if (title.isTitle == false)
+            {
+                child.GetComponent<Image>().color = new Color(1, 1, 1, 1);
+                num--;
+                if (num < 0)
+                    num = transform.childCount - 2;
+                child = transform.GetChild(num).gameObject;
 
-            childScript.text = child.GetComponent<LevelParent>().levelData.Script;
-            sampleImage.sprite = child.GetComponent<LevelParent>().levelData.Icon;
+                childScript.text = child.GetComponent<LevelParent>().levelData.Script;
+                sampleImage.sprite = child.GetComponent<LevelParent>().levelData.Icon;
+            }
         }
     }
 

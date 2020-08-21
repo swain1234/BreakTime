@@ -31,6 +31,7 @@ public class FadeManager : MonoBehaviour
 
     IEnumerator FadeOutCoroutine(float _speed)
     {
+        black.gameObject.SetActive(true);
         color = black.color;
 
         while (color.a < 1f)
@@ -56,5 +57,6 @@ public class FadeManager : MonoBehaviour
             black.color = color;
             yield return waitTime;
         }
+        black.gameObject.SetActive(false);
     }
 }
