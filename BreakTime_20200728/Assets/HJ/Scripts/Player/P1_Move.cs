@@ -5,12 +5,16 @@ using Spine.Unity;
 
 public class P1_Move : MonoBehaviour
 {
+    public GameManager gameManager;
     public float maxSpeed;
     public float stopSpeed;
     Rigidbody2D rigid;
     Animator animator;
     SkeletonAnimation skeleton;
     bool faceLeft = true;
+    public int maxHealth = 1;
+    int health = 1;
+    bool isDie = false;
 
     // Start is called before the first frame update
     void Start()
@@ -18,11 +22,21 @@ public class P1_Move : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         skeleton = GetComponentInChildren<SkeletonAnimation>();
+
+        health = maxHealth;
     }
 
     // Update is called once per frame
     void Update()
     {
+        // 현재 체력 체크
+        if (health == 0)
+        {
+            if (!isDie)
+                Die();
+            return;
+        }
+
         // 키보드에서 손을 땠을 때 미끄러지면서 멈춤
         if (Input.GetButtonUp("Move1"))
         {
@@ -72,6 +86,10 @@ public class P1_Move : MonoBehaviour
 
     private void FixedUpdate()
     {
+        // 체력 확인
+        if (health == 0)
+            return;
+        
         // 이동
         float move = Input.GetAxisRaw("Move1");
         rigid.AddForce(Vector2.right * move, ForceMode2D.Impulse);
@@ -83,6 +101,7 @@ public class P1_Move : MonoBehaviour
         {
             rigid.velocity = new Vector2(maxSpeed * (-1), rigid.velocity.y);
         }
+
     }
 
     void Flip()
@@ -92,4 +111,34 @@ public class P1_Move : MonoBehaviour
         theScale.x *= -1;
         transform.localScale = theScale;
     }
+
+    void Die()
+    {
+        isDie = true;
+        rigid.velocity = Vector2.zero;
+
+        animator.SetTrigger("Dead");
+        BoxCollider2D coll = gameObject.GetComponent<BoxCollider2D>();
+        coll.enabled = false;
+        CapsuleCollider2D capsule = gameObject.GetComponent<CapsuleCollider2D>();
+        capsule.enabled = false;
+
+        Vector2 dieVelocity = new Vector2(0, 6f);
+        rigid.AddForce(dieVelocity, ForceMode2D.Impulse);
+        
+    }
+
+    
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "Obstacle")
+        {
+            health--;
+        }
+        else if(collision.gameObject.tag == "Botton")
+        {
+            health = 0;
+        }
+    }
+    
 }

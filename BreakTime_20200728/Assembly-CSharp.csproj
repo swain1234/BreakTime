@@ -62,7 +62,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\HJ\Plugins\Pixelplacement\iTween\Sample\MoveSample.cs" />
+    <Compile Include="Assets\HJ\Plugins\Pixelplacement\iTween\Sample\RotateSample.cs" />
+    <Compile Include="Assets\HJ\Plugins\Pixelplacement\iTween\Sample\SampleInfo.cs" />
+    <Compile Include="Assets\HJ\Plugins\Pixelplacement\iTween\iTween.cs" />
+    <Compile Include="Assets\HJ\Scripts\Camera\ChangeTarget.cs" />
     <Compile Include="Assets\HJ\Scripts\Finalmove1.cs" />
+    <Compile Include="Assets\HJ\Scripts\GameManager.cs" />
+    <Compile Include="Assets\HJ\Scripts\Map\TileMove.cs" />
     <Compile Include="Assets\HJ\Scripts\Pjump.cs" />
     <Compile Include="Assets\HJ\Scripts\Player\P1_Move.cs" />
     <Compile Include="Assets\HJ\Scripts\Player\P2_Move.cs" />
@@ -73,34 +80,6 @@
     <Compile Include="Assets\HJ\Scripts\TestMove.cs" />
     <Compile Include="Assets\HJ\Scripts\TestMove2.cs" />
     <Compile Include="Assets\HJ\Scripts\asdf.cs" />
-    <Compile Include="Assets\HJ\VCU\Demo\Scripts\2D\Platformer2DUserControl.cs" />
-    <Compile Include="Assets\HJ\VCU\Demo\Scripts\2D\PlatformerCharacter2D.cs" />
-    <Compile Include="Assets\HJ\VCU\Demo\Scripts\3D\ThirdPersonCharacter.cs" />
-    <Compile Include="Assets\HJ\VCU\Demo\Scripts\3D\ThirdPersonUserControl.cs" />
-    <Compile Include="Assets\HJ\VCU\Demo\Scripts\CrossPlatformInput\AxisTouchButton.cs" />
-    <Compile Include="Assets\HJ\VCU\Demo\Scripts\CrossPlatformInput\ButtonHandler.cs" />
-    <Compile Include="Assets\HJ\VCU\Demo\Scripts\CrossPlatformInput\CrossPlatformInputManager.cs" />
-    <Compile Include="Assets\HJ\VCU\Demo\Scripts\CrossPlatformInput\InputAxisScrollbar.cs" />
-    <Compile Include="Assets\HJ\VCU\Demo\Scripts\CrossPlatformInput\Joystick.cs" />
-    <Compile Include="Assets\HJ\VCU\Demo\Scripts\CrossPlatformInput\MobileControlRig.cs" />
-    <Compile Include="Assets\HJ\VCU\Demo\Scripts\CrossPlatformInput\PlatformSpecific\MobileInput.cs" />
-    <Compile Include="Assets\HJ\VCU\Demo\Scripts\CrossPlatformInput\PlatformSpecific\StandaloneInput.cs" />
-    <Compile Include="Assets\HJ\VCU\Demo\Scripts\CrossPlatformInput\TiltInput.cs" />
-    <Compile Include="Assets\HJ\VCU\Demo\Scripts\CrossPlatformInput\TouchPad.cs" />
-    <Compile Include="Assets\HJ\VCU\Demo\Scripts\CrossPlatformInput\VirtualInput.cs" />
-    <Compile Include="Assets\HJ\VCU\Demo\Scripts\UI\ButtonBehaviour.cs" />
-    <Compile Include="Assets\HJ\VCU\Demo\Scripts\UI\DemoManager.cs" />
-    <Compile Include="Assets\HJ\VCU\Scripts\2D\FlyCamera2D.cs" />
-    <Compile Include="Assets\HJ\VCU\Scripts\2D\MultiTargetCamera.cs" />
-    <Compile Include="Assets\HJ\VCU\Scripts\2D\SmoothFollow2DCamera.cs" />
-    <Compile Include="Assets\HJ\VCU\Scripts\3D\DragCamera.cs" />
-    <Compile Include="Assets\HJ\VCU\Scripts\3D\FlyCamera.cs" />
-    <Compile Include="Assets\HJ\VCU\Scripts\3D\MTPCamera.cs" />
-    <Compile Include="Assets\HJ\VCU\Scripts\3D\OrbitCamera.cs" />
-    <Compile Include="Assets\HJ\VCU\Scripts\3D\RPGCamera.cs" />
-    <Compile Include="Assets\HJ\VCU\Scripts\3D\RTSCamera.cs" />
-    <Compile Include="Assets\HJ\VCU\Scripts\3D\SmoothFollowCamera.cs" />
-    <Compile Include="Assets\HJ\VCU\Scripts\Base\VirtualCamera.cs" />
     <Compile Include="Assets\MG\Scripts\AutoFlip.cs" />
     <Compile Include="Assets\MG\Scripts\Book.cs" />
     <Compile Include="Assets\MG\Scripts\CSVReader.cs" />
@@ -178,7 +157,6 @@
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
     <None Include="Assets\Spine\version.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
-    <None Include="Assets\HJ\VCU\Manual.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />
     <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Oswald-Bold - OFL.txt" />
     <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Anton OFL.txt" />
@@ -186,6 +164,7 @@
     <None Include="Assets\MG\StreamingAssets\test.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\HJ\Animation\Librarian\ManResource.json.txt" />
+    <None Include="Assets\HJ\Plugins\Pixelplacement\iTween\ReadMe!\ReadMe!.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface.shader" />
     <None Include="Assets\HJ\Animation\RedGirl\data\RedGirl.json 1.txt" />
     <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
@@ -733,76 +712,76 @@
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.5f1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Xml.Serialization.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipeline.Universal.ShaderLibrary">
-      <HintPath>C:/myGit/BreakTime/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
+      <HintPath>D:/Upontail/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline.Editor">
-      <HintPath>C:/myGit/BreakTime/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+      <HintPath>D:/Upontail/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Cinemachine">
-      <HintPath>C:/myGit/BreakTime/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
+      <HintPath>D:/Upontail/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Universal.Shaders">
-      <HintPath>C:/myGit/BreakTime/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Shaders.dll</HintPath>
+      <HintPath>D:/Upontail/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Shaders.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VSCode.Editor">
-      <HintPath>C:/myGit/BreakTime/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+      <HintPath>D:/Upontail/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Core.Editor">
-      <HintPath>C:/myGit/BreakTime/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Editor.dll</HintPath>
+      <HintPath>D:/Upontail/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Core.Runtime">
-      <HintPath>C:/myGit/BreakTime/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Runtime.dll</HintPath>
+      <HintPath>D:/Upontail/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>C:/myGit/BreakTime/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>D:/Upontail/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Universal.Runtime">
-      <HintPath>C:/myGit/BreakTime/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
+      <HintPath>D:/Upontail/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Universal.Editor">
-      <HintPath>C:/myGit/BreakTime/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Editor.dll</HintPath>
+      <HintPath>D:/Upontail/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>C:/myGit/BreakTime/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+      <HintPath>D:/Upontail/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
-      <HintPath>C:/myGit/BreakTime/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+      <HintPath>D:/Upontail/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>C:/myGit/BreakTime/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+      <HintPath>D:/Upontail/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Postprocessing.Editor">
-      <HintPath>C:/myGit/BreakTime/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Unity.Postprocessing.Editor.dll</HintPath>
+      <HintPath>D:/Upontail/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Unity.Postprocessing.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
-      <HintPath>C:/myGit/BreakTime/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+      <HintPath>D:/Upontail/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary">
-      <HintPath>C:/myGit/BreakTime/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll</HintPath>
+      <HintPath>D:/Upontail/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Sprite.Editor">
-      <HintPath>C:/myGit/BreakTime/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
+      <HintPath>D:/Upontail/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Postprocessing.Runtime">
-      <HintPath>C:/myGit/BreakTime/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Unity.Postprocessing.Runtime.dll</HintPath>
+      <HintPath>D:/Upontail/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Unity.Postprocessing.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Tilemap.Editor">
-      <HintPath>C:/myGit/BreakTime/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
+      <HintPath>D:/Upontail/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
     </Reference>
     <Reference Include="com.unity.cinemachine.editor">
-      <HintPath>C:/myGit/BreakTime/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
+      <HintPath>D:/Upontail/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.ShaderGraph.Editor">
-      <HintPath>C:/myGit/BreakTime/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Unity.ShaderGraph.Editor.dll</HintPath>
+      <HintPath>D:/Upontail/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Unity.ShaderGraph.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Core.ShaderLibrary">
-      <HintPath>C:/myGit/BreakTime/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Unity.RenderPipelines.Core.ShaderLibrary.dll</HintPath>
+      <HintPath>D:/Upontail/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Unity.RenderPipelines.Core.ShaderLibrary.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:/myGit/BreakTime/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>D:/Upontail/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
-      <HintPath>C:/myGit/BreakTime/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+      <HintPath>D:/Upontail/BreakTime/BreakTime_20200728/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

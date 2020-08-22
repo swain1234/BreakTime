@@ -9,6 +9,9 @@ TagManager:
   - Doodle
   - Cam1
   - Player2
+  - MoveTIle
+  - Obstacle
+  - Bottom
   layers:
   - Default
   - TransparentFX
@@ -22,8 +25,8 @@ TagManager:
   - Player2
   - Ground
   - Doodle
-  - 
-  - 
+  - Obstacle
+  - Bottom
   - 
   - 
   - 
