@@ -1,24 +1,35 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Title : MonoBehaviour
 {
-    private SceneChanage sceneChange;
 
-    [SerializeField]
-    private string nextScene;
+    [SerializeField] private Image title;
+    private FadeManager fadeManager;
+    public bool isTitle = true;
 
     private void Start()
     {
-        sceneChange = FindObjectOfType<SceneChanage>();
+        fadeManager = FindObjectOfType<FadeManager>();
     }
 
     private void Update()
     {
-        if(Input.anyKeyDown)
+        if(Input.anyKeyDown && isTitle == true)
         {
-            sceneChange.ChangeScene(nextScene);
+            StartCoroutine(TitleClick());
         }
+    }
+
+    IEnumerator TitleClick()
+    {
+        fadeManager.FadeOut();
+        yield return new WaitForSeconds(1f);
+        title.gameObject.SetActive(false);
+        fadeManager.FadeIn();
+        yield return new WaitForSeconds(0.5f);
+        isTitle = false;
     }
 }

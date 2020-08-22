@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class LevelManager : MonoBehaviour
     private GameObject child; // 선택하는 자식오브젝트
     private SceneChanage sceneChange;
     private FadeManager fadeManager;
+    private Title title;
 
     void Start()
     {
@@ -22,6 +24,7 @@ public class LevelManager : MonoBehaviour
         childScript.text = child.GetComponent<LevelParent>().levelData.Script;
         sampleImage.sprite = child.GetComponent<LevelParent>().levelData.Icon;
         fadeManager = FindObjectOfType<FadeManager>();
+        title = FindObjectOfType<Title>();
         StartCoroutine(SelectEffect());
     }
 
@@ -37,26 +40,32 @@ public class LevelManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.RightArrow))
         {
-            child.GetComponent<Image>().color = new Color(1, 1, 1, 1);
-            num++;
-            if (num >= transform.childCount - 1)
-                num = 0;
-            child = transform.GetChild(num).gameObject;
+            if (title.isTitle == false) // 수정필요
+            {
+                child.GetComponent<Image>().color = new Color(1, 1, 1, 1);
+                num++;
+                if (num >= transform.childCount - 1)
+                    num = 0;
+                child = transform.GetChild(num).gameObject;
 
-            childScript.text = child.GetComponent<LevelParent>().levelData.Script;
-            sampleImage.sprite = child.GetComponent<LevelParent>().levelData.Icon;
+                childScript.text = child.GetComponent<LevelParent>().levelData.Script;
+                sampleImage.sprite = child.GetComponent<LevelParent>().levelData.Icon;
+            }
         }
 
         else if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            child.GetComponent<Image>().color = new Color(1, 1, 1, 1);
-            num--;
-            if (num < 0)
-                num = transform.childCount - 2;
-            child = transform.GetChild(num).gameObject;
+            if (title.isTitle == false)
+            {
+                child.GetComponent<Image>().color = new Color(1, 1, 1, 1);
+                num--;
+                if (num < 0)
+                    num = transform.childCount - 2;
+                child = transform.GetChild(num).gameObject;
 
-            childScript.text = child.GetComponent<LevelParent>().levelData.Script;
-            sampleImage.sprite = child.GetComponent<LevelParent>().levelData.Icon;
+                childScript.text = child.GetComponent<LevelParent>().levelData.Script;
+                sampleImage.sprite = child.GetComponent<LevelParent>().levelData.Icon;
+            }
         }
     }
 
@@ -81,13 +90,6 @@ public class LevelManager : MonoBehaviour
     public void LevelSceneChange()
     {
         StartCoroutine(SceneTransfer());
-        //줌아웃 후 책넘기기 효과
-        //페이드아웃
-
-
-        //sceneChange.ChangeScene(child.GetComponent<LevelParent>().levelData.LevelName);
-        //sceneChange.ChangeScene("stage");
-        //gameObject.SetActive(false);
     }
 
     IEnumerator SceneTransfer()
@@ -95,6 +97,34 @@ public class LevelManager : MonoBehaviour
         //책 효과
         fadeManager.FadeOut();
         yield return new WaitForSeconds(1f);
+        SceneManager.LoadScene("stage");
+        string a = child.GetComponent<LevelParent>().levelData.LevelName;
+        switch(a)
+        {
+            case "1":
+                //좌표넣기
+                Debug.Log(a);
+                break;
+            case "2":
+                break;
+            case "3":
+                break;
+            case "4":
+                break;
+            case "5":
+                break;
+            case "6":
+                break;
+            case "7":
+                break;
+            case "8":
+                break;
+            case "9":
+                break;
+            case "10":
+                break;
+
+        }
         fadeManager.FadeIn();
         yield return new WaitForSeconds(0.5f);
 
