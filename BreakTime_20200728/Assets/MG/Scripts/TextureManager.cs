@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class TextureManager : MonoBehaviour
 {
-    private int resWidth = 1600;
-    private int resHeight = 1200;
+    private int resWidth;
+    private int resHeight;
 
     [SerializeField] RawImage fakeImage;
     private Camera cameraManager;

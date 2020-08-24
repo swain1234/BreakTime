@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class LevelManager : MonoBehaviour
 {
-    [SerializeField]
-    private Text childScript; // 가져오는 텍스트
     [SerializeField]
     private Image sampleImage; // 가져오는 이미지
     private int num = 0; // 자식 번호
@@ -16,12 +15,13 @@ public class LevelManager : MonoBehaviour
     private SceneChanage sceneChange;
     private FadeManager fadeManager;
     private Title title;
+    [SerializeField] TextMeshProUGUI resourceText;
 
     void Start()
     {
         sceneChange = GetComponentInParent<SceneChanage>();
         child = transform.GetChild(num).gameObject;
-        childScript.text = child.GetComponent<LevelParent>().levelData.Script;
+        resourceText.text = child.GetComponent<LevelParent>().levelData.Script;
         sampleImage.sprite = child.GetComponent<LevelParent>().levelData.Icon;
         fadeManager = FindObjectOfType<FadeManager>();
         title = FindObjectOfType<Title>();
@@ -48,7 +48,7 @@ public class LevelManager : MonoBehaviour
                     num = 0;
                 child = transform.GetChild(num).gameObject;
 
-                childScript.text = child.GetComponent<LevelParent>().levelData.Script;
+                resourceText.text = child.GetComponent<LevelParent>().levelData.Script;
                 sampleImage.sprite = child.GetComponent<LevelParent>().levelData.Icon;
             }
         }
@@ -63,7 +63,7 @@ public class LevelManager : MonoBehaviour
                     num = transform.childCount - 2;
                 child = transform.GetChild(num).gameObject;
 
-                childScript.text = child.GetComponent<LevelParent>().levelData.Script;
+                resourceText.text = child.GetComponent<LevelParent>().levelData.Script;
                 sampleImage.sprite = child.GetComponent<LevelParent>().levelData.Icon;
             }
         }

@@ -12,8 +12,8 @@ public class wide : MonoBehaviour
     [SerializeField] Image rightImage;
 
 
-    float smoothness = 0.05f; // 
-    float duration = 0.01f; // 
+    float smoothness = 0.005f; // 
+    float duration = 0.001f; // 
     // Start is called before the first frame update
     void Start()
     {
@@ -49,7 +49,7 @@ public class wide : MonoBehaviour
                 downImage.rectTransform.sizeDelta = new Vector2(downImage.rectTransform.sizeDelta.x, progress);
                 progress -= increment;
                 yield return new WaitForSeconds(smoothness);
-            } while (progress > -20);
+            } while (progress >= -100);
         }
         else
         {
@@ -59,7 +59,7 @@ public class wide : MonoBehaviour
                 downImage.rectTransform.sizeDelta = new Vector2(downImage.rectTransform.sizeDelta.x, progress);
                 progress += increment;
                 yield return new WaitForSeconds(smoothness);
-            } while (progress < 200);
+            } while (progress <= 400);
         }
         yield return true;
     }
@@ -76,7 +76,7 @@ public class wide : MonoBehaviour
                 rightImage.rectTransform.sizeDelta = new Vector2(progress, rightImage.rectTransform.sizeDelta.y);
                 progress -= increment;
                 yield return new WaitForSeconds(smoothness);
-            } while (progress > -50);
+            } while (progress >= -100);
         }
         else
         {
@@ -86,7 +86,7 @@ public class wide : MonoBehaviour
                 rightImage.rectTransform.sizeDelta = new Vector2(progress, rightImage.rectTransform.sizeDelta.y);
                 progress += increment;
                 yield return new WaitForSeconds(smoothness);
-            } while (progress < 200);
+            } while (progress <= 400);
         }
         yield return true;
     }

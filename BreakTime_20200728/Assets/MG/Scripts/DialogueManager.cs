@@ -65,6 +65,10 @@ public class DialogueManager : MonoBehaviour
                 currentImage.sprite = nextImage;
                 sentence = tArray[t_num++];
 
+                //currentImage.rectTransform.
+
+
+
                 StartCoroutine(TypeSentence(sentence));
             }
         }
