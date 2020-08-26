@@ -32,13 +32,13 @@ public class PlayerJump : MonoBehaviour
     void CheckGround()
     {
         Vector2 rayPos = new Vector3(transform.position.x, transform.position.y - rayPosition);
-        int layerMask = (1 << LayerMask.NameToLayer("Ground")) + (1 << LayerMask.NameToLayer("Doodle"));
+        int layerMask = (1 << LayerMask.NameToLayer("Ground"));
         RaycastHit2D hit = Physics2D.Raycast(rayPos , Vector3.down, rayDistance, layerMask);
         Debug.DrawRay(rayPos, Vector3.down * rayDistance, Color.red);
 
         if(hit.collider != null)
         {
-            if(hit.transform.CompareTag("Ground") || hit.transform.CompareTag("Doodle"))
+            if(hit.transform.CompareTag("Ground") || hit.transform.CompareTag("MoveTile"))
             {
                 //Debug.Log("Ground");
                 animator.SetBool("isJump", false);

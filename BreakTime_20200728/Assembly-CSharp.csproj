@@ -69,7 +69,11 @@
     <Compile Include="Assets\HJ\Scripts\Camera\ChangeTarget.cs" />
     <Compile Include="Assets\HJ\Scripts\Finalmove1.cs" />
     <Compile Include="Assets\HJ\Scripts\GameManager.cs" />
-    <Compile Include="Assets\HJ\Scripts\Map\TileMove.cs" />
+    <Compile Include="Assets\HJ\Scripts\Map\Button1.cs" />
+    <Compile Include="Assets\HJ\Scripts\Map\Button2.cs" />
+    <Compile Include="Assets\HJ\Scripts\Map\ButtonTile.cs" />
+    <Compile Include="Assets\HJ\Scripts\Map\TileMoveLR.cs" />
+    <Compile Include="Assets\HJ\Scripts\Map\TileMoveUD.cs" />
     <Compile Include="Assets\HJ\Scripts\Pjump.cs" />
     <Compile Include="Assets\HJ\Scripts\Player\P1_Move.cs" />
     <Compile Include="Assets\HJ\Scripts\Player\P2_Move.cs" />

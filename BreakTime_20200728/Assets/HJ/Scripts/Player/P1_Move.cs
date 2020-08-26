@@ -127,7 +127,6 @@ public class P1_Move : MonoBehaviour
         rigid.AddForce(dieVelocity, ForceMode2D.Impulse);
         
     }
-
     
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -135,7 +134,7 @@ public class P1_Move : MonoBehaviour
         {
             health--;
         }
-        else if(collision.gameObject.tag == "Botton")
+        else if(collision.gameObject.tag == "Bottom")
         {
             health = 0;
         }
