@@ -1,15 +1,14 @@
-﻿character,script
-librarian,"이봐, 늑대."
-brownWolf,네! 또 디저트를 주실 건가요?
-librarian,이 꼬마에 대해 아는 걸 전부 말해.&특히 꼬마의 할머니에 대해서.
-brownWolf,그 분을 함부로 입에 담을 수는&없습니다.
-librarian,꼬마의 목숨이 달린 일이다. 당장 말해.
-brownWolf,흐음… 할머님께선 최고의 파티셰셨죠.&그랜드 파티시움도 그 분께서&세우신 것과 다름없습니다.
-librarian,살아있나?
-brownWolf,…
-redHood,네! 저 할머니 만나러 가고 있어요!
-redHood,할머니 제과 솜씨는 최고예요!&아! 빨리 할머니의 푸딩 먹고 싶다!
-brownWolf,…
-librarian,"결말까지 건드렸군.&늑대, 마저 안내해."
-brownWolf,…알겠습니다.
-,일이삼사오육칠팔구십일이삼사오육칠
+﻿character,script,position
+librarian,"이봐, 늑대.",l
+brownWolf,네! 또 디저트를 주실 건가요?,r
+librarian,이 꼬마에 대해 아는 걸 전부 말해.&특히 꼬마의 할머니에 대해서.,l
+brownWolf,그 분을 함부로 입에 담을 수는&없습니다.,r
+librarian,꼬마의 목숨이 달린 일이다. 당장 말해.,l
+brownWolf,흐음… 할머님께선 최고의 파티셰셨죠.&그랜드 파티시움도 그 분께서&세우신 것과 다름없습니다.,r
+librarian,살아있나?,l
+brownWolf,…,r
+redHood,네! 저 할머니 만나러 가고 있어요!,r
+redHood,할머니 제과 솜씨는 최고예요!&아! 빨리 할머니의 푸딩 먹고 싶다!,r
+brownWolf,…,r
+librarian,"결말까지 건드렸군.&늑대, 마저 안내해.",l
+brownWolf,…알겠습니다.,r

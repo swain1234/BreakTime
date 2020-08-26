@@ -1,9 +1,9 @@
-﻿character,script
-librarian,"이봐, 대체 저것들은 뭐지? "
-brownWolf,"글쎄요…&저도 처음 보는 것들입니다만,&대단히 위험해 보이는군요."
-librarian,처음 보는 것… 그럼 네가 말한 그&‘파티셰가 되기 위한 고난’은 아니란 거네.
-brownWolf,오는 길에 방귀방석은 밟으셨나요?&그건 제가 설치한 고난입니다.
-librarian,…
-redHood,초콜릿 쿠키! 드시고 싶으시죠!
-brownWolf,네!
-librarian,책을 망친 원인… 곧 찾을 수 있겠군.
+﻿character,script,position
+librarian,"이봐, 대체 저것들은 뭐지? ",l
+brownWolf,"글쎄요…&저도 처음 보는 것들입니다만,&대단히 위험해 보이는군요.",r
+librarian,처음 보는 것… 그럼 네가 말한 그&‘파티셰가 되기 위한 고난’은 아니란 거네.,l
+brownWolf,오는 길에 방귀방석은 밟으셨나요?&그건 제가 설치한 고난입니다.,r
+librarian,…,l
+redHood,초콜릿 쿠키! 드시고 싶으시죠!,l
+brownWolf,네!,r
+librarian,책을 망친 원인… 곧 찾을 수 있겠군.,l

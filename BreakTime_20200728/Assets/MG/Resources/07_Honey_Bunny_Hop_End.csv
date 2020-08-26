@@ -1,7 +1,7 @@
-﻿character,script
-redHood,재밌었어!
-librarian,하아… 운동부족인가…
-brownWolf,그랜드 파티시움은&저 구름 위에 있습니다.
-brownWolf,"아주 큰 나무를 오르셔야 하니,&준비 단단히 하세요,"
-redHood,네!
-librarian,아아.
+﻿character,script,position
+redHood,재밌었어!,r
+librarian,하아… 운동부족인가…,l
+brownWolf,그랜드 파티시움은&저 구름 위에 있습니다.,r
+brownWolf,"아주 큰 나무를 오르셔야 하니,&준비 단단히 하세요,",r
+redHood,네!,l
+librarian,아아.,l

@@ -20,7 +20,10 @@ public class Option : MonoBehaviour
     [SerializeField] LevelData level9;
     [SerializeField] LevelData level10;
 
+    List<LevelData> levelArray; // 레벨데이터를 담는 리스트
+
     public LevelData currentLevel;
+    public LevelData nextLevel;
 
     [SerializeField] TextMeshProUGUI stageText;
     [SerializeField] Image panel;
@@ -41,7 +44,21 @@ public class Option : MonoBehaviour
 
     void Start()
     {
+        levelArray = new List<LevelData>();
         fadeManager = FindObjectOfType<FadeManager>();
+        for (var i = 0; i < 10; i++)
+        {
+            levelArray.Add((level1));
+            levelArray.Add((level2));
+            levelArray.Add((level3));
+            levelArray.Add((level4));
+            levelArray.Add((level5));
+            levelArray.Add((level6));
+            levelArray.Add((level7));
+            levelArray.Add((level8));
+            levelArray.Add((level9));
+            levelArray.Add((level10));
+        }
     }
 
     void Update()
@@ -79,6 +96,23 @@ public class Option : MonoBehaviour
         if (currentLevel != null)
         {
             stageText.text = currentLevel.LevelName;
+            for(int i = 0; i < levelArray.Count; i++)
+            {
+                if (currentLevel.LevelName == levelArray[i].LevelName && i < 9)
+                    nextLevel = levelArray[i + 1];
+            }
+        }
+    }
+    public void LevelChange()
+    {
+        if (nextLevel != null)
+        {
+            currentLevel = nextLevel;
+            for (int i = 0; i < levelArray.Count; i++)
+            {
+                if (currentLevel.LevelName == levelArray[i].LevelName && i < 9)
+                    nextLevel = levelArray[i + 1];
+            }
         }
     }
 

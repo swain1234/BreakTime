@@ -1,14 +1,14 @@
-﻿character,script
-redHood,저길 보세요!&낯선 사람이 날아다니고 있어요!
-achromaticWitch,역시 책 속으로 들어왔구나.
-achromaticWitch,"반가워, 사서님."
-redHood,아는 사이시군요! 안녕하세요!
-librarian,네가 이런 짓을 벌였나? 넌 누구지?
-achromaticWitch,나? 후후후... 알 필요 없어.
-redHood,모르는 사이였어!
-librarian,"감히 도서관의 책을 건드리다니,&무슨 생각이야?"
-achromaticWitch,"그건 본인도 마찬가지 아닌가…?&뭐, 네가 알기엔 조금 이르지."
-librarian,대가를 치르게 해주마.
-achromaticWitch,"그래, 노력해봐."
-librarian,"꼬마야, 풀숲에 숨어있어."
-librarian,…곧 위험한 일이 생길 테니까.
+﻿character,script,position
+redHood,저길 보세요!&낯선 사람이 날아다니고 있어요!,l
+achromaticWitch,역시 책 속으로 들어왔구나.,r
+achromaticWitch,"반가워, 사서님.",r
+redHood,아는 사이시군요! 안녕하세요!,l
+librarian,네가 이런 짓을 벌였나? 넌 누구지?,l
+achromaticWitch,나? 후후후... 알 필요 없어.,r
+redHood,모르는 사이였어!,l
+librarian,"감히 도서관의 책을 건드리다니,&무슨 생각이야?",l
+achromaticWitch,"그건 본인도 마찬가지 아닌가…?&뭐, 네가 알기엔 조금 이르지.",r
+librarian,대가를 치르게 해주마.,l
+achromaticWitch,"그래, 노력해봐.",r
+librarian,"꼬마야, 풀숲에 숨어있어.",l
+librarian,…곧 위험한 일이 생길 테니까.,l

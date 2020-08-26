@@ -42,32 +42,26 @@ public class LevelManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.RightArrow))
         {
-            if (title.isTitle == false) // 수정필요
-            {
-                child.GetComponent<Image>().color = new Color(1, 1, 1, 1);
-                num++;
-                if (num >= transform.childCount - 1)
-                    num = 0;
-                child = transform.GetChild(num).gameObject;
+            child.GetComponent<Image>().color = new Color(1, 1, 1, 1);
+            num++;
+            if (num >= transform.childCount - 1)
+                num = 0;
+            child = transform.GetChild(num).gameObject;
 
-                resourceText.text = child.GetComponent<LevelParent>().levelData.Script;
-                sampleImage.sprite = child.GetComponent<LevelParent>().levelData.Icon;
-            }
+            resourceText.text = child.GetComponent<LevelParent>().levelData.Script;
+            sampleImage.sprite = child.GetComponent<LevelParent>().levelData.Icon;
         }
 
         else if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            if (title.isTitle == false)
-            {
-                child.GetComponent<Image>().color = new Color(1, 1, 1, 1);
-                num--;
-                if (num < 0)
-                    num = transform.childCount - 2;
-                child = transform.GetChild(num).gameObject;
+            child.GetComponent<Image>().color = new Color(1, 1, 1, 1);
+            num--;
+            if (num < 0)
+                num = transform.childCount - 2;
+            child = transform.GetChild(num).gameObject;
 
-                resourceText.text = child.GetComponent<LevelParent>().levelData.Script;
-                sampleImage.sprite = child.GetComponent<LevelParent>().levelData.Icon;
-            }
+            resourceText.text = child.GetComponent<LevelParent>().levelData.Script;
+            sampleImage.sprite = child.GetComponent<LevelParent>().levelData.Icon;
         }
     }
 
@@ -143,8 +137,34 @@ public class LevelManager : MonoBehaviour
         fadeManager.FadeOut();
         yield return new WaitForSeconds(1f);
         SceneManager.LoadScene("Stage");
-        //클릭한 오브젝트의 레벨데이터 스크립트에 대해 이동
-
+        string a = child.GetComponent<LevelParent>().levelData.LevelName;
+        option.currentLevel = child.GetComponent<LevelParent>().levelData;
+        option.StageScript();
+        switch (a)
+        {
+            case "01_A_Sweetie_in_Red":
+                //좌표넣기 , 초기셋팅상태
+                Debug.Log(a);
+                break;
+            case "02_Fine_Painting":
+                break;
+            case "03_Big_Colored_Button":
+                break;
+            case "04_Pain_Painting":
+                break;
+            case "05_Black_Purr":
+                break;
+            case "06_This_War_of_Us":
+                break;
+            case "07_Honey_Bunny_Hop":
+                break;
+            case "08_Grand_Fall":
+                break;
+            case "09_Vanilla_Sky":
+                break;
+            case "10_Black_Howling":
+                break;
+        }
         fadeManager.FadeIn();
         yield return new WaitForSeconds(0.5f);
     }

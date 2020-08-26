@@ -88,6 +88,8 @@
     <Compile Include="Assets\MG\Scripts\DialogueManager.cs" />
     <Compile Include="Assets\MG\Scripts\FadeManager.cs" />
     <Compile Include="Assets\MG\Scripts\FakeTextureManager.cs" />
+    <Compile Include="Assets\MG\Scripts\FakeTextureManager3.cs" />
+    <Compile Include="Assets\MG\Scripts\FakeTextureManager_R.cs" />
     <Compile Include="Assets\MG\Scripts\LevelData.cs" />
     <Compile Include="Assets\MG\Scripts\LevelManager.cs" />
     <Compile Include="Assets\MG\Scripts\LevelParent.cs" />

@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.Events;
+
 public enum FlipMode
 {
     RightToLeft,
@@ -46,6 +47,7 @@ public class Book : MonoBehaviour {
     public RawImage LeftNext;
     public RawImage Right;
     public RawImage RightNext;
+
 
     public UnityEvent OnFlip;
     float radius1, radius2;
@@ -221,7 +223,7 @@ public class Book : MonoBehaviour {
         Right.transform.position = RightNext.transform.position;
         Right.transform.eulerAngles = new Vector3(0, 0, 0);
         Right.texture = ConvertSpriteToTexture((currentPage < bookPages.Length - 1) ? bookPages[currentPage + 1] : background);
-        RightNext.texture = ConvertSpriteToTexture((currentPage < bookPages.Length - 2) ? bookPages[currentPage + 2] : background);
+        //RightNext.texture = ConvertSpriteToTexture((currentPage < bookPages.Length - 2) ? bookPages[currentPage + 2] : background);
 
         LeftNext.transform.SetAsFirstSibling();
         if (enableShadowEffect) Shadow.gameObject.SetActive(true);
@@ -283,7 +285,7 @@ public class Book : MonoBehaviour {
     void UpdateSprites()
     {
         LeftNext.texture = ConvertSpriteToTexture((currentPage > 0 && currentPage <= bookPages.Length) ? bookPages[currentPage - 1] : background);
-        RightNext.texture = ConvertSpriteToTexture((currentPage >= 0 && currentPage < bookPages.Length) ? bookPages[currentPage] : background);
+        //RightNext.texture = ConvertSpriteToTexture((currentPage >= 0 && currentPage < bookPages.Length) ? bookPages[currentPage] : background);
 
     }
     public void TweenForward()
@@ -305,7 +307,6 @@ public class Book : MonoBehaviour {
         Left.gameObject.SetActive(false);
         Right.gameObject.SetActive(false);
         Right.transform.SetParent(BookPanel.transform, true);
-        //RightNext.transform.SetParent(BookPanel.transform, true);
         RightNext.transform.SetParent(BookPanel.transform, true);
         UpdateSprites();
         Shadow.gameObject.SetActive(false);
@@ -321,7 +322,6 @@ public class Book : MonoBehaviour {
                 () =>
                 {
                     UpdateSprites();
-                    //RightNext.transform.SetParent(BookPanel.transform);
                     RightNext.transform.SetParent(BookPanel.transform);
                     Right.transform.SetParent(BookPanel.transform);
 
