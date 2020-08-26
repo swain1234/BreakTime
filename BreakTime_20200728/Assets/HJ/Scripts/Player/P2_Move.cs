@@ -11,6 +11,9 @@ public class P2_Move : MonoBehaviour
     Animator animator;
     SkeletonAnimation skeleton;
     bool faceLeft = true;
+    public int maxHealth = 1;
+    int health = 1;
+    bool isDie = false;
 
     // Start is called before the first frame update
     void Start()
@@ -18,11 +21,20 @@ public class P2_Move : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         skeleton = GetComponentInChildren<SkeletonAnimation>();
+
+        health = maxHealth;
     }
 
     // Update is called once per frame
     void Update()
     {
+        // 현재 체력 체크
+        if (health == 0)
+        {
+            if (!isDie)
+                Die();
+            return;
+        }
         // 키보드에서 손을 땠을 때 미끄러지면서 멈춤
         if (Input.GetButtonUp("Move2"))
         {
@@ -72,6 +84,10 @@ public class P2_Move : MonoBehaviour
 
     private void FixedUpdate()
     {
+        // 체력 확인
+        if (health == 0)
+            return;
+
         // 이동
         float move = Input.GetAxisRaw("Move2");
         rigid.AddForce(Vector2.right * move, ForceMode2D.Impulse);
@@ -91,6 +107,34 @@ public class P2_Move : MonoBehaviour
         Vector2 theScale = transform.localScale;
         theScale.x *= -1;
         transform.localScale = theScale;
+    }
+
+    void Die()
+    {
+        isDie = true;
+        rigid.velocity = Vector2.zero;
+
+        animator.SetTrigger("Dead");
+        BoxCollider2D coll = gameObject.GetComponent<BoxCollider2D>();
+        coll.enabled = false;
+        CapsuleCollider2D capsule = gameObject.GetComponent<CapsuleCollider2D>();
+        capsule.enabled = false;
+        CircleCollider2D circle = gameObject.GetComponent<CircleCollider2D>();
+        circle.enabled = false;
+        Vector2 dieVelocity = new Vector2(0, 6f);
+        rigid.AddForce(dieVelocity, ForceMode2D.Impulse);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "Obstacle")
+        {
+            health--;
+        }
+        else if(collision.gameObject.tag == "Bottom")
+        {
+            health = 0;
+        }
     }
 }
 
