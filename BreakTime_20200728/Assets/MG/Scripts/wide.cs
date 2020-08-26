@@ -23,17 +23,9 @@ public class wide : MonoBehaviour
         rightImage = rightImage.GetComponent<Image>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void WideMode()
     {
-        if(Input.GetKeyDown("q"))
-        {
-            StartCoroutine(WideChange());
-        }
-        if (Input.GetKeyDown("w"))
-        {
-            StartCoroutine(NarrowChange());
-        }
+        StartCoroutine(WideChange());
     }
 
     IEnumerator WideChange()
@@ -50,9 +42,13 @@ public class wide : MonoBehaviour
                 progress -= increment;
                 yield return new WaitForSeconds(smoothness);
             } while (progress >= -100);
+            upImage.gameObject.SetActive(false);
+            downImage.gameObject.SetActive(false);
         }
         else
         {
+            upImage.gameObject.SetActive(true);
+            downImage.gameObject.SetActive(true);
             do
             {
                 upImage.rectTransform.sizeDelta = new Vector2(upImage.rectTransform.sizeDelta.x, progress);
@@ -63,6 +59,12 @@ public class wide : MonoBehaviour
         }
         yield return true;
     }
+
+    public void NarrowMode()
+    {
+        StartCoroutine(NarrowChange());
+    }
+
     IEnumerator NarrowChange()
     {
         float progress = leftImage.rectTransform.sizeDelta.x; ;
@@ -77,9 +79,13 @@ public class wide : MonoBehaviour
                 progress -= increment;
                 yield return new WaitForSeconds(smoothness);
             } while (progress >= -100);
+            leftImage.gameObject.SetActive(false);
+            rightImage.gameObject.SetActive(false);
         }
         else
         {
+            leftImage.gameObject.SetActive(true);
+            rightImage.gameObject.SetActive(true);
             do
             {
                 leftImage.rectTransform.sizeDelta = new Vector2(progress, leftImage.rectTransform.sizeDelta.y);

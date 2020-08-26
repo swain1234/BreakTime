@@ -14,6 +14,7 @@ public class LevelManager : MonoBehaviour
     private GameObject child; // 선택하는 자식오브젝트
     private SceneChanage sceneChange;
     private FadeManager fadeManager;
+    private Option option;
     private Title title;
     [SerializeField] TextMeshProUGUI resourceText;
 
@@ -24,6 +25,7 @@ public class LevelManager : MonoBehaviour
         resourceText.text = child.GetComponent<LevelParent>().levelData.Script;
         sampleImage.sprite = child.GetComponent<LevelParent>().levelData.Icon;
         fadeManager = FindObjectOfType<FadeManager>();
+        option = FindObjectOfType<Option>();
         title = FindObjectOfType<Title>();
         StartCoroutine(SelectEffect());
     }
@@ -97,36 +99,53 @@ public class LevelManager : MonoBehaviour
         //책 효과
         fadeManager.FadeOut();
         yield return new WaitForSeconds(1f);
-        SceneManager.LoadScene("stage");
+        SceneManager.LoadScene("Stage");
         string a = child.GetComponent<LevelParent>().levelData.LevelName;
-        switch(a)
+        option.currentLevel = child.GetComponent<LevelParent>().levelData;
+        option.StageScript();
+        switch (a)
         {
-            case "1":
-                //좌표넣기
+            case "01_A_Sweetie_in_Red":
+                //좌표넣기 , 초기셋팅상태
                 Debug.Log(a);
                 break;
-            case "2":
+            case "02_Fine_Painting":
                 break;
-            case "3":
+            case "03_Big_Colored_Button":
                 break;
-            case "4":
+            case "04_Pain_Painting":
                 break;
-            case "5":
+            case "05_Black_Purr":
                 break;
-            case "6":
+            case "06_This_War_of_Us":
                 break;
-            case "7":
+            case "07_Honey_Bunny_Hop":
                 break;
-            case "8":
+            case "08_Grand_Fall":
                 break;
-            case "9":
+            case "09_Vanilla_Sky":
                 break;
-            case "10":
+            case "10_Black_Howling":
                 break;
-
         }
         fadeManager.FadeIn();
         yield return new WaitForSeconds(0.5f);
 
+    }
+
+    public void LevelClick()
+    {
+        StartCoroutine(ClickTransfer());
+    }
+    
+    IEnumerator ClickTransfer()
+    {
+        fadeManager.FadeOut();
+        yield return new WaitForSeconds(1f);
+        SceneManager.LoadScene("Stage");
+        //클릭한 오브젝트의 레벨데이터 스크립트에 대해 이동
+
+        fadeManager.FadeIn();
+        yield return new WaitForSeconds(0.5f);
     }
 }
