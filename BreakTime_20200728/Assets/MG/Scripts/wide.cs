@@ -12,8 +12,8 @@ public class wide : MonoBehaviour
     [SerializeField] Image rightImage;
 
 
-    float smoothness = 0.05f; // 
-    float duration = 0.01f; // 
+    float smoothness = 0.005f; // 
+    float duration = 0.001f; // 
     // Start is called before the first frame update
     void Start()
     {
@@ -23,17 +23,9 @@ public class wide : MonoBehaviour
         rightImage = rightImage.GetComponent<Image>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void WideMode()
     {
-        if(Input.GetKeyDown("q"))
-        {
-            StartCoroutine(WideChange());
-        }
-        if (Input.GetKeyDown("w"))
-        {
-            StartCoroutine(NarrowChange());
-        }
+        StartCoroutine(WideChange());
     }
 
     IEnumerator WideChange()
@@ -49,20 +41,30 @@ public class wide : MonoBehaviour
                 downImage.rectTransform.sizeDelta = new Vector2(downImage.rectTransform.sizeDelta.x, progress);
                 progress -= increment;
                 yield return new WaitForSeconds(smoothness);
-            } while (progress > -20);
+            } while (progress >= -100);
+            upImage.gameObject.SetActive(false);
+            downImage.gameObject.SetActive(false);
         }
         else
         {
+            upImage.gameObject.SetActive(true);
+            downImage.gameObject.SetActive(true);
             do
             {
                 upImage.rectTransform.sizeDelta = new Vector2(upImage.rectTransform.sizeDelta.x, progress);
                 downImage.rectTransform.sizeDelta = new Vector2(downImage.rectTransform.sizeDelta.x, progress);
                 progress += increment;
                 yield return new WaitForSeconds(smoothness);
-            } while (progress < 200);
+            } while (progress <= 400);
         }
         yield return true;
     }
+
+    public void NarrowMode()
+    {
+        StartCoroutine(NarrowChange());
+    }
+
     IEnumerator NarrowChange()
     {
         float progress = leftImage.rectTransform.sizeDelta.x; ;
@@ -76,17 +78,21 @@ public class wide : MonoBehaviour
                 rightImage.rectTransform.sizeDelta = new Vector2(progress, rightImage.rectTransform.sizeDelta.y);
                 progress -= increment;
                 yield return new WaitForSeconds(smoothness);
-            } while (progress > -50);
+            } while (progress >= -100);
+            leftImage.gameObject.SetActive(false);
+            rightImage.gameObject.SetActive(false);
         }
         else
         {
+            leftImage.gameObject.SetActive(true);
+            rightImage.gameObject.SetActive(true);
             do
             {
                 leftImage.rectTransform.sizeDelta = new Vector2(progress, leftImage.rectTransform.sizeDelta.y);
                 rightImage.rectTransform.sizeDelta = new Vector2(progress, rightImage.rectTransform.sizeDelta.y);
                 progress += increment;
                 yield return new WaitForSeconds(smoothness);
-            } while (progress < 200);
+            } while (progress <= 400);
         }
         yield return true;
     }

@@ -36,6 +36,8 @@ public class AutoFlip : MonoBehaviour {
     }
     public void FlipRightPage()
     {
+        //여기에 책넘긴이후 일어날 모든 변경사항잇어야할듯
+        //코루틴으로 넣어서 옵션의 레벨데이터등 변경
         if (isFlipping) return;
         if (ControledBook.currentPage >= ControledBook.TotalPageCount) return;
         isFlipping = true;
