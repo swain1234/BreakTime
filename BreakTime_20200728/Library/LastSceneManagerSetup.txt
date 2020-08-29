@@ -1,5 +1,9 @@
 sceneSetups:
+<<<<<<< HEAD
 - path: Assets/HJ/Scenes/SampleScene.unity
+=======
+- path: Assets/MG/Scenes/Title.unity
+>>>>>>> 54b1a4ae3968ad0c175cab183cc81c5f019e9db1
   isLoaded: 1
   isActive: 1
   isSubScene: 0

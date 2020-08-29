@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: 1
   m_EditorClassIdentifier: 
   levelName: 01_A_Sweetie_in_Red
-  script: A Sweetie in Red
-  icon: {fileID: 21300000, guid: 6047e99d4afe9db49bae1c4c04afb6c5, type: 3}
+  script: 01 A Sweetie in Red
+  icon: {fileID: 21300000, guid: 77a5732991290834a983d7f7a0a535a9, type: 3}

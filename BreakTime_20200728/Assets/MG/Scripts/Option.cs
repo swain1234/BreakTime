@@ -20,10 +20,14 @@ public class Option : MonoBehaviour
     [SerializeField] LevelData level9;
     [SerializeField] LevelData level10;
 
+    List<LevelData> levelArray; // 레벨데이터를 담는 리스트
+
     public LevelData currentLevel;
+    public LevelData nextLevel;
 
     [SerializeField] TextMeshProUGUI stageText;
     [SerializeField] Image panel;
+    [SerializeField] Image candy;
     bool isActive = false;
 
     private FadeManager fadeManager;
@@ -41,7 +45,21 @@ public class Option : MonoBehaviour
 
     void Start()
     {
+        levelArray = new List<LevelData>();
         fadeManager = FindObjectOfType<FadeManager>();
+        for (var i = 0; i < 10; i++)
+        {
+            levelArray.Add((level1));
+            levelArray.Add((level2));
+            levelArray.Add((level3));
+            levelArray.Add((level4));
+            levelArray.Add((level5));
+            levelArray.Add((level6));
+            levelArray.Add((level7));
+            levelArray.Add((level8));
+            levelArray.Add((level9));
+            levelArray.Add((level10));
+        }
     }
 
     void Update()
@@ -57,6 +75,7 @@ public class Option : MonoBehaviour
             {
                 if (Input.GetKeyDown(KeyCode.Escape))
                 {
+                    UICandy();
                     panel.gameObject.SetActive(true);
                     Time.timeScale = 0f;
                     isActive = true;
@@ -79,6 +98,23 @@ public class Option : MonoBehaviour
         if (currentLevel != null)
         {
             stageText.text = currentLevel.LevelName;
+            for(int i = 0; i < levelArray.Count; i++)
+            {
+                if (currentLevel.LevelName == levelArray[i].LevelName && i < 9)
+                    nextLevel = levelArray[i + 1];
+            }
+        }
+    }
+    public void LevelChange()
+    {
+        if (nextLevel != null)
+        {
+            currentLevel = nextLevel;
+            for (int i = 0; i < levelArray.Count; i++)
+            {
+                if (currentLevel.LevelName == levelArray[i].LevelName && i < 9)
+                    nextLevel = levelArray[i + 1];
+            }
         }
     }
 
@@ -124,6 +160,7 @@ public class Option : MonoBehaviour
     IEnumerator LevelNext()
     {
         panel.gameObject.SetActive(false);
+        LevelChange();
         Time.timeScale = 1f;
         isActive = false;
         fadeManager.FadeOut();
@@ -131,5 +168,15 @@ public class Option : MonoBehaviour
         // 다음레벨 위치로
         fadeManager.FadeIn();
         yield return new WaitForSeconds(0.5f);
+    }
+
+    public string UICandy()
+    {
+        //플레이어가 캔디를 획득했을때
+        candy.gameObject.SetActive(true);
+        return "Candy";
+        //else
+        //return "NoCandy"
+        
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Title : MonoBehaviour
 {
@@ -28,6 +29,7 @@ public class Title : MonoBehaviour
         fadeManager.FadeOut();
         yield return new WaitForSeconds(1f);
         title.gameObject.SetActive(false);
+        SceneManager.LoadScene("Level");
         fadeManager.FadeIn();
         yield return new WaitForSeconds(0.5f);
         isTitle = false;

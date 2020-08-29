@@ -1,7 +1,7 @@
-﻿character,script
-redHood,땅이 검은색이야! 무서워요!
-librarian,저긴 위험하니 절대로 밟지 마.
-librarian,…내가 검은 물감을 쓴 적이 있었나?
-redHood,어떡하지!&늑대 아저씨께 갈 수가 없어요!
-librarian,회색 땅 정도라면 내가 칠해볼게.&내가 밟고있는 땅이라면 안전할 거야.
-redHood,듬직해!
+﻿character,script,position
+redHood,땅이 검은색이야! 무서워요!,r
+librarian,저긴 위험하니 절대로 밟지 마.,l
+librarian,…내가 검은 물감을 쓴 적이 있었나?,l
+redHood,어떡하지!&늑대 아저씨께 갈 수가 없어요!,r
+librarian,회색 땅 정도라면 내가 칠해볼게.&내가 밟고있는 땅이라면 안전할 거야.,l
+redHood,듬직해!,r

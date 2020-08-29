@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: 6
   m_EditorClassIdentifier: 
   levelName: 06_This_War_of_Us
-  script: This War of Us
-  icon: {fileID: 21300000, guid: 650605a835f71364fbdfb84b8d2d7323, type: 3}
+  script: 06 This War of Us
+  icon: {fileID: 21300000, guid: 77a5732991290834a983d7f7a0a535a9, type: 3}

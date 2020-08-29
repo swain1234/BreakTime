@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: 3
   m_EditorClassIdentifier: 
   levelName: 03_Big_Colored_Button
-  script: Big Colored Button
-  icon: {fileID: 21300000, guid: d85642b239cb7b94aa70ef374b82d206, type: 3}
+  script: 03 Big Colored Button
+  icon: {fileID: 21300000, guid: f258bbd8156b5b94d97f0539664c38df, type: 3}

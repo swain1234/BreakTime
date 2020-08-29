@@ -1,6 +1,6 @@
-﻿character,script
-redHood,여기! 구름 위에요!
-redHood,떨어지지 않게 조심해야지!
-librarian,괴물들이 많아.&도착해도 정말 안전할지 모르겠네.
-redHood,전 믿어요!&할머니는 분명 무사하실 거예요! 
-librarian,응. 그럴 거야.
+﻿echaracter,script,position
+redHood,여기! 구름 위에요!,r
+redHood,떨어지지 않게 조심해야지!,r
+librarian,괴물들이 많아.&도착해도 정말 안전할지 모르겠네.,l
+redHood,전 믿어요!&할머니는 분명 무사하실 거예요! ,r
+librarian,응. 그럴 거야.,l

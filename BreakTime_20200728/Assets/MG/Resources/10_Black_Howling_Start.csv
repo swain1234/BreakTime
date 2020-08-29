@@ -1,6 +1,6 @@
-﻿character,script
-achromaticWitch,왔어?
-librarian,너…!
-librarian,도서관을 모욕한 죄를 갚아주마.&거기 그대로 있어라.
-achromaticWitch,가엾어라…&차라리 거기 그대로 있거라.
-redHood,꺄아!
+﻿character,script,position
+achromaticWitch,왔어?,r
+librarian,너…!,l
+librarian,도서관을 모욕한 죄를 갚아주마.&거기 그대로 있어라.,l
+achromaticWitch,가엾어라…&차라리 거기 그대로 있거라.,r
+redHood,꺄아!,l

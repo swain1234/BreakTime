@@ -5,13 +5,15 @@ using UnityEngine;
 public class sample : MonoBehaviour
 {
     SpriteRenderer rer;
+    Color a;
     float duration = 5; // 
     float smoothness = 0.05f; // 
 
     void Start()
     {
         rer = GetComponent<SpriteRenderer>();
-        StartCoroutine("LerpColor");
+        a = rer.color;
+        StartCoroutine(LerpColor());
     }
     IEnumerator LerpColor() // 자연스럽게 점차 색바꾸기
     {
@@ -19,7 +21,7 @@ public class sample : MonoBehaviour
         float increment = smoothness / duration; //The amount of change to apply.
         while (progress < 1)
         {
-            rer.color = Color.Lerp(Color.gray, Color.white, progress);
+            rer.color = Color.Lerp(Color.white, Color.black, progress);
             progress += increment;
             yield return new WaitForSeconds(smoothness);
         }
