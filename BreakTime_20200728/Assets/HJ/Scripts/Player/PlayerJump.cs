@@ -11,6 +11,7 @@ public class PlayerJump : MonoBehaviour
     public bool isJump = false;
     // ray 시작위치 조절
     public float rayPosition = 0.3f;
+    public int candyValue = 100;
 
     Animator animator;
     Rigidbody2D rigid;
@@ -99,7 +100,18 @@ public class PlayerJump : MonoBehaviour
 
         Vector2 jumpVelocity = new Vector2(0f, jumpPower);
         rigid.AddForce(jumpVelocity, ForceMode2D.Impulse);
-        Debug.Log("Jump");
         isJump = false;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        // 사탕 먹기
+        if (collision.gameObject.tag == "Candy")
+        {
+            ScoreManager.setCandy(candyValue);
+
+            // 닿으면 삭제
+            Destroy(collision.gameObject, 0f);
+        }
     }
 }

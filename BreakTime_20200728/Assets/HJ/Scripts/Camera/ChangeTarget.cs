@@ -9,7 +9,7 @@ public class ChangeTarget : MonoBehaviour
     private int count = 0;
     public GameObject player1;
     public GameObject player2;
-    
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -17,9 +17,9 @@ public class ChangeTarget : MonoBehaviour
         player1 = GameObject.FindGameObjectWithTag("Player1");
         player2 = GameObject.FindGameObjectWithTag("Player2");
     }
-
+    
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         Change();
     }

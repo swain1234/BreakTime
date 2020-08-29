@@ -12,6 +12,8 @@ TagManager:
   - MoveTIle
   - Obstacle
   - Bottom
+  - Candy
+  - Flag
   layers:
   - Default
   - TransparentFX

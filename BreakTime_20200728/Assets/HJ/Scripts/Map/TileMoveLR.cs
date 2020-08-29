@@ -11,7 +11,7 @@ public class TileMoveLR : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        tile = GameObject.FindGameObjectWithTag("MoveTile");
+        
     }
 
     // Update is called once per frame
