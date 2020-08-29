@@ -27,6 +27,7 @@ public class Option : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI stageText;
     [SerializeField] Image panel;
+    [SerializeField] Image candy;
     bool isActive = false;
 
     private FadeManager fadeManager;
@@ -74,6 +75,7 @@ public class Option : MonoBehaviour
             {
                 if (Input.GetKeyDown(KeyCode.Escape))
                 {
+                    UICandy();
                     panel.gameObject.SetActive(true);
                     Time.timeScale = 0f;
                     isActive = true;
@@ -158,6 +160,7 @@ public class Option : MonoBehaviour
     IEnumerator LevelNext()
     {
         panel.gameObject.SetActive(false);
+        LevelChange();
         Time.timeScale = 1f;
         isActive = false;
         fadeManager.FadeOut();
@@ -165,5 +168,15 @@ public class Option : MonoBehaviour
         // 다음레벨 위치로
         fadeManager.FadeIn();
         yield return new WaitForSeconds(0.5f);
+    }
+
+    public string UICandy()
+    {
+        //플레이어가 캔디를 획득했을때
+        candy.gameObject.SetActive(true);
+        return "Candy";
+        //else
+        //return "NoCandy"
+        
     }
 }

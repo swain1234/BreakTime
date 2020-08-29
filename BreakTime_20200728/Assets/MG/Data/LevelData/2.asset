@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: 2
   m_EditorClassIdentifier: 
   levelName: 02_Fine_Painting
-  script: Fine Painting
-  icon: {fileID: 21300000, guid: 650605a835f71364fbdfb84b8d2d7323, type: 3}
+  script: 02 Fine Painting
+  icon: {fileID: 21300000, guid: df27ec019124e2e4b921fae1da8be0fe, type: 3}

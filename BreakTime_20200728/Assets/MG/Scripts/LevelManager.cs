@@ -70,12 +70,12 @@ public class LevelManager : MonoBehaviour
         WaitForSeconds wait = new WaitForSeconds(0.01f);
         while (true)
         {
-            if (time < 0.5f)
-                child.GetComponent<Image>().color = new Color(1, 1, 1, 1 - time);
+            if (time <= 0.3f)
+                child.GetComponent<Image>().color = new Color(1 - time, 1 - time, 1 - time, 1);
             else
             {
-                child.GetComponent<Image>().color = new Color(1, 1, 1, time);
-                if (time > 1f)
+                child.GetComponent<Image>().color = new Color(0.4f + time, 0.4f + time, 0.4f + time, 1);
+                if (time >= 0.6f)
                     time = 0;
             }
             time += Time.deltaTime;

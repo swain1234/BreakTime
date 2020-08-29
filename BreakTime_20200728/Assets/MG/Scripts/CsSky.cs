@@ -16,6 +16,7 @@ public class CsSky : MonoBehaviour
         float length = tfBackgrounds[0].GetComponent<SpriteRenderer>().sprite.bounds.size.x;
         leftPosX = -length;
         rightPosX = length * tfBackgrounds.Length;
+        Debug.Log(tfBackgrounds.Length);
     }
 
     private void Update()

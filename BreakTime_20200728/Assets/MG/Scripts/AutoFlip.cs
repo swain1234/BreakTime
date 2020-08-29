@@ -16,6 +16,7 @@ public class AutoFlip : MonoBehaviour {
     bool isFlipping = false;
 
     private FakeTextureManager3 fakeTextureManager3;
+    private FakeTextureManager_R fakeTextureManager_R;
     private FakeTextureManager fakeTextureManager;
     private TextureManager textureManager;
     private FadeManager fadeManager;
@@ -26,13 +27,16 @@ public class AutoFlip : MonoBehaviour {
     [SerializeField] Image selectLevel;
     [SerializeField] Image nextLevel;
     [SerializeField] Image clear;
+    [SerializeField] Image fakeClear;
+    [SerializeField] Image paint;
+    [SerializeField] Image fakePaint;
 
     List<string> tArray; // 쉼표로 구분된 대화들을 저장하는 리스트
     List<string> bArray; // 쉼표로 구분된 대화들을 저장하는 리스트
     int t_num = 0; // 대화 리스트를 출력할 때 쓸 정수
-    int b_num = 0; // 대화 리스트를 출력할 때 쓸 정수
     string sentence = ""; // 다음문장을 출력할때  쓸 변수
     string bSentence = "";
+    List<Dictionary<string, object>> Tdata;
 
     // Use this for initialization
     void Start () {
@@ -43,24 +47,17 @@ public class AutoFlip : MonoBehaviour {
         ControledBook.OnFlip.AddListener(new UnityEngine.Events.UnityAction(PageFlipped));
         textureManager = FindObjectOfType<TextureManager>();
         fakeTextureManager = FindObjectOfType<FakeTextureManager>();
+        fakeTextureManager_R = FindObjectOfType<FakeTextureManager_R>();
         fakeTextureManager3 = FindObjectOfType<FakeTextureManager3>();
         fadeManager = FindObjectOfType<FadeManager>();
         option = FindObjectOfType<Option>();
-
-        string[] num = option.currentLevel.LevelName.Split('_');
-        b_num = int.Parse(num[0]);
         tArray = new List<string>();
         bArray = new List<string>();
-        List<Dictionary<string, object>> Tdata = CSVReader.Read("01_A_Sweetie_in_Red_End");
-        List<Dictionary<string, object>> Bdata = CSVReader.Read("01_A_Sweetie_in_Red_End");
-
-        for (var i = 0; i < Tdata.Count; i++)
+        List<Dictionary<string, object>> data = CSVReader.Read("Clear");
+        for (var i = 0; i < data.Count; i++)
         {
-            tArray.Add((string)Tdata[i]["script"]);
-        }
-        for (var i = 0; i < Bdata.Count; i++)
-        {
-            bArray.Add((string)Bdata[i]["script"]);
+            bArray.Add((string)data[i]["front"]);
+            tArray.Add((string)data[i]["end"]);
         }
     }
 
@@ -170,19 +167,43 @@ public class AutoFlip : MonoBehaviour {
 
     IEnumerator BonusTextPrint()
     {
-        bSentence = bArray[b_num - 1];
+        if (option.UICandy() == "Candy")
+        {
+            clear.sprite = Resources.Load("clearCandy", typeof(Sprite)) as Sprite;
+            fakeClear.sprite = Resources.Load("clearCandy", typeof(Sprite)) as Sprite;
+        }
+        else
+        {
+            clear.sprite = Resources.Load("clear", typeof(Sprite)) as Sprite;
+            fakeClear.sprite = Resources.Load("clearCandy", typeof(Sprite)) as Sprite;
+        }
+        clear.gameObject.SetActive(true);
+        fakeClear.gameObject.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        string[] num = option.currentLevel.LevelName.Split('_');
+        t_num = int.Parse(num[0]); // 현재레벨의 텍스트를 가져오기 위해
+        if (bArray[t_num - 1] != null)
+            bSentence = bArray[t_num - 1];
+        else
+            bSentence = "아직 안만들어졌어요";
+        bSentence = bSentence.Replace("%", ",");
         bonusText.text = "";
-        foreach (char letter in bSentence.ToCharArray())
+        foreach (char letter in bSentence.ToCharArray()) // 보너스텍스트 한글자씩
         {
             bonusText.text += letter;
-            yield return new WaitForSeconds(0.1f);
-        }
-        yield return new WaitForSeconds(3f);
-        for (int k = bSentence.Length; k > 0; k--)
-        {
-            bonusText.text = bSentence.Substring(0, k);
             yield return new WaitForSeconds(0.04f);
         }
+        yield return new WaitForSeconds(1f);
+        paint.gameObject.SetActive(true);
+        fakePaint.gameObject.SetActive(true);
+        fakeTextureManager_R.TextureCapture();
+        //yield return new WaitForSeconds(2f);
+        //for (int k = bSentence.Length; k > 0; k--) // 다시지우기
+        //{
+        //    bonusText.text = bSentence.Substring(0, k);
+        //    yield return new WaitForSeconds(0.02f);
+        //}
+        yield return new WaitForSeconds(1f);
         bonusText.text = "";
     }
 
@@ -191,7 +212,6 @@ public class AutoFlip : MonoBehaviour {
         retry.gameObject.SetActive(true);
         selectLevel.gameObject.SetActive(true);
         nextLevel.gameObject.SetActive(true);
-        clear.gameObject.SetActive(true);
     }
 
     public void ImageOff()
@@ -199,7 +219,6 @@ public class AutoFlip : MonoBehaviour {
         retry.gameObject.SetActive(false);
         selectLevel.gameObject.SetActive(false);
         nextLevel.gameObject.SetActive(false);
-        clear.gameObject.SetActive(false);
     }
 
     public void Retry()
@@ -217,33 +236,56 @@ public class AutoFlip : MonoBehaviour {
     {
         ImageOff();
         StopAllCoroutines();
+        fadeManager.black.gameObject.SetActive(false);
+        paint.gameObject.SetActive(true);
+        fakePaint.gameObject.SetActive(true);
+        fakeTextureManager_R.TextureCapture();
+        paint.gameObject.SetActive(false);
+        fakePaint.gameObject.SetActive(false);
+        clear.gameObject.SetActive(false);
+        fakeClear.gameObject.SetActive(false);
         bonusText.text = "";
         StartCoroutine(LevelNext());
     }
 
     IEnumerator LevelNext()
     {
-        FlipRightPage();
-        fakeTextureManager3.rawImage.texture = ConvertSpriteToTexture(option.nextLevel.Icon);
-        fakeTextureManager3.TextureCapture_R();
-        yield return new WaitForSeconds(2f);
-        sentence = tArray[t_num];
-        tmi.text = "";
-        foreach (char letter in sentence.ToCharArray())
+        if (option.nextLevel != null)
         {
-            tmi.text += letter;
-            yield return new WaitForSeconds(0.1f);
+            FlipRightPage();
+            fakeTextureManager3.rawImage.texture = ConvertSpriteToTexture(option.nextLevel.Icon);
+            fakeTextureManager3.TextureCapture_R();
+            yield return new WaitForSeconds(2f);
+            if (bArray[t_num - 1] != null)
+                sentence = tArray[t_num - 1];
+            else
+                sentence = "아직 안만들어졌어요";
+            sentence = sentence.Replace("%", ",");
+            tmi.text = "";
+            foreach (char letter in sentence.ToCharArray()) // 보너스문장 한글자씩
+            {
+                tmi.text += letter;
+                yield return new WaitForSeconds(0.01f);
+            }
+            yield return new WaitForSeconds(1f);
+            fadeManager.FadeOut();
+            yield return new WaitForSeconds(1f);
+            tmi.text = "";
+            option.LevelChange();
+            option.StageScript();
+            // 다음레벨 위치로 이동
+            this.transform.GetChild(0).gameObject.SetActive(false);
+            fadeManager.FadeIn();
+            yield return new WaitForSeconds(0.5f);
         }
-        yield return new WaitForSeconds(5f);
-        fadeManager.FadeOut();
-        yield return new WaitForSeconds(1f);
-        b_num++; // 다음레벨의 보너스문장
-        tmi.text = "";
-        option.LevelChange();
-        option.StageScript();
-        // 다음레벨 위치로 이동
-        this.transform.GetChild(0).gameObject.SetActive(false);
-        fadeManager.FadeIn();
-        yield return new WaitForSeconds(0.5f);
+        else // 마지막레벨을 클리어했을때
+        {
+            fadeManager.FadeOut();
+            yield return new WaitForSeconds(1f);
+            //클리어했을떄의 무언가 연출 후 끝내기
+            this.transform.GetChild(0).gameObject.SetActive(false);
+            fadeManager.FadeIn();
+            yield return new WaitForSeconds(0.5f);
+        }
     }
 }

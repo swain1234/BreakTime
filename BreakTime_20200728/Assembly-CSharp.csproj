@@ -96,10 +96,12 @@
     <Compile Include="Assets\MG\Scripts\FakeTextureManager_R.cs" />
     <Compile Include="Assets\MG\Scripts\LevelData.cs" />
     <Compile Include="Assets\MG\Scripts\LevelManager.cs" />
+    <Compile Include="Assets\MG\Scripts\LevelMenu.cs" />
     <Compile Include="Assets\MG\Scripts\LevelParent.cs" />
     <Compile Include="Assets\MG\Scripts\Option.cs" />
     <Compile Include="Assets\MG\Scripts\SceneChanage.cs" />
     <Compile Include="Assets\MG\Scripts\ScrollViewPractice.cs" />
+    <Compile Include="Assets\MG\Scripts\StageMenu.cs" />
     <Compile Include="Assets\MG\Scripts\TextureManager.cs" />
     <Compile Include="Assets\MG\Scripts\Title.cs" />
     <Compile Include="Assets\MG\Scripts\UIText.cs" />
