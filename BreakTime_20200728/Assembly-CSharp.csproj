@@ -75,7 +75,10 @@
     <Compile Include="Assets\HJ\Scripts\Map\Button1.cs" />
     <Compile Include="Assets\HJ\Scripts\Map\Button2.cs" />
     <Compile Include="Assets\HJ\Scripts\Map\ButtonTile.cs" />
+    <Compile Include="Assets\HJ\Scripts\Map\Failzone.cs" />
+    <Compile Include="Assets\HJ\Scripts\Map\Manager.cs" />
     <Compile Include="Assets\HJ\Scripts\Map\ScoreManager.cs" />
+    <Compile Include="Assets\HJ\Scripts\Map\StageManager.cs" />
     <Compile Include="Assets\HJ\Scripts\Map\TileMoveLR.cs" />
     <Compile Include="Assets\HJ\Scripts\Map\TileMoveUD.cs" />
     <Compile Include="Assets\HJ\Scripts\Map\TreeAlpha.cs" />
@@ -171,11 +174,11 @@
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />
     <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Oswald-Bold - OFL.txt" />
+    <None Include="Assets\HJ\Animation\Librarian\Man\data\ManResource.atlas.txt" />
     <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Anton OFL.txt" />
     <None Include="Assets\MG\StreamingAssets\test1.txt" />
     <None Include="Assets\MG\StreamingAssets\test.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
-    <None Include="Assets\HJ\Animation\Librarian\ManResource.json.txt" />
     <None Include="Assets\HJ\Plugins\Pixelplacement\iTween\ReadMe!\ReadMe!.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface.shader" />
     <None Include="Assets\HJ\Animation\RedGirl\data\RedGirl.json 1.txt" />
@@ -185,8 +188,8 @@
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Surface.cginc" />
+    <None Include="Assets\HJ\Animation\Librarian\Man\data\ManResource.json.txt" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
-    <None Include="Assets\HJ\Animation\Librarian\ManResource.atlas.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Masking.shader" />
     <None Include="Assets\HJ\Animation\RedGirl\data\RedGirl.atlas 1.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF Overlay.shader" />

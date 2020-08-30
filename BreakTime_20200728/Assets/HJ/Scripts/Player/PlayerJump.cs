@@ -103,15 +103,15 @@ public class PlayerJump : MonoBehaviour
         isJump = false;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        // 사탕 먹기
-        if (collision.gameObject.tag == "Candy")
-        {
-            ScoreManager.setCandy(candyValue);
+    //private void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    // 사탕 먹기
+    //    if (collision.gameObject.tag == "Candy")
+    //    {
+    //        ScoreManager.setCandy(candyValue);
 
-            // 닿으면 삭제
-            Destroy(collision.gameObject, 0f);
-        }
-    }
+    //        // 닿으면 삭제
+    //        Destroy(collision.gameObject, 0f);
+    //    }
+    //}
 }

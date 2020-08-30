@@ -6,6 +6,7 @@ using Cinemachine;
 
 public class P_Move : MonoBehaviour
 {
+    public ScoreManager scoreManager;
     public GameManager gameManager;
     public float maxSpeed;
     public float stopSpeed;
@@ -138,5 +139,23 @@ public class P_Move : MonoBehaviour
         theScale.x *= -1;
         transform.localScale = theScale;
     }
-    
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Candy")
+        {
+            ScoreManager.setCandy(10);
+
+            collision.gameObject.SetActive(false);
+        }
+        else if (collision.gameObject.tag == "Finish")
+        {
+            // 도착시 씬 이동
+
+            Debug.Log("도착");
+            Time.timeScale = 0f;
+
+
+        }
+    }
 }

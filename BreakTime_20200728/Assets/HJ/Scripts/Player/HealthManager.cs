@@ -44,23 +44,15 @@ public class HealthManager : MonoBehaviour
         coll.enabled = false;
         CapsuleCollider2D capsule = gameObject.GetComponent<CapsuleCollider2D>();
         capsule.enabled = false;
+        CircleCollider2D circle = gameObject.GetComponent<CircleCollider2D>();
+        circle.enabled = false;
 
         Vector2 dieVelocity = new Vector2(0, 6f);
         rigid.AddForce(dieVelocity, ForceMode2D.Impulse);
 
+        // 스테이지 재시작
+        Invoke("RestartStage", 2f);
     }
-
-    //private void OnCollisionEnter2D(Collision2D collision)
-    //{
-    //    if (collision.gameObject.tag == "Obstacle")
-    //    {
-    //        health--;
-    //    }
-    //    else if (collision.gameObject.tag == "Bottom")
-    //    {
-    //        health = 0;
-    //    }
-    //}
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -74,4 +66,8 @@ public class HealthManager : MonoBehaviour
         }
     }
 
+    void RestartStage()
+    {
+        StageManager.RestartStage();
+    }
 }
