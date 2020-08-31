@@ -228,14 +228,14 @@ public class DialogueManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown("a"))
-        {
-            ReadDialogue(0);
-        }
-        if (Input.GetKeyDown("s"))
-        {
-            ReadDialogue(1);
-        }
+        //if (Input.GetKeyDown("a"))
+        //{
+        //    ReadDialogue(0);
+        //}
+        //if (Input.GetKeyDown("s"))
+        //{
+        //    ReadDialogue(1);
+        //}
         if (isDialogue == true && Input.anyKeyDown)
         {
             DisplayNextSentence();
