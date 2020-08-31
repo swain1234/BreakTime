@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
     public P_Move player1;
     public P_Move player2;
 
+    [SerializeField] StopManager stopManager;
+
     public GameObject[] Stages;
     public int stageIndex;
 
@@ -17,7 +19,10 @@ public class GameManager : MonoBehaviour
 
     public Vector3 startPos;
     Quaternion startRotate;
-    bool isStart = false;
+    bool isStart = true;
+
+    DialogueManager dialogueManager;
+    Option option;
 
     private void Start()
     {
@@ -27,11 +32,32 @@ public class GameManager : MonoBehaviour
         //
         startPos = GameObject.FindGameObjectWithTag("Start1").transform.position;
         startRotate = GameObject.FindGameObjectWithTag("Start1").transform.rotation;
+        dialogueManager = FindObjectOfType<DialogueManager>();
+        option = FindObjectOfType<Option>();
 
+        string[] s = option.currentLevel.LevelName.Split('_');
+        stageIndex = int.Parse(s[0]) - 1;
+        StartPosition();
+    }
+    
+    public void StartPosition()
+    {
+        stopManager.ScriptON();
         player1.transform.position = StartPositions[stageIndex * 2].position;
         player2.transform.position = StartPositions[stageIndex * 2 + 1].position;
         OnStage(stageIndex);
+        if (isStart == true)
+        {
+            stopManager.ScriptOFF();
+            StartCoroutine(Dialogue());
+            isStart = false;
+        }
+    }
 
+    IEnumerator Dialogue()
+    {
+        yield return new WaitForSeconds(0.1f);
+        dialogueManager.ReadDialogue(0);
     }
 
 
@@ -44,14 +70,12 @@ public class GameManager : MonoBehaviour
             stageIndex++;
             Stages[stageIndex].SetActive(true);
         }
-        else
-        {
-            // 클리어
+        isStart = true;
+    }
 
-            Debug.Log("Clear!");
-            // 플레이어 정지
-            Time.timeScale = 0;
-        }
+    public void Clear()
+    {
+        dialogueManager.ReadDialogue(1);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

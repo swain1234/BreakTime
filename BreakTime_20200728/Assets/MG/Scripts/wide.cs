@@ -23,6 +23,18 @@ public class wide : MonoBehaviour
         rightImage = rightImage.GetComponent<Image>();
     }
 
+    public void initSetting()
+    {
+        upImage.rectTransform.sizeDelta = new Vector2(upImage.rectTransform.sizeDelta.x, 0);
+        downImage.rectTransform.sizeDelta = new Vector2(downImage.rectTransform.sizeDelta.x, 0);
+        leftImage.rectTransform.sizeDelta = new Vector2(0, leftImage.rectTransform.sizeDelta.y);
+        rightImage.rectTransform.sizeDelta = new Vector2(0, rightImage.rectTransform.sizeDelta.y);
+        upImage.gameObject.SetActive(false);
+        downImage.gameObject.SetActive(false);
+        leftImage.gameObject.SetActive(false);
+        rightImage.gameObject.SetActive(false);
+    }
+
     public void WideMode()
     {
         StartCoroutine(WideChange());

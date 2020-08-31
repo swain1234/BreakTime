@@ -1,9 +1,5 @@
 sceneSetups:
-<<<<<<< Updated upstream
-- path: Assets/HJ/Scenes/Level.unity
-=======
-- path: Assets/MG/Scenes/Stage.unity
->>>>>>> Stashed changes
+- path: Assets/MG/Scenes/Title.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0

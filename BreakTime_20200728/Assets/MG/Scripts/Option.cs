@@ -27,10 +27,13 @@ public class Option : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI stageText;
     [SerializeField] Image panel;
-    [SerializeField] Image candy;
+    [SerializeField] Image candyImage;
     bool isActive = false;
+    public bool isCandy = false;
 
     private FadeManager fadeManager;
+    private GameManager gameManager;
+    private AutoFlip book;
 
     private void Awake()
     {
@@ -47,6 +50,7 @@ public class Option : MonoBehaviour
     {
         levelArray = new List<LevelData>();
         fadeManager = FindObjectOfType<FadeManager>();
+        gameManager = FindObjectOfType<GameManager>();
         for (var i = 0; i < 10; i++)
         {
             levelArray.Add((level1));
@@ -75,7 +79,7 @@ public class Option : MonoBehaviour
             {
                 if (Input.GetKeyDown(KeyCode.Escape))
                 {
-                    UICandy();
+                    Candy();
                     panel.gameObject.SetActive(true);
                     Time.timeScale = 0f;
                     isActive = true;
@@ -126,13 +130,16 @@ public class Option : MonoBehaviour
     IEnumerator RetryLevel()
     {
         panel.gameObject.SetActive(false);
+        isCandy = false;
         Time.timeScale = 1f;
         isActive = false;
         fadeManager.FadeOut();
         yield return new WaitForSeconds(1f);
-        //초기셋팅상태로(위치)
+        book = FindObjectOfType<AutoFlip>();
+        book.transform.GetChild(0).gameObject.SetActive(false);
+        gameManager = FindObjectOfType<GameManager>();
+        gameManager.StartPosition();
         fadeManager.FadeIn();
-        yield return new WaitForSeconds(0.5f);
     }
 
     public void LevelSelect()
@@ -143,13 +150,13 @@ public class Option : MonoBehaviour
     IEnumerator SelectLevel()
     {
         panel.gameObject.SetActive(false);
+        isCandy = false;
         Time.timeScale = 1f;
         isActive = false;
         fadeManager.FadeOut();
         yield return new WaitForSeconds(1f);
-        SceneManager.LoadScene("Level");
         fadeManager.FadeIn();
-        yield return new WaitForSeconds(0.5f);
+        SceneManager.LoadScene("Level");
     }
 
     public void NextLevel()
@@ -160,23 +167,26 @@ public class Option : MonoBehaviour
     IEnumerator LevelNext()
     {
         panel.gameObject.SetActive(false);
+        isCandy = false;
         LevelChange();
         Time.timeScale = 1f;
         isActive = false;
         fadeManager.FadeOut();
         yield return new WaitForSeconds(1f);
-        // 다음레벨 위치로
+        book = FindObjectOfType<AutoFlip>();
+        book.transform.GetChild(0).gameObject.SetActive(false);
+        gameManager = FindObjectOfType<GameManager>();
+        gameManager.NextStage();
+        gameManager.StartPosition();
         fadeManager.FadeIn();
         yield return new WaitForSeconds(0.5f);
     }
 
-    public string UICandy()
+    public void Candy()
     {
-        //플레이어가 캔디를 획득했을때
-        candy.gameObject.SetActive(true);
-        return "Candy";
-        //else
-        //return "NoCandy"
-        
+        if(isCandy == true)
+        {
+            candyImage.gameObject.SetActive(true);
+        }
     }
 }

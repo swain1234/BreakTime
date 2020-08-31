@@ -21,6 +21,7 @@ public class AutoFlip : MonoBehaviour {
     private TextureManager textureManager;
     private FadeManager fadeManager;
     private Option option;
+    private GameManager gameManager;
     [SerializeField] TextMeshProUGUI tmi;
     [SerializeField] TextMeshProUGUI bonusText;
     [SerializeField] Image retry;
@@ -51,6 +52,7 @@ public class AutoFlip : MonoBehaviour {
         fakeTextureManager3 = FindObjectOfType<FakeTextureManager3>();
         fadeManager = FindObjectOfType<FadeManager>();
         option = FindObjectOfType<Option>();
+        gameManager = FindObjectOfType<GameManager>();
         tArray = new List<string>();
         bArray = new List<string>();
         List<Dictionary<string, object>> data = CSVReader.Read("Clear");
@@ -167,7 +169,16 @@ public class AutoFlip : MonoBehaviour {
 
     IEnumerator BonusTextPrint()
     {
-        if (option.UICandy() == "Candy")
+        if (fadeManager.black.color.a != 0)
+        {
+            //Color c = fadeManager.black.color;
+            //c.a = 0;
+            //fadeManager.black.color = c;
+            //fadeManager.black.gameObject.SetActive(false);
+            fadeManager.FadeIn();
+        }
+        yield return new WaitForSeconds(0.5f);
+        if (option.isCandy == true)
         {
             clear.sprite = Resources.Load("clearCandy", typeof(Sprite)) as Sprite;
             fakeClear.sprite = Resources.Load("clearCandy", typeof(Sprite)) as Sprite;
@@ -175,7 +186,7 @@ public class AutoFlip : MonoBehaviour {
         else
         {
             clear.sprite = Resources.Load("clear", typeof(Sprite)) as Sprite;
-            fakeClear.sprite = Resources.Load("clearCandy", typeof(Sprite)) as Sprite;
+            fakeClear.sprite = Resources.Load("clear", typeof(Sprite)) as Sprite;
         }
         clear.gameObject.SetActive(true);
         fakeClear.gameObject.SetActive(true);
@@ -186,7 +197,7 @@ public class AutoFlip : MonoBehaviour {
             bSentence = bArray[t_num - 1];
         else
             bSentence = "아직 안만들어졌어요";
-        bSentence = bSentence.Replace("%", ",");
+        //bSentence = bSentence.Replace("%", ",");
         bonusText.text = "";
         foreach (char letter in bSentence.ToCharArray()) // 보너스텍스트 한글자씩
         {
@@ -245,6 +256,7 @@ public class AutoFlip : MonoBehaviour {
         clear.gameObject.SetActive(false);
         fakeClear.gameObject.SetActive(false);
         bonusText.text = "";
+        option.isCandy = false;
         StartCoroutine(LevelNext());
     }
 
@@ -273,7 +285,8 @@ public class AutoFlip : MonoBehaviour {
             tmi.text = "";
             option.LevelChange();
             option.StageScript();
-            // 다음레벨 위치로 이동
+            gameManager.NextStage();
+            gameManager.StartPosition();
             this.transform.GetChild(0).gameObject.SetActive(false);
             fadeManager.FadeIn();
             yield return new WaitForSeconds(0.5f);

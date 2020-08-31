@@ -11,6 +11,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] Image nameTag;
     [SerializeField] Image panel;
     [SerializeField] AutoFlip autoFlip;
+    [SerializeField] StopManager stopManager;
     Sprite nextImage;
 
     List<string> tArray; // 쉼표로 구분된 대화들을 저장하는 리스트
@@ -19,8 +20,8 @@ public class DialogueManager : MonoBehaviour
     int t_num = 0; // 대화 리스트를 출력할 때 쓸 정수
     int i_num = 0; // 이미지 리스트 출력 정수
     int p_num = 0;
-    bool isCoroutine = false; // 코루틴 동작여부를 확인하는 bool변수
-    bool isDialogue = false; // 현재 대화여부를 확인하는 bool변수
+    public bool isCoroutine = false; // 코루틴 동작여부를 확인하는 bool변수
+    public bool isDialogue = false; // 현재 대화여부를 확인하는 bool변수
     bool isStart = true; // 시작대화인지 끝대화인지 확인하는 bool변수
     string sentence = ""; // 다음문장을 출력할때  쓸 변수
     string i_sentence = ""; // 다음 이미지 출력위한 변수
@@ -46,6 +47,14 @@ public class DialogueManager : MonoBehaviour
 
     public void ReadDialogue(int a) // 대화 및 이미지 불러오기, 0일경우 start 1or다른숫자는 end파일 불러옴
     {
+        if(fadeManager.black.color.a != 0)
+        {
+            //Color c = fadeManager.black.color;
+            //c.a = 0;
+            //fadeManager.black.color = c;
+            //fadeManager.black.gameObject.SetActive(false);
+            fadeManager.FadeIn();
+        }
         panel.gameObject.SetActive(true);
         isDialogue = true;
         //위치 초기화
@@ -209,6 +218,10 @@ public class DialogueManager : MonoBehaviour
         if (isStart == false)
         {
             StartCoroutine(DialogueEnd());
+        }
+        else
+        {
+            stopManager.ScriptON();
         }
     }
 

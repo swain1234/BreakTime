@@ -59,11 +59,6 @@ public class StageManager : MonoBehaviour
 
     public static void RestartStage()
     {
-        Time.timeScale = 0f;
-
-        SceneManager.LoadScene(currentStage, LoadSceneMode.Single);
-
-
         
     }
 

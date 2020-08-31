@@ -12,6 +12,7 @@ public class PlayerJump : MonoBehaviour
     // ray 시작위치 조절
     public float rayPosition = 0.3f;
     public int candyValue = 100;
+    public bool isGround = false;
 
     Animator animator;
     Rigidbody2D rigid;
@@ -37,59 +38,65 @@ public class PlayerJump : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(rayPos , Vector3.down, rayDistance, layerMask);
         Debug.DrawRay(rayPos, Vector3.down * rayDistance, Color.red);
 
-        if(hit.collider != null)
+        if (hit.collider != null)
         {
-            if(hit.transform.CompareTag("Ground") || hit.transform.CompareTag("MoveTile"))
+            if (hit.transform.CompareTag("Ground") || hit.transform.CompareTag("MoveTile"))
             {
                 //Debug.Log("Ground");
                 animator.SetBool("isJump", false);
                 animator.SetBool("isJumpDown", false);
                 animator.SetBool("isJumpUp", false);
+                isGround = true;
                 currentCount = 0;
                 return;
             }
         }
+        else
+            isGround = false;
         
     }
 
     private void FixedUpdate()
     {
-        if(gameObject.tag == "Player1")
+        if (isGround)
         {
-            if(Input.GetKeyDown(KeyCode.UpArrow) && !animator.GetBool("isJump"))
+            if (gameObject.tag == "Player1")
             {
-                if(currentCount < jumpCount)
+                if (Input.GetKeyDown(KeyCode.UpArrow) && !animator.GetBool("isJump"))
                 {
-                    isJump = true;
-                    jumpCount++;
-                    animator.SetBool("isJump", true);
-                    animator.SetBool("isJumpUp", true);
+                    if (currentCount < jumpCount)
+                    {
+                        isJump = true;
+                        jumpCount++;
+                        animator.SetBool("isJump", true);
+                        animator.SetBool("isJumpUp", true);
+                    }
                 }
             }
-        }
-        else if(gameObject.tag == "Player2")
-        {
-            if(Input.GetKeyDown(KeyCode.W) && !animator.GetBool("isJump"))
+            else if (gameObject.tag == "Player2")
             {
-                if(currentCount < jumpCount)
+                if (Input.GetKeyDown(KeyCode.W) && !animator.GetBool("isJump"))
                 {
-                    isJump = true;
-                    jumpCount++;
-                    animator.SetBool("isJump", true);
-                    animator.SetBool("isJumpUp", true);
+                    if (currentCount < jumpCount)
+                    {
+                        isJump = true;
+                        jumpCount++;
+                        animator.SetBool("isJump", true);
+                        animator.SetBool("isJumpUp", true);
+                    }
                 }
             }
-        }
 
-        Jump();
-        
-        // JumpDown
-        if (rigid.velocity.y < -0.01)
-        {
-            animator.SetBool("isJumpDown", true);
-            //animator.SetBool("isJump", true);
-        }
+            Jump();
 
+            // JumpDown
+            if (rigid.velocity.y < -0.01)
+            {
+                animator.SetBool("isJumpDown", true);
+                //animator.SetBool("isJump", true);
+            }
+
+        }
     }
 
     void Jump()
@@ -101,6 +108,7 @@ public class PlayerJump : MonoBehaviour
         Vector2 jumpVelocity = new Vector2(0f, jumpPower);
         rigid.AddForce(jumpVelocity, ForceMode2D.Impulse);
         isJump = false;
+        isGround = false;
     }
 
     //private void OnCollisionEnter2D(Collision2D collision)

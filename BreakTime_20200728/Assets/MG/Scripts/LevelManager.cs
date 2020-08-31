@@ -16,10 +16,12 @@ public class LevelManager : MonoBehaviour
     private FadeManager fadeManager;
     private Option option;
     private Title title;
+    private wide wide;
     [SerializeField] TextMeshProUGUI resourceText;
 
     void Start()
     {
+        wide = FindObjectOfType<wide>();
         sceneChange = GetComponentInParent<SceneChanage>();
         child = transform.GetChild(num).gameObject;
         resourceText.text = child.GetComponent<LevelParent>().levelData.Script;
@@ -28,6 +30,15 @@ public class LevelManager : MonoBehaviour
         option = FindObjectOfType<Option>();
         title = FindObjectOfType<Title>();
         StartCoroutine(SelectEffect());
+        wide.initSetting();
+        if (fadeManager.black.color.a != 0)
+        {
+            //Color c = fadeManager.black.color;
+            //c.a = 0;
+            //fadeManager.black.color = c;
+            //fadeManager.black.gameObject.SetActive(false);
+            fadeManager.FadeIn();
+        }
     }
 
     void Update()
@@ -90,41 +101,38 @@ public class LevelManager : MonoBehaviour
 
     IEnumerator SceneTransfer()
     {
-        //책 효과
-        fadeManager.FadeOut();
-        yield return new WaitForSeconds(1f);
-        SceneManager.LoadScene("Stage");
         string a = child.GetComponent<LevelParent>().levelData.LevelName;
         option.currentLevel = child.GetComponent<LevelParent>().levelData;
+        fadeManager.FadeOut();
+        yield return new WaitForSeconds(1f);
         option.StageScript();
-        switch (a)
-        {
-            case "01_A_Sweetie_in_Red":
-                //좌표넣기 , 초기셋팅상태
-                Debug.Log(a);
-                break;
-            case "02_Fine_Painting":
-                break;
-            case "03_Big_Colored_Button":
-                break;
-            case "04_Pain_Painting":
-                break;
-            case "05_Black_Purr":
-                break;
-            case "06_This_War_of_Us":
-                break;
-            case "07_Honey_Bunny_Hop":
-                break;
-            case "08_Grand_Fall":
-                break;
-            case "09_Vanilla_Sky":
-                break;
-            case "10_Black_Howling":
-                break;
-        }
         fadeManager.FadeIn();
-        yield return new WaitForSeconds(0.5f);
-
+        SceneManager.LoadScene("Stage");
+        //switch (a)
+        //{
+        //    case "01_A_Sweetie_in_Red":
+        //        //레벨인덱스넘겨야함
+        //        Debug.Log(a);
+        //        break;
+        //    case "02_Fine_Painting":
+        //        break;
+        //    case "03_Big_Colored_Button":
+        //        break;
+        //    case "04_Pain_Painting":
+        //        break;
+        //    case "05_Black_Purr":
+        //        break;
+        //    case "06_This_War_of_Us":
+        //        break;
+        //    case "07_Honey_Bunny_Hop":
+        //        break;
+        //    case "08_Grand_Fall":
+        //        break;
+        //    case "09_Vanilla_Sky":
+        //        break;
+        //    case "10_Black_Howling":
+        //        break;
+        //}
     }
 
     public void LevelClick()
@@ -134,38 +142,12 @@ public class LevelManager : MonoBehaviour
     
     IEnumerator ClickTransfer()
     {
-        fadeManager.FadeOut();
-        yield return new WaitForSeconds(1f);
-        SceneManager.LoadScene("Stage");
         string a = child.GetComponent<LevelParent>().levelData.LevelName;
         option.currentLevel = child.GetComponent<LevelParent>().levelData;
+        fadeManager.FadeOut();
+        yield return new WaitForSeconds(1f);
         option.StageScript();
-        switch (a)
-        {
-            case "01_A_Sweetie_in_Red":
-                //좌표넣기 , 초기셋팅상태
-                Debug.Log(a);
-                break;
-            case "02_Fine_Painting":
-                break;
-            case "03_Big_Colored_Button":
-                break;
-            case "04_Pain_Painting":
-                break;
-            case "05_Black_Purr":
-                break;
-            case "06_This_War_of_Us":
-                break;
-            case "07_Honey_Bunny_Hop":
-                break;
-            case "08_Grand_Fall":
-                break;
-            case "09_Vanilla_Sky":
-                break;
-            case "10_Black_Howling":
-                break;
-        }
         fadeManager.FadeIn();
-        yield return new WaitForSeconds(0.5f);
+        SceneManager.LoadScene("Stage");
     }
 }

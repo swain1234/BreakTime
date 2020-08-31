@@ -110,6 +110,7 @@
     <Compile Include="Assets\MG\Scripts\SceneChanage.cs" />
     <Compile Include="Assets\MG\Scripts\ScrollViewPractice.cs" />
     <Compile Include="Assets\MG\Scripts\StageMenu.cs" />
+    <Compile Include="Assets\MG\Scripts\StopManager.cs" />
     <Compile Include="Assets\MG\Scripts\TextureManager.cs" />
     <Compile Include="Assets\MG\Scripts\Title.cs" />
     <Compile Include="Assets\MG\Scripts\UIText.cs" />

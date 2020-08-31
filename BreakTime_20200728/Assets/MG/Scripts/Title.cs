@@ -29,9 +29,8 @@ public class Title : MonoBehaviour
         fadeManager.FadeOut();
         yield return new WaitForSeconds(1f);
         title.gameObject.SetActive(false);
-        SceneManager.LoadScene("Level");
-        fadeManager.FadeIn();
-        yield return new WaitForSeconds(0.5f);
         isTitle = false;
+        fadeManager.FadeIn();
+        SceneManager.LoadScene("Level");
     }
 }
