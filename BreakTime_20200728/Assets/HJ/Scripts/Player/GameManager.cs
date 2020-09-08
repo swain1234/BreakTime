@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
 
     public Vector3 startPos;
     Quaternion startRotate;
-    bool isStart = false;
+    bool isStart = true;
 
     DialogueManager dialogueManager;
     Option option;
@@ -67,6 +67,7 @@ public class GameManager : MonoBehaviour
             Stages[stageIndex].SetActive(false);
             stageIndex++;
             Stages[stageIndex].SetActive(true);
+            isStart = true;
         }
     }
 

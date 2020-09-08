@@ -235,7 +235,7 @@ public class DialogueManager : MonoBehaviour
         fakeTextureManager.TextureCapture_L();
         fakeTextureManager_R.TextureCapture();
         fadeManager.FadeIn();
-        yield return new WaitForSeconds(1f);
+        //yield return new WaitForSeconds(1f);
         autoFlip.PrintBonusText();
     }
 

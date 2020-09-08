@@ -14,11 +14,13 @@ public class P_Move : MonoBehaviour
     Animator animator;
     SkeletonAnimation skeleton;
     bool faceRight = true;
-    //Option option;
+    Option option;
+    [SerializeField] StopManager stopManager;
 
     // Start is called before the first frame update
     void Start()
     {
+        option = FindObjectOfType<Option>();
         rigid = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         skeleton = GetComponentInChildren<SkeletonAnimation>();
@@ -146,17 +148,15 @@ public class P_Move : MonoBehaviour
         if(collision.gameObject.tag == "Candy")
         {
             ScoreManager.setCandy(10);
-            //option.isCandy = true;
+            option.isCandy = true;
             collision.gameObject.SetActive(false);
         }
         else if (collision.gameObject.tag == "Finish")
         {
-            // 도착시 씬 이동
-
-            Debug.Log("도착");
-            Time.timeScale = 0f;
-
-
+            collision.enabled = false;
+            gameManager.Clear();
+            animator.SetBool("isMove", false);
+            stopManager.ScriptOFF();
         }
     }
 }

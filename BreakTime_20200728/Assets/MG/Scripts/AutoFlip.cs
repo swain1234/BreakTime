@@ -268,7 +268,7 @@ public class AutoFlip : MonoBehaviour {
             fakeTextureManager3.rawImage.texture = ConvertSpriteToTexture(option.nextLevel.Icon);
             fakeTextureManager3.TextureCapture_R();
             yield return new WaitForSeconds(2f);
-            if (bArray[t_num - 1] != null)
+            if (tArray[t_num - 1] != null)
                 sentence = tArray[t_num - 1];
             else
                 sentence = "아직 안만들어졌어요";
