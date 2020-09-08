@@ -4,31 +4,45 @@ using UnityEngine;
 
 public class TreeAlpha : MonoBehaviour
 {
-    SpriteRenderer spriteRenderer;
+    SpriteRenderer renderer;
     
     // Start is called before the first frame update
     void Start()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();     
+        renderer = GetComponent<SpriteRenderer>();        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.transform.CompareTag("Player1") || collision.transform.CompareTag("Player2"))
+        if(collision.transform.CompareTag("Player1"))
         {
-            Color color = spriteRenderer.color;
+            Color color = renderer.color;
             color.a = 0.35f;
-            spriteRenderer.color = color;
+            renderer.color = color;
         }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.transform.CompareTag("Player1") || collision.transform.CompareTag("Player2"))
+        else if (collision.transform.CompareTag("Player2"))
         {
-            Color color = spriteRenderer.color;
+            Color color = renderer.color;
+            color.a = 0.35f;
+            renderer.color = color;
+        }
+        else if (collision.transform.CompareTag("Player1") && collision.transform.CompareTag("Player2"))
+        {
+            Color color = renderer.color;
+            color.a = 0.35f;
+            renderer.color = color;
+        }
+        else
+        {
+            Color color = renderer.color;
             color.a = 0.9f;
-            spriteRenderer.color = color;
+            renderer.color = color;
         }
     }
 }

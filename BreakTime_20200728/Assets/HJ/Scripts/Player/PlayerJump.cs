@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class PlayerJump : MonoBehaviour
 {
@@ -16,12 +17,17 @@ public class PlayerJump : MonoBehaviour
 
     Animator animator;
     Rigidbody2D rigid;
+    public GameObject grayTile;
+
+    private HealthManager healthManager;
 
     // Start is called before the first frame update
     void Start()
     {
         rigid = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+
+        healthManager = FindObjectOfType<HealthManager>();
     }
 
     // Update is called once per frame
@@ -38,9 +44,9 @@ public class PlayerJump : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(rayPos , Vector3.down, rayDistance, layerMask);
         Debug.DrawRay(rayPos, Vector3.down * rayDistance, Color.red);
 
-        if (hit.collider != null)
+        if(hit.collider != null)
         {
-            if (hit.transform.CompareTag("Ground") || hit.transform.CompareTag("MoveTile"))
+            if (hit.transform.CompareTag("Ground") || hit.transform.CompareTag("Black"))
             {
                 //Debug.Log("Ground");
                 animator.SetBool("isJump", false);
@@ -50,18 +56,39 @@ public class PlayerJump : MonoBehaviour
                 currentCount = 0;
                 return;
             }
+            else if(hit.transform.CompareTag("Gray"))
+            {
+                animator.SetBool("isJump", false);
+                animator.SetBool("isJumpDown", false);
+                animator.SetBool("isJumpUp", false);
+                isGround = true;
+                currentCount = 0;
+                hit.transform.gameObject.tag = "Ground";
+                
+                return;
+            }
+            else if(hit.transform.CompareTag("Obstacle"))
+            {
+                animator.SetBool("isJump", false);
+                animator.SetBool("isJumpDown", false);
+                animator.SetBool("isJumpUp", false);
+                isGround = true;
+                currentCount = 0;
+                hit.transform.gameObject.tag = "Ground";
+                return;
+            }
         }
         else
             isGround = false;
-        
     }
 
     private void FixedUpdate()
     {
-        if (isGround)
+
+        if(isGround)
         {
-            if (gameObject.tag == "Player1")
-            {
+            //if (gameObject.tag == "Player1")
+            //{
                 if (Input.GetKeyDown(KeyCode.UpArrow) && !animator.GetBool("isJump"))
                 {
                     if (currentCount < jumpCount)
@@ -72,31 +99,30 @@ public class PlayerJump : MonoBehaviour
                         animator.SetBool("isJumpUp", true);
                     }
                 }
-            }
-            else if (gameObject.tag == "Player2")
-            {
-                if (Input.GetKeyDown(KeyCode.W) && !animator.GetBool("isJump"))
-                {
-                    if (currentCount < jumpCount)
-                    {
-                        isJump = true;
-                        jumpCount++;
-                        animator.SetBool("isJump", true);
-                        animator.SetBool("isJumpUp", true);
-                    }
-                }
-            }
-
+            //}
+            //else if (gameObject.tag == "Player2")
+            //{
+            //    if (Input.GetKeyDown(KeyCode.W) && !animator.GetBool("isJump"))
+            //    {
+            //        if (currentCount < jumpCount)
+            //        {
+            //            isJump = true;
+            //            jumpCount++;
+            //            animator.SetBool("isJump", true);
+            //            animator.SetBool("isJumpUp", true);
+            //        }
+            //    }
+            //}
             Jump();
-
-            // JumpDown
-            if (rigid.velocity.y < -0.01)
-            {
-                animator.SetBool("isJumpDown", true);
-                //animator.SetBool("isJump", true);
-            }
-
         }
+        
+        // JumpDown
+        if (rigid.velocity.y < -0.05f)
+        {
+            animator.SetBool("isJumpDown", true);
+            //animator.SetBool("isJump", true);
+        }
+
     }
 
     void Jump()
@@ -111,15 +137,4 @@ public class PlayerJump : MonoBehaviour
         isGround = false;
     }
 
-    //private void OnCollisionEnter2D(Collision2D collision)
-    //{
-    //    // 사탕 먹기
-    //    if (collision.gameObject.tag == "Candy")
-    //    {
-    //        ScoreManager.setCandy(candyValue);
-
-    //        // 닿으면 삭제
-    //        Destroy(collision.gameObject, 0f);
-    //    }
-    //}
 }

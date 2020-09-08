@@ -8,20 +8,17 @@ public class P_Move : MonoBehaviour
 {
     public ScoreManager scoreManager;
     public GameManager gameManager;
-    Option option;
     public float maxSpeed;
     public float stopSpeed;
     Rigidbody2D rigid;
     Animator animator;
     SkeletonAnimation skeleton;
     bool faceRight = true;
-
-    [SerializeField] StopManager stopManager;
+    //Option option;
 
     // Start is called before the first frame update
     void Start()
     {
-        option = FindObjectOfType<Option>();
         rigid = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         skeleton = GetComponentInChildren<SkeletonAnimation>();
@@ -31,50 +28,50 @@ public class P_Move : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-            if (gameObject.tag == "Player1")
+        if(gameObject.tag == "Player1")
+        {
+            // 키보드에서 손을 땠을 때 미끄러지면서 멈춤
+            if (Input.GetButtonUp("Move1"))
             {
-                // 키보드에서 손을 땠을 때 미끄러지면서 멈춤
-                if (Input.GetButtonUp("Move1"))
-                {
-                    rigid.velocity = new Vector2(rigid.velocity.normalized.x * stopSpeed, rigid.velocity.y);
-                }
-
-                // 방향 전환 Default = left
-                if (Input.GetAxisRaw("Move1") > 0 && !faceRight)
-                {
-                    // left
-                    skeleton.initialFlipX = true;
-                    Flip();
-                }
-                else if (Input.GetAxisRaw("Move1") < 0 && faceRight)
-                {
-                    // right
-                    skeleton.initialFlipX = false;
-                    Flip();
-                }
+                rigid.velocity = new Vector2(rigid.velocity.normalized.x * stopSpeed, rigid.velocity.y);
             }
-            else if (gameObject.tag == "Player2")
+
+            // 방향 전환 Default = left
+            if (Input.GetAxisRaw("Move1") > 0 && !faceRight)
             {
-                // 키보드에서 손을 땠을 때 미끄러지면서 멈춤
-                if (Input.GetButtonUp("Move2"))
-                {
-                    rigid.velocity = new Vector2(rigid.velocity.normalized.x * stopSpeed, rigid.velocity.y);
-                }
-
-                // 방향 전환 Default = right
-                if (Input.GetAxisRaw("Move2") > 0 && !faceRight)
-                {
-                    // left
-                    skeleton.initialFlipX = true;
-                    Flip();
-                }
-                else if (Input.GetAxisRaw("Move2") < 0 && faceRight)
-                {
-                    // right
-                    skeleton.initialFlipX = false;
-                    Flip();
-                }
+                // left
+                skeleton.initialFlipX = true;
+                Flip();
             }
+            else if (Input.GetAxisRaw("Move1") < 0 && faceRight)
+            {
+                // right
+                skeleton.initialFlipX = false;
+                Flip();
+            }
+        }
+        else if(gameObject.tag == "Player2")
+        {
+            // 키보드에서 손을 땠을 때 미끄러지면서 멈춤
+            if (Input.GetButtonUp("Move2"))
+            {
+                rigid.velocity = new Vector2(rigid.velocity.normalized.x * stopSpeed, rigid.velocity.y);
+            }
+
+            // 방향 전환 Default = right
+            if (Input.GetAxisRaw("Move2") > 0 && !faceRight)
+            {
+                // left
+                skeleton.initialFlipX = true;
+                Flip();
+            }
+            else if (Input.GetAxisRaw("Move2") < 0 && faceRight)
+            {
+                // right
+                skeleton.initialFlipX = false;
+                Flip();
+            }
+        }
 
         // 애니메이션
         // 점프 중에는 isMove - false
@@ -96,7 +93,7 @@ public class P_Move : MonoBehaviour
             else
             {
                 animator.SetBool("isMove", true);
-
+          
             }
         }
     }
@@ -132,6 +129,7 @@ public class P_Move : MonoBehaviour
                 rigid.velocity = new Vector2(maxSpeed * (-1), rigid.velocity.y);
             }
         }
+        
 
     }
 
@@ -148,15 +146,17 @@ public class P_Move : MonoBehaviour
         if(collision.gameObject.tag == "Candy")
         {
             ScoreManager.setCandy(10);
-            option.isCandy = true;
+            //option.isCandy = true;
             collision.gameObject.SetActive(false);
         }
         else if (collision.gameObject.tag == "Finish")
         {
-            collision.enabled = false;
-            gameManager.Clear();
-            animator.SetBool("isMove", false);
-            stopManager.ScriptOFF();
+            // 도착시 씬 이동
+
+            Debug.Log("도착");
+            Time.timeScale = 0f;
+
+
         }
     }
 }

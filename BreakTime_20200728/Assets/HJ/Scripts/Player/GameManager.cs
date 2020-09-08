@@ -14,12 +14,9 @@ public class GameManager : MonoBehaviour
 
     public Transform[] StartPositions;
 
-    public Vector3 startPos1;
-    public Vector3 startPos2;
-
     public Vector3 startPos;
     Quaternion startRotate;
-    bool isStart = true;
+    bool isStart = false;
 
     DialogueManager dialogueManager;
     Option option;
@@ -32,14 +29,16 @@ public class GameManager : MonoBehaviour
         //
         startPos = GameObject.FindGameObjectWithTag("Start1").transform.position;
         startRotate = GameObject.FindGameObjectWithTag("Start1").transform.rotation;
+
         dialogueManager = FindObjectOfType<DialogueManager>();
         option = FindObjectOfType<Option>();
 
         string[] s = option.currentLevel.LevelName.Split('_');
         stageIndex = int.Parse(s[0]) - 1;
         StartPosition();
+
     }
-    
+
     public void StartPosition()
     {
         stopManager.ScriptON();
@@ -60,7 +59,6 @@ public class GameManager : MonoBehaviour
         dialogueManager.ReadDialogue(0);
     }
 
-
     public void NextStage()
     {
         // 스테이지 이동
@@ -70,7 +68,6 @@ public class GameManager : MonoBehaviour
             stageIndex++;
             Stages[stageIndex].SetActive(true);
         }
-        isStart = true;
     }
 
     public void Clear()
@@ -78,22 +75,21 @@ public class GameManager : MonoBehaviour
         dialogueManager.ReadDialogue(1);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "Player1")
+        if (collision.gameObject.tag == "Player1")
         {
             // 플레이어 원위치
-            collision.attachedRigidbody.velocity = Vector2.zero;
-            collision.transform.position = StartPositions[stageIndex*2].position;
+            //collision.attachedRigidbody.velocity = Vector2.zero;
+            collision.transform.position = StartPositions[stageIndex * 2].position;
         }
 
-        else if(collision.gameObject.tag == "Player2")
+        else if (collision.gameObject.tag == "Player2")
         {
-            collision.attachedRigidbody.velocity = Vector2.zero;
-            collision.transform.position = StartPositions[stageIndex*2+1].position;
+            //collision.attachedRigidbody.velocity = Vector2.zero;
+            collision.transform.position = StartPositions[stageIndex * 2 + 1].position;
 
         }
-
     }
 
     void OnStage(int index)
@@ -111,18 +107,4 @@ public class GameManager : MonoBehaviour
         }
     }
 
-//    void PlayerReposition()
-//    {
-//        player1.transform.position = new Vector3(0, 0, -1);
-         
-//    }
-
-//    void StartGame()
-//    {
-//        GameObject startCam = GameObject.FindGameObjectWithTag("MainCamera");
-//        startCam.SetActive(false);
-
-//        startPos = new Vector3(startPos.x, startPos.y + 1f, startPos.z);
-//        Instantiate(player1, startPos, startRotate);
-//    }
 }
