@@ -15,28 +15,24 @@ public class AutoFlip : MonoBehaviour {
     public int AnimationFramesCount = 40;
     bool isFlipping = false;
 
-    private FakeTextureManager3 fakeTextureManager3;
-    private FakeTextureManager_R fakeTextureManager_R;
-    private FakeTextureManager fakeTextureManager;
     private TextureManager textureManager;
     private FadeManager fadeManager;
     private Option option;
     private GameManager gameManager;
     [SerializeField] TextMeshProUGUI tmi;
-    [SerializeField] TextMeshProUGUI bonusText;
     [SerializeField] Image retry;
     [SerializeField] Image selectLevel;
     [SerializeField] Image nextLevel;
     [SerializeField] Image clear;
     [SerializeField] Image fakeClear;
-    [SerializeField] Image paint;
-    [SerializeField] Image fakePaint;
+    [SerializeField] FakeTextureManager bookLeft;
+    [SerializeField] FakeTextureManager bookRight;
+    [SerializeField] FakeTextureManager bookNext;
 
     List<string> tArray; // 쉼표로 구분된 대화들을 저장하는 리스트
     List<string> bArray; // 쉼표로 구분된 대화들을 저장하는 리스트
     int t_num = 0; // 대화 리스트를 출력할 때 쓸 정수
     string sentence = ""; // 다음문장을 출력할때  쓸 변수
-    string bSentence = "";
     List<Dictionary<string, object>> Tdata;
 
     // Use this for initialization
@@ -47,9 +43,6 @@ public class AutoFlip : MonoBehaviour {
             StartFlipping();
         ControledBook.OnFlip.AddListener(new UnityEngine.Events.UnityAction(PageFlipped));
         textureManager = FindObjectOfType<TextureManager>();
-        fakeTextureManager = FindObjectOfType<FakeTextureManager>();
-        fakeTextureManager_R = FindObjectOfType<FakeTextureManager_R>();
-        fakeTextureManager3 = FindObjectOfType<FakeTextureManager3>();
         fadeManager = FindObjectOfType<FadeManager>();
         option = FindObjectOfType<Option>();
         gameManager = FindObjectOfType<GameManager>();
@@ -58,7 +51,6 @@ public class AutoFlip : MonoBehaviour {
         List<Dictionary<string, object>> data = CSVReader.Read("Clear");
         for (var i = 0; i < data.Count; i++)
         {
-            bArray.Add((string)data[i]["front"]);
             tArray.Add((string)data[i]["end"]);
         }
     }
@@ -162,12 +154,12 @@ public class AutoFlip : MonoBehaviour {
         }
     }
 
-    public void PrintBonusText()
+    public void LevelClear()
     {
-        StartCoroutine(BonusTextPrint());
+        StartCoroutine(BookEffect());
     }
 
-    IEnumerator BonusTextPrint()
+    IEnumerator BookEffect()
     {
         if (fadeManager.black.color.a != 0)
         {
@@ -189,33 +181,12 @@ public class AutoFlip : MonoBehaviour {
             fakeClear.sprite = Resources.Load("clear", typeof(Sprite)) as Sprite;
         }
         clear.gameObject.SetActive(true);
-        fakeClear.gameObject.SetActive(true);
         yield return new WaitForSeconds(1f);
-        string[] num = option.currentLevel.LevelName.Split('_');
-        t_num = int.Parse(num[0]); // 현재레벨의 텍스트를 가져오기 위해
-        if (bArray[t_num - 1] != null)
-            bSentence = bArray[t_num - 1];
-        else
-            bSentence = "아직 안만들어졌어요";
-        //bSentence = bSentence.Replace("%", ",");
-        bonusText.text = "";
-        foreach (char letter in bSentence.ToCharArray()) // 보너스텍스트 한글자씩
-        {
-            bonusText.text += letter;
-            yield return new WaitForSeconds(0.04f);
-        }
-        yield return new WaitForSeconds(1f);
-        paint.gameObject.SetActive(true);
-        fakePaint.gameObject.SetActive(true);
-        fakeTextureManager_R.TextureCapture();
-        //yield return new WaitForSeconds(2f);
-        //for (int k = bSentence.Length; k > 0; k--) // 다시지우기
-        //{
-        //    bonusText.text = bSentence.Substring(0, k);
-        //    yield return new WaitForSeconds(0.02f);
-        //}
-        yield return new WaitForSeconds(1f);
-        bonusText.text = "";
+        retry.gameObject.SetActive(true);
+        yield return new WaitForSeconds(0.4f);
+        selectLevel.gameObject.SetActive(true);
+        yield return new WaitForSeconds(0.4f);
+        nextLevel.gameObject.SetActive(true);
     }
 
     public void ImageOn()
@@ -248,14 +219,10 @@ public class AutoFlip : MonoBehaviour {
         ImageOff();
         StopAllCoroutines();
         fadeManager.black.gameObject.SetActive(false);
-        paint.gameObject.SetActive(true);
-        fakePaint.gameObject.SetActive(true);
-        fakeTextureManager_R.TextureCapture();
-        paint.gameObject.SetActive(false);
-        fakePaint.gameObject.SetActive(false);
+        fakeClear.gameObject.SetActive(true);
+        bookRight.TextureRight();
         clear.gameObject.SetActive(false);
         fakeClear.gameObject.SetActive(false);
-        bonusText.text = "";
         option.isCandy = false;
         StartCoroutine(LevelNext());
     }
@@ -265,19 +232,23 @@ public class AutoFlip : MonoBehaviour {
         if (option.nextLevel != null)
         {
             FlipRightPage();
-            fakeTextureManager3.rawImage.texture = ConvertSpriteToTexture(option.nextLevel.Icon);
-            fakeTextureManager3.TextureCapture_R();
+            bookNext.rawImage.texture = ConvertSpriteToTexture(option.nextLevel.Icon);
+            bookNext.TextureNext();
             yield return new WaitForSeconds(2f);
-            if (tArray[t_num - 1] != null)
-                sentence = tArray[t_num - 1];
+            if (tArray[t_num] != null)
+                sentence = tArray[t_num++];
             else
                 sentence = "아직 안만들어졌어요";
             sentence = sentence.Replace("%", ",");
+            sentence = sentence.Replace(". ", ".\n");
             tmi.text = "";
             foreach (char letter in sentence.ToCharArray()) // 보너스문장 한글자씩
             {
                 tmi.text += letter;
-                yield return new WaitForSeconds(0.01f);
+                if (letter.Equals('.') == true)
+                    yield return new WaitForSeconds(0.2f);
+                else
+                    yield return new WaitForSeconds(0.03f);
             }
             yield return new WaitForSeconds(1f);
             fadeManager.FadeOut();

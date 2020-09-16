@@ -31,8 +31,8 @@ public class DialogueManager : MonoBehaviour
     private Option option;
     private wide theWide;
     private FadeManager fadeManager;
-    [SerializeField] FakeTextureManager fakeTextureManager;
-    [SerializeField] FakeTextureManager_R fakeTextureManager_R;
+    [SerializeField] FakeTextureManager bookLeft;
+    [SerializeField] FakeTextureManager bookRight;
     [SerializeField] TextureManager textureManager;
 
     private void Start()
@@ -229,14 +229,13 @@ public class DialogueManager : MonoBehaviour
     {
         fadeManager.FadeOut();
         yield return new WaitForSeconds(1f);
-        autoFlip.ImageOn();
         autoFlip.transform.GetChild(0).gameObject.SetActive(true);
         textureManager.TextureCapture();
-        fakeTextureManager.TextureCapture_L();
-        fakeTextureManager_R.TextureCapture();
+        bookLeft.TextureLeft();
+        bookRight.TextureRight();
         fadeManager.FadeIn();
         //yield return new WaitForSeconds(1f);
-        autoFlip.PrintBonusText();
+        autoFlip.LevelClear();
     }
 
     private void Update()

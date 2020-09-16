@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class FakeTextureManager3 : MonoBehaviour
+public class FakeTextureManager3 : MonoBehaviour // 책 다음페이지
 {
     public RawImage rawImage; // 카메라에 적용될 이미지
     public RawImage NextPage; // 페이지넘긴 후 씀

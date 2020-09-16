@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class FakeTextureManager_R : MonoBehaviour
+public class FakeTextureManager_R : MonoBehaviour // 책 
 {
     [SerializeField] RawImage rawImage_R; // 카메라에 적용될 이미지
     [SerializeField] RenderTexture renderTexture_R; // 연결해줄 렌더텍스쳐
