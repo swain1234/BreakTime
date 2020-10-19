@@ -9,7 +9,7 @@ public class LevelManager : MonoBehaviour
 {
     [SerializeField]
     private Image sampleImage; // 가져오는 이미지
-    private int num = 0; // 자식 번호
+    public int num = 0; // 자식 번호
     private float time = 0; // 깜박이는 효과를 위한 변수
     private GameObject child; // 선택하는 자식오브젝트
     private SceneChanage sceneChange;
@@ -18,6 +18,7 @@ public class LevelManager : MonoBehaviour
     private Title title;
     private wide wide;
     [SerializeField] TextMeshProUGUI resourceText;
+    [SerializeField] GameObject choice;
 
     void Start()
     {
@@ -45,35 +46,53 @@ public class LevelManager : MonoBehaviour
     {
         levelSelect();
         if (Input.GetKeyDown(KeyCode.Space))
-            LevelSceneChange();
+            LevelChoice();
+        if (Input.GetKeyDown(KeyCode.Escape))
+            Close();
     }
-
 
     private void levelSelect() // 레벨선택하는 함수
     {
         if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.RightArrow))
         {
-            child.GetComponent<Image>().color = new Color(1, 1, 1, 1);
-            num++;
-            if (num >= transform.childCount - 1)
-                num = 0;
-            child = transform.GetChild(num).gameObject;
-
-            resourceText.text = child.GetComponent<LevelParent>().levelData.Script;
-            sampleImage.sprite = child.GetComponent<LevelParent>().levelData.Icon;
+            NextButton();
         }
 
         else if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            child.GetComponent<Image>().color = new Color(1, 1, 1, 1);
-            num--;
-            if (num < 0)
-                num = transform.childCount - 2;
-            child = transform.GetChild(num).gameObject;
-
-            resourceText.text = child.GetComponent<LevelParent>().levelData.Script;
-            sampleImage.sprite = child.GetComponent<LevelParent>().levelData.Icon;
+            PreviousButton();
         }
+    }
+
+    public void NextButton()
+    {
+        child.GetComponent<Image>().color = new Color(1, 1, 1, 1);
+        num++;
+        if (num >= transform.childCount)
+            num = 0;
+        child = transform.GetChild(num).gameObject;
+
+        resourceText.text = child.GetComponent<LevelParent>().levelData.Script;
+        sampleImage.sprite = child.GetComponent<LevelParent>().levelData.Icon;
+    }
+
+    public void PreviousButton()
+    {
+        child.GetComponent<Image>().color = new Color(1, 1, 1, 1);
+        num--;
+        if (num < 0)
+            num = transform.childCount - 1;
+        child = transform.GetChild(num).gameObject;
+
+        resourceText.text = child.GetComponent<LevelParent>().levelData.Script;
+        sampleImage.sprite = child.GetComponent<LevelParent>().levelData.Icon;
+    }
+
+    public void Close()
+    {
+        RectTransform rect = choice.GetComponent<RectTransform>();
+        rect.offsetMin = new Vector2(5000, rect.offsetMin.y); //Left 5000
+        rect.offsetMax = new Vector2(5000, rect.offsetMax.y); //Right -5000
     }
 
     IEnumerator SelectEffect() // 현재 선택중인 오브젝트에 효과부여
@@ -101,53 +120,28 @@ public class LevelManager : MonoBehaviour
 
     IEnumerator SceneTransfer()
     {
-        string a = child.GetComponent<LevelParent>().levelData.LevelName;
         option.currentLevel = child.GetComponent<LevelParent>().levelData;
         fadeManager.FadeOut();
         yield return new WaitForSeconds(1f);
         option.StageScript();
         fadeManager.FadeIn();
         SceneManager.LoadScene("Stage");
-        //switch (a)
-        //{
-        //    case "01_A_Sweetie_in_Red":
-        //        //레벨인덱스넘겨야함
-        //        Debug.Log(a);
-        //        break;
-        //    case "02_Fine_Painting":
-        //        break;
-        //    case "03_Big_Colored_Button":
-        //        break;
-        //    case "04_Pain_Painting":
-        //        break;
-        //    case "05_Black_Purr":
-        //        break;
-        //    case "06_This_War_of_Us":
-        //        break;
-        //    case "07_Honey_Bunny_Hop":
-        //        break;
-        //    case "08_Grand_Fall":
-        //        break;
-        //    case "09_Vanilla_Sky":
-        //        break;
-        //    case "10_Black_Howling":
-        //        break;
-        //}
     }
 
-    public void LevelClick()
+    public void LevelChoice()
     {
-        StartCoroutine(ClickTransfer());
+        StartCoroutine(ChoiceLevel());
     }
-    
-    IEnumerator ClickTransfer()
+
+    IEnumerator ChoiceLevel()
     {
-        string a = child.GetComponent<LevelParent>().levelData.LevelName;
-        option.currentLevel = child.GetComponent<LevelParent>().levelData;
-        fadeManager.FadeOut();
-        yield return new WaitForSeconds(1f);
-        option.StageScript();
-        fadeManager.FadeIn();
-        SceneManager.LoadScene("Stage");
+        yield return new WaitForSeconds(0.001f);
+        child = transform.GetChild(num).gameObject;
+        resourceText.text = child.GetComponent<LevelParent>().levelData.Script;
+        sampleImage.sprite = child.GetComponent<LevelParent>().levelData.Icon;
+
+        RectTransform rect = choice.GetComponent<RectTransform>();
+        rect.offsetMin = new Vector2(100, rect.offsetMin.y); //Left
+        rect.offsetMax = new Vector2(-100, rect.offsetMax.y); //Right
     }
 }

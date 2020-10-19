@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
+using Coffee.UIExtensions;
 
 public class Option : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class Option : MonoBehaviour
     public Button retry;
     public Button select;
     public Button next;
+    public Button xImage;
 
     [SerializeField] LevelData level1;
     [SerializeField] LevelData level2;
@@ -30,6 +32,7 @@ public class Option : MonoBehaviour
 
     bool isDissolving = false;
     float fade;
+    private UIDissolve dissolve;
 
     public LevelData currentLevel;
     public LevelData nextLevel;
@@ -57,6 +60,7 @@ public class Option : MonoBehaviour
 
     void Start()
     {
+        xImage.GetComponent<Image>().alphaHitTestMinimumThreshold = 0.1f;
         retry.GetComponent<Image>().alphaHitTestMinimumThreshold = 0.1f;
         select.GetComponent<Image>().alphaHitTestMinimumThreshold = 0.1f;
         next.GetComponent<Image>().alphaHitTestMinimumThreshold = 0.1f;
@@ -64,6 +68,7 @@ public class Option : MonoBehaviour
         levelArray = new List<LevelData>();
         fadeManager = FindObjectOfType<FadeManager>();
         gameManager = FindObjectOfType<GameManager>();
+        dissolve = stageText.GetComponent<UIDissolve>();
         for (var i = 0; i < 10; i++)
         {
             levelArray.Add((level1));
@@ -78,6 +83,8 @@ public class Option : MonoBehaviour
             levelArray.Add((level10));
         }
         material.SetFloat("_Fade", 0f);
+        dissolve.effectFactor = 1f;
+        panel.gameObject.SetActive(false);
     }
 
     void Update()
@@ -95,6 +102,7 @@ public class Option : MonoBehaviour
                 {
                     Candy();
                     fade = 0f;
+                    panel.gameObject.SetActive(true);
                     retry.gameObject.SetActive(true);
                     select.gameObject.SetActive(true);
                     next.gameObject.SetActive(true);
@@ -103,9 +111,11 @@ public class Option : MonoBehaviour
                 if (isDissolving)
                 {
                     fade += Time.deltaTime;
+                    dissolve.effectFactor -= Time.deltaTime;
                     if (fade >= 1f)
                     {
                         fade = 1f;
+                        dissolve.effectFactor = 0f;
                         isDissolving = false;
                         isActive = true;
                         Time.timeScale = 0f;
@@ -124,10 +134,12 @@ public class Option : MonoBehaviour
                 if (isDissolving)
                 {
                     fade -= Time.deltaTime;
-
+                    dissolve.effectFactor += Time.deltaTime;
                     if (fade <= 0f)
                     {
                         fade = 0f;
+                        dissolve.effectFactor = 1f;
+                        panel.gameObject.SetActive(false);
                         retry.gameObject.SetActive(false);
                         select.gameObject.SetActive(false);
                         next.gameObject.SetActive(false);
@@ -137,7 +149,29 @@ public class Option : MonoBehaviour
                     material.SetFloat("_Fade", fade);
                 }
             }
-
+        }
+    }
+    public void Close()
+    {
+        Time.timeScale = 1f;
+        fade = 1f;
+        isDissolving = true;
+        if (isDissolving)
+        {
+            fade -= Time.deltaTime;
+            dissolve.effectFactor += Time.deltaTime;
+            if (fade <= 0f)
+            {
+                fade = 0f;
+                dissolve.effectFactor = 1f;
+                panel.gameObject.SetActive(false);
+                retry.gameObject.SetActive(false);
+                select.gameObject.SetActive(false);
+                next.gameObject.SetActive(false);
+                isDissolving = false;
+                isActive = false;
+            }
+            material.SetFloat("_Fade", fade);
         }
     }
 
@@ -146,7 +180,7 @@ public class Option : MonoBehaviour
         if (currentLevel != null)
         {
             stageText.text = currentLevel.LevelName;
-            for(int i = 0; i < levelArray.Count; i++)
+            for (int i = 0; i < levelArray.Count; i++)
             {
                 if (currentLevel.LevelName == levelArray[i].LevelName && i < 9)
                     nextLevel = levelArray[i + 1];
@@ -228,7 +262,7 @@ public class Option : MonoBehaviour
 
     public void Candy()
     {
-        if(isCandy == true)
+        if (isCandy == true)
         {
             candyImage.gameObject.SetActive(true);
         }

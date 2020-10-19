@@ -15,7 +15,10 @@ public class LevelMenu : MonoBehaviour
     public Button level8;
     public Button level9;
     public Button level10;
-    public Button button;
+    public Button play;
+    public Button previous;
+    public Button next;
+    public Button close;
 
     private void Start()
     {
@@ -29,6 +32,9 @@ public class LevelMenu : MonoBehaviour
         level8.GetComponent<Image>().alphaHitTestMinimumThreshold = 0.1f;
         level9.GetComponent<Image>().alphaHitTestMinimumThreshold = 0.1f;
         level10.GetComponent<Image>().alphaHitTestMinimumThreshold = 0.1f;
-        button.GetComponent<Image>().alphaHitTestMinimumThreshold = 0.1f;
+        play.GetComponent<Image>().alphaHitTestMinimumThreshold = 0.1f;
+        previous.GetComponent<Image>().alphaHitTestMinimumThreshold = 0.1f;
+        next.GetComponent<Image>().alphaHitTestMinimumThreshold = 0.1f;
+        close.GetComponent<Image>().alphaHitTestMinimumThreshold = 0.1f;
     }
 }

@@ -23,6 +23,7 @@ public class AutoFlip : MonoBehaviour {
     [SerializeField] Image retry;
     [SerializeField] Image selectLevel;
     [SerializeField] Image nextLevel;
+    [SerializeField] Image body;
     [SerializeField] Image clear;
     [SerializeField] Image fakeClear;
     [SerializeField] FakeTextureManager bookLeft;
@@ -169,7 +170,7 @@ public class AutoFlip : MonoBehaviour {
             //fadeManager.black.gameObject.SetActive(false);
             fadeManager.FadeIn();
         }
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
         if (option.isCandy == true)
         {
             clear.sprite = Resources.Load("clearCandy", typeof(Sprite)) as Sprite;
@@ -181,16 +182,12 @@ public class AutoFlip : MonoBehaviour {
             fakeClear.sprite = Resources.Load("clear", typeof(Sprite)) as Sprite;
         }
         clear.gameObject.SetActive(true);
-        yield return new WaitForSeconds(1f);
-        retry.gameObject.SetActive(true);
-        yield return new WaitForSeconds(0.4f);
-        selectLevel.gameObject.SetActive(true);
-        yield return new WaitForSeconds(0.4f);
-        nextLevel.gameObject.SetActive(true);
+        ImageOn();
     }
 
     public void ImageOn()
     {
+        body.gameObject.SetActive(true);
         retry.gameObject.SetActive(true);
         selectLevel.gameObject.SetActive(true);
         nextLevel.gameObject.SetActive(true);
@@ -198,6 +195,7 @@ public class AutoFlip : MonoBehaviour {
 
     public void ImageOff()
     {
+        body.gameObject.SetActive(false);
         retry.gameObject.SetActive(false);
         selectLevel.gameObject.SetActive(false);
         nextLevel.gameObject.SetActive(false);
