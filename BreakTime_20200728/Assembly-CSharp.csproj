@@ -127,7 +127,10 @@
     <Compile Include="Assets\MG\Scripts\Effect\Dissolve.cs" />
     <Compile Include="Assets\MG\Scripts\Effect\FadeManager.cs" />
     <Compile Include="Assets\MG\Scripts\Effect\GlobalVolume.cs" />
+    <Compile Include="Assets\MG\Scripts\Effect\ObjectPoolClass.cs" />
     <Compile Include="Assets\MG\Scripts\Effect\Option.cs" />
+    <Compile Include="Assets\MG\Scripts\Effect\PaintBehaviour.cs" />
+    <Compile Include="Assets\MG\Scripts\Effect\PoolingPaint.cs" />
     <Compile Include="Assets\MG\Scripts\Effect\UIDissolve.cs" />
     <Compile Include="Assets\MG\Scripts\Effect\wide.cs" />
     <Compile Include="Assets\MG\Scripts\Level\LevelData.cs" />
@@ -138,6 +141,7 @@
     <Compile Include="Assets\MG\Scripts\Stage\CSVReader.cs" />
     <Compile Include="Assets\MG\Scripts\Stage\DialogueManager.cs" />
     <Compile Include="Assets\MG\Scripts\Stage\FakeTextureManager.cs" />
+    <Compile Include="Assets\MG\Scripts\Stage\GroundColor.cs" />
     <Compile Include="Assets\MG\Scripts\Stage\StageMenu.cs" />
     <Compile Include="Assets\MG\Scripts\Stage\StopManager.cs" />
     <Compile Include="Assets\MG\Scripts\Stage\TextureManager.cs" />

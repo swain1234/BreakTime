@@ -13,7 +13,6 @@ public class LevelManager : MonoBehaviour
     private float time = 0; // 깜박이는 효과를 위한 변수
     private GameObject child; // 선택하는 자식오브젝트
     private SceneChanage sceneChange;
-    private FadeManager fadeManager;
     private Option option;
     private Title title;
     private wide wide;
@@ -27,26 +26,23 @@ public class LevelManager : MonoBehaviour
         child = transform.GetChild(num).gameObject;
         resourceText.text = child.GetComponent<LevelParent>().levelData.Script;
         sampleImage.sprite = child.GetComponent<LevelParent>().levelData.Icon;
-        fadeManager = FindObjectOfType<FadeManager>();
         option = FindObjectOfType<Option>();
         title = FindObjectOfType<Title>();
         StartCoroutine(SelectEffect());
         wide.initSetting();
-        if (fadeManager.black.color.a != 0)
-        {
-            //Color c = fadeManager.black.color;
-            //c.a = 0;
-            //fadeManager.black.color = c;
-            //fadeManager.black.gameObject.SetActive(false);
-            fadeManager.FadeIn();
-        }
     }
 
     void Update()
     {
         levelSelect();
         if (Input.GetKeyDown(KeyCode.Space))
-            LevelChoice();
+        {
+            RectTransform rect = choice.GetComponent<RectTransform>();
+            if (rect.offsetMin.x != 100)
+                LevelChoice();
+            else
+                LevelSceneChange();
+        }
         if (Input.GetKeyDown(KeyCode.Escape))
             Close();
     }
@@ -121,10 +117,9 @@ public class LevelManager : MonoBehaviour
     IEnumerator SceneTransfer()
     {
         option.currentLevel = child.GetComponent<LevelParent>().levelData;
-        fadeManager.FadeOut();
+        FadeManager.Instance.Fade();
         yield return new WaitForSeconds(1f);
         option.StageScript();
-        fadeManager.FadeIn();
         SceneManager.LoadScene("Stage");
     }
 

@@ -16,7 +16,6 @@ public class AutoFlip : MonoBehaviour {
     bool isFlipping = false;
 
     private TextureManager textureManager;
-    private FadeManager fadeManager;
     private Option option;
     private GameManager gameManager;
     [SerializeField] TextMeshProUGUI tmi;
@@ -44,7 +43,6 @@ public class AutoFlip : MonoBehaviour {
             StartFlipping();
         ControledBook.OnFlip.AddListener(new UnityEngine.Events.UnityAction(PageFlipped));
         textureManager = FindObjectOfType<TextureManager>();
-        fadeManager = FindObjectOfType<FadeManager>();
         option = FindObjectOfType<Option>();
         gameManager = FindObjectOfType<GameManager>();
         tArray = new List<string>();
@@ -162,14 +160,6 @@ public class AutoFlip : MonoBehaviour {
 
     IEnumerator BookEffect()
     {
-        if (fadeManager.black.color.a != 0)
-        {
-            //Color c = fadeManager.black.color;
-            //c.a = 0;
-            //fadeManager.black.color = c;
-            //fadeManager.black.gameObject.SetActive(false);
-            fadeManager.FadeIn();
-        }
         yield return new WaitForSeconds(1f);
         if (option.isCandy == true)
         {
@@ -216,7 +206,6 @@ public class AutoFlip : MonoBehaviour {
     {
         ImageOff();
         StopAllCoroutines();
-        fadeManager.black.gameObject.SetActive(false);
         fakeClear.gameObject.SetActive(true);
         bookRight.TextureRight();
         clear.gameObject.SetActive(false);
@@ -249,7 +238,7 @@ public class AutoFlip : MonoBehaviour {
                     yield return new WaitForSeconds(0.03f);
             }
             yield return new WaitForSeconds(1f);
-            fadeManager.FadeOut();
+            FadeManager.Instance.Fade();
             yield return new WaitForSeconds(1f);
             tmi.text = "";
             option.LevelChange();
@@ -257,16 +246,14 @@ public class AutoFlip : MonoBehaviour {
             gameManager.NextStage();
             gameManager.StartPosition();
             this.transform.GetChild(0).gameObject.SetActive(false);
-            fadeManager.FadeIn();
             yield return new WaitForSeconds(0.5f);
         }
         else // 마지막레벨을 클리어했을때
         {
-            fadeManager.FadeOut();
+            FadeManager.Instance.Fade();
             yield return new WaitForSeconds(1f);
             //클리어했을떄의 무언가 연출 후 끝내기
             this.transform.GetChild(0).gameObject.SetActive(false);
-            fadeManager.FadeIn();
             yield return new WaitForSeconds(0.5f);
         }
     }

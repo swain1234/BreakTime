@@ -16,6 +16,9 @@ TagManager:
   - Flag
   - Start1
   - Start2
+  - Gray
+  - Black
+  - Canvas
   layers:
   - Default
   - TransparentFX

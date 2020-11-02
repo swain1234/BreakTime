@@ -30,7 +30,6 @@ public class DialogueManager : MonoBehaviour
 
     private Option option;
     private wide theWide;
-    private FadeManager fadeManager;
     [SerializeField] FakeTextureManager bookLeft;
     [SerializeField] FakeTextureManager bookRight;
     [SerializeField] TextureManager textureManager;
@@ -42,19 +41,10 @@ public class DialogueManager : MonoBehaviour
         pArray = new List<string>();
         option = FindObjectOfType<Option>();
         theWide = FindObjectOfType<wide>();
-        fadeManager = FindObjectOfType<FadeManager>();
     }
 
     public void ReadDialogue(int a) // 대화 및 이미지 불러오기, 0일경우 start 1or다른숫자는 end파일 불러옴
     {
-        if(fadeManager.black.color.a != 0)
-        {
-            //Color c = fadeManager.black.color;
-            //c.a = 0;
-            //fadeManager.black.color = c;
-            //fadeManager.black.gameObject.SetActive(false);
-            fadeManager.FadeIn();
-        }
         panel.gameObject.SetActive(true);
         isDialogue = true;
         //위치 초기화
@@ -227,14 +217,12 @@ public class DialogueManager : MonoBehaviour
 
     IEnumerator DialogueEnd()
     {
-        fadeManager.FadeOut();
+        FadeManager.Instance.Fade();
         yield return new WaitForSeconds(1f);
         autoFlip.transform.GetChild(0).gameObject.SetActive(true);
         textureManager.TextureCapture();
         bookLeft.TextureLeft();
         bookRight.TextureRight();
-        fadeManager.FadeIn();
-        //yield return new WaitForSeconds(1f);
         autoFlip.LevelClear();
     }
 

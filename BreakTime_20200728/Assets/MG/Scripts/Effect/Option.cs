@@ -43,7 +43,6 @@ public class Option : MonoBehaviour
     bool isActive = false;
     public bool isCandy = false;
 
-    private FadeManager fadeManager;
     private GameManager gameManager;
     private AutoFlip book;
 
@@ -66,7 +65,6 @@ public class Option : MonoBehaviour
         next.GetComponent<Image>().alphaHitTestMinimumThreshold = 0.1f;
         material = GetComponentInChildren<Image>().material;
         levelArray = new List<LevelData>();
-        fadeManager = FindObjectOfType<FadeManager>();
         gameManager = FindObjectOfType<GameManager>();
         dissolve = stageText.GetComponent<UIDissolve>();
         for (var i = 0; i < 10; i++)
@@ -211,13 +209,12 @@ public class Option : MonoBehaviour
         Time.timeScale = 1f;
         isActive = false;
         material.SetFloat("_Fade", 0f);
-        fadeManager.FadeOut();
+        FadeManager.Instance.Fade();
         yield return new WaitForSeconds(1f);
         book = FindObjectOfType<AutoFlip>();
         book.transform.GetChild(0).gameObject.SetActive(false);
         gameManager = FindObjectOfType<GameManager>();
         gameManager.StartPosition();
-        fadeManager.FadeIn();
     }
 
     public void LevelSelect()
@@ -231,9 +228,8 @@ public class Option : MonoBehaviour
         Time.timeScale = 1f;
         isActive = false;
         material.SetFloat("_Fade", 0f);
-        fadeManager.FadeOut();
+        FadeManager.Instance.Fade();
         yield return new WaitForSeconds(1f);
-        fadeManager.FadeIn();
         SceneManager.LoadScene("Level");
     }
 
@@ -249,14 +245,13 @@ public class Option : MonoBehaviour
         Time.timeScale = 1f;
         isActive = false;
         material.SetFloat("_Fade", 0f);
-        fadeManager.FadeOut();
+        FadeManager.Instance.Fade();
         yield return new WaitForSeconds(1f);
         book = FindObjectOfType<AutoFlip>();
         book.transform.GetChild(0).gameObject.SetActive(false);
         gameManager = FindObjectOfType<GameManager>();
         gameManager.NextStage();
         gameManager.StartPosition();
-        fadeManager.FadeIn();
         yield return new WaitForSeconds(0.5f);
     }
 

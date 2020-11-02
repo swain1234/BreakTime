@@ -8,13 +8,7 @@ public class Title : MonoBehaviour
 {
 
     [SerializeField] private Image title;
-    private FadeManager fadeManager;
     public bool isTitle = true;
-
-    private void Start()
-    {
-        fadeManager = FindObjectOfType<FadeManager>();
-    }
 
     private void Update()
     {
@@ -26,11 +20,10 @@ public class Title : MonoBehaviour
 
     IEnumerator TitleClick()
     {
-        fadeManager.FadeOut();
+        FadeManager.Instance.Fade();
         yield return new WaitForSeconds(1f);
         title.gameObject.SetActive(false);
         isTitle = false;
-        fadeManager.FadeIn();
         SceneManager.LoadScene("Level");
     }
 }

@@ -12,6 +12,7 @@ public class FadeManager : MonoBehaviour
     private Color color;
 
     private WaitForSeconds waitTime = new WaitForSeconds(0.01f);
+    private WaitForSeconds wait = new WaitForSeconds(0.7f);
 
     private void Awake()
     {
@@ -24,33 +25,34 @@ public class FadeManager : MonoBehaviour
             Destroy(this.gameObject);
     }
 
-    public void FadeOut(float _speed = 0.02f)
+    public static FadeManager Instance
     {
-        StartCoroutine(FadeOutCoroutine(_speed));
+        get
+        {
+            if (null == instance)
+            {
+                return null;
+            }
+            return instance;
+        }
     }
 
-    IEnumerator FadeOutCoroutine(float _speed)
+    public void Fade(float _speed = 0.02f)
+    {
+        StartCoroutine(FadeCoroutine(_speed));
+    }
+
+    IEnumerator FadeCoroutine(float _speed)
     {
         black.gameObject.SetActive(true);
         color = black.color;
-
         while (color.a < 1f)
         {
             color.a += _speed;
             black.color = color;
             yield return waitTime;
         }
-    }
-
-    public void FadeIn(float _speed = 0.02f)
-    {
-        StartCoroutine(FadeInCoroutine(_speed));
-    }
-
-    IEnumerator FadeInCoroutine(float _speed)
-    {
-        color = black.color;
-
+        yield return wait;
         while (color.a > 0f)
         {
             color.a -= _speed;

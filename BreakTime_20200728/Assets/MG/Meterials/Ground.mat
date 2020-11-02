@@ -38,10 +38,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _EnableExternalAlpha: 0
-    - _OutlineThickness: 3
+    - _OutlineThickness: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
-    - _OutlineColor: {r: 5.1545534, g: 5.3403134, b: 0, a: 0}
-    - _OutlineColor2: {r: 0, g: 0.3882353, b: 0.7490196, a: 0}
+    - _OutlineColor: {r: 6.9057684, g: 7.129739, b: 0.36347687, a: 0}
+    - _OutlineColor2: {r: 0.70980394, g: 0.6117647, b: 0.7490196, a: 0}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
