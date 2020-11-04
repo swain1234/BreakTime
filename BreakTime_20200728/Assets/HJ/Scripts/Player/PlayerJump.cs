@@ -15,9 +15,11 @@ public class PlayerJump : MonoBehaviour
     public int candyValue = 100;
     public bool isGround = false;
 
+    // 점프대에서 높이
+    public float launcher;
+
     Animator animator;
     Rigidbody2D rigid;
-    public GameObject grayTile;
 
     private HealthManager healthManager;
 
@@ -41,10 +43,10 @@ public class PlayerJump : MonoBehaviour
     {
         Vector2 rayPos = new Vector3(transform.position.x, transform.position.y - rayPosition);
         int layerMask = (1 << LayerMask.NameToLayer("Ground"));
-        RaycastHit2D hit = Physics2D.Raycast(rayPos , Vector3.down, rayDistance, layerMask);
+        RaycastHit2D hit = Physics2D.Raycast(rayPos, Vector3.down, rayDistance, layerMask);
         Debug.DrawRay(rayPos, Vector3.down * rayDistance, Color.red);
 
-        if(hit.collider != null)
+        if (hit.collider != null)
         {
             if (hit.transform.CompareTag("Ground") || hit.transform.CompareTag("Black"))
             {
@@ -56,7 +58,8 @@ public class PlayerJump : MonoBehaviour
                 currentCount = 0;
                 return;
             }
-            else if(hit.transform.CompareTag("Gray"))
+
+            else if (hit.transform.CompareTag("Gray"))
             {
                 animator.SetBool("isJump", false);
                 animator.SetBool("isJumpDown", false);
@@ -64,10 +67,11 @@ public class PlayerJump : MonoBehaviour
                 isGround = true;
                 currentCount = 0;
                 hit.transform.gameObject.tag = "Ground";
-                
+
                 return;
             }
-            else if(hit.transform.CompareTag("Obstacle"))
+
+            else if (hit.transform.CompareTag("Obstacle"))
             {
                 animator.SetBool("isJump", false);
                 animator.SetBool("isJumpDown", false);
@@ -77,6 +81,14 @@ public class PlayerJump : MonoBehaviour
                 hit.transform.gameObject.tag = "Ground";
                 return;
             }
+
+            //else if (hit.transform.CompareTag("Launcher"))
+            //{
+            //    animator.SetBool("isJumpUp", true);
+            //    animator.SetBool("isJump", true);
+            //    animator.SetBool("isJumpDown", false);
+            //    return;
+            //}
         }
         else
             isGround = false;
@@ -85,37 +97,21 @@ public class PlayerJump : MonoBehaviour
     private void FixedUpdate()
     {
 
-        if(isGround)
+        if (isGround)
         {
-            //if (gameObject.tag == "Player1")
-            //{
-                if (Input.GetKeyDown(KeyCode.UpArrow) && !animator.GetBool("isJump"))
+            if (Input.GetKeyDown(KeyCode.UpArrow) && !animator.GetBool("isJump"))
+            {
+                if (currentCount < jumpCount)
                 {
-                    if (currentCount < jumpCount)
-                    {
-                        isJump = true;
-                        jumpCount++;
-                        animator.SetBool("isJump", true);
-                        animator.SetBool("isJumpUp", true);
-                    }
+                    isJump = true;
+                    jumpCount++;
+                    animator.SetBool("isJump", true);
+                    animator.SetBool("isJumpUp", true);
                 }
-            //}
-            //else if (gameObject.tag == "Player2")
-            //{
-            //    if (Input.GetKeyDown(KeyCode.W) && !animator.GetBool("isJump"))
-            //    {
-            //        if (currentCount < jumpCount)
-            //        {
-            //            isJump = true;
-            //            jumpCount++;
-            //            animator.SetBool("isJump", true);
-            //            animator.SetBool("isJumpUp", true);
-            //        }
-            //    }
-            //}
+            }
             Jump();
         }
-        
+
         // JumpDown
         if (rigid.velocity.y < -0.05f)
         {
@@ -137,4 +133,18 @@ public class PlayerJump : MonoBehaviour
         isGround = false;
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Launcher")
+        {
+            rigid.velocity = new Vector2(0, 0);
+            Vector2 launch = new Vector2(0, launcher);
+            rigid.AddForce(launch, ForceMode2D.Impulse);
+
+            animator.SetBool("isJumpUp", true);
+            animator.SetBool("isJump", true);
+            animator.SetBool("isJumpDown", false);
+        }
+
+    }
 }
