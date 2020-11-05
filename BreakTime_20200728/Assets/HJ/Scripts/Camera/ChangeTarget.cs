@@ -13,8 +13,8 @@ public class ChangeTarget : MonoBehaviour
     public GameObject current1;
     public GameObject current2;
 
-    SpriteRenderer renderer1;
-    SpriteRenderer renderer2;
+    public SpriteRenderer renderer1;
+    public SpriteRenderer renderer2;
 
     Color one = new Vector4(1, 1, 1, 1);
     Color zero = new Vector4(1, 1, 1, 0);
@@ -25,8 +25,8 @@ public class ChangeTarget : MonoBehaviour
         cine = GetComponent<CinemachineVirtualCamera>();
         player1 = GameObject.FindGameObjectWithTag("Player1");
         player2 = GameObject.FindGameObjectWithTag("Player2");
-        renderer1 = current1.GetComponent<SpriteRenderer>();
-        renderer2 = current2.GetComponent<SpriteRenderer>();
+        //renderer1 = current1.GetComponent<SpriteRenderer>();
+        //renderer2 = current2.GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -45,31 +45,15 @@ public class ChangeTarget : MonoBehaviour
         if (count % 2 == 0)
         {
             cine.Follow = player1.transform;
-            renderer1.color = one;
-            renderer2.color = zero;
-
-            Invoke("Fade1", 1f);
+            //renderer1.color = one;
+            //renderer2.color = zero;
         }
         else
         {
             cine.Follow = player2.transform;
-            renderer1.color = zero;
-            renderer2.color = one;
-
-            Invoke("Fade2", 1f);
+            //renderer1.color = zero;
+            //renderer2.color = one;
         }
-    }
-
-    void Fade1()
-    {
-
-        renderer1.color = zero;
-    }
-
-    void Fade2()
-    {
-
-        renderer2.color = zero;
     }
 
 }

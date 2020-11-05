@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public P_Move player2;
 
     [SerializeField] StopManager stopManager;
+    [SerializeField] int tempNum = 5;
 
     public GameObject[] Stages;
     public int stageIndex;
@@ -33,8 +34,15 @@ public class GameManager : MonoBehaviour
         dialogueManager = FindObjectOfType<DialogueManager>();
         option = FindObjectOfType<Option>();
 
-        string[] s = option.currentLevel.LevelName.Split('_');
-        stageIndex = int.Parse(s[0]) - 1;
+        if (option != null)
+        {
+            string[] s = option.currentLevel.LevelName.Split('_');
+            stageIndex = int.Parse(s[0]) - 1;
+        }
+        else
+        {
+            stageIndex = tempNum;
+        }
         StartPosition();
 
     }
