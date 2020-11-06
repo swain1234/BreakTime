@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Book))]
 public class AutoFlip : MonoBehaviour {
@@ -194,6 +195,8 @@ public class AutoFlip : MonoBehaviour {
     public void Retry()
     {
         option.Retry();
+        ImageOff();
+        clear.gameObject.SetActive(false);
         this.transform.GetChild(0).gameObject.SetActive(false);
     }
 
@@ -246,6 +249,7 @@ public class AutoFlip : MonoBehaviour {
             gameManager.NextStage();
             gameManager.StartPosition();
             this.transform.GetChild(0).gameObject.SetActive(false);
+            SceneManager.LoadScene("Stage");
             yield return new WaitForSeconds(0.5f);
         }
         else // 마지막레벨을 클리어했을때

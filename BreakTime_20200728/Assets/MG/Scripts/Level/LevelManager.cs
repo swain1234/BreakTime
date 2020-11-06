@@ -15,13 +15,11 @@ public class LevelManager : MonoBehaviour
     private SceneChanage sceneChange;
     private Option option;
     private Title title;
-    private wide wide;
     [SerializeField] TextMeshProUGUI resourceText;
     [SerializeField] GameObject choice;
 
     void Start()
     {
-        wide = FindObjectOfType<wide>();
         sceneChange = GetComponentInParent<SceneChanage>();
         child = transform.GetChild(num).gameObject;
         resourceText.text = child.GetComponent<LevelParent>().levelData.Script;
@@ -29,7 +27,6 @@ public class LevelManager : MonoBehaviour
         option = FindObjectOfType<Option>();
         title = FindObjectOfType<Title>();
         StartCoroutine(SelectEffect());
-        wide.initSetting();
     }
 
     void Update()

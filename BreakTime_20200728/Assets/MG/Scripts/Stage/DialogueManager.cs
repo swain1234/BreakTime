@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+
 public class DialogueManager : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI resourceText;
@@ -29,10 +30,14 @@ public class DialogueManager : MonoBehaviour
     List<Dictionary<string, object>> data;
 
     private Option option;
-    private wide theWide;
     [SerializeField] FakeTextureManager bookLeft;
     [SerializeField] FakeTextureManager bookRight;
     [SerializeField] TextureManager textureManager;
+    [SerializeField] Image witch;
+
+    Material material;
+    float fade = 0f;
+    bool isDissolving = false;
 
     private void Start()
     {
@@ -40,7 +45,8 @@ public class DialogueManager : MonoBehaviour
         iArray = new List<string>();
         pArray = new List<string>();
         option = FindObjectOfType<Option>();
-        theWide = FindObjectOfType<wide>();
+        material = witch.material;
+        material.SetFloat("_Fade", 0f);
     }
 
     public void ReadDialogue(int a) // 대화 및 이미지 불러오기, 0일경우 start 1or다른숫자는 end파일 불러옴
@@ -50,6 +56,7 @@ public class DialogueManager : MonoBehaviour
         //위치 초기화
         currentImage.rectTransform.anchoredPosition = new Vector2(-1450f, currentImage.rectTransform.anchoredPosition.y);
         resourceText.rectTransform.anchoredPosition = new Vector2(346.6f, resourceText.rectTransform.anchoredPosition.y);
+        resourceText.rectTransform.sizeDelta = new Vector2(2620f, resourceText.rectTransform.sizeDelta.y);
         nameTag.rectTransform.anchoredPosition = new Vector2(-600f, nameTag.rectTransform.anchoredPosition.y);
         if (currentImage.transform.localScale.x < 0)
             Flip();
@@ -120,59 +127,108 @@ public class DialogueManager : MonoBehaviour
                 nameTag.sprite = Resources.Load(i_sentence + "Tag", typeof(Sprite)) as Sprite; // 태그넣기
                 p_sentence = pArray[p_num++];
 
-                if(i_sentence != "librarian") // 캐릭터이미지 스케일을보고 flip하기, 이미지position을 보고 positionflip하기
+                if (i_sentence != "achromaticWitch")
                 {
-                    if (p_sentence == "l")
+                    if (isDissolving == false)
                     {
-                        if (currentImage.transform.localScale.x > 0)
+                        if (i_sentence != "librarian") // 캐릭터이미지 스케일을보고 flip하기, 이미지position을 보고 positionflip하기
                         {
-                            Flip();
+                            if (p_sentence == "l")
+                            {
+                                if (currentImage.transform.localScale.x > 0)
+                                {
+                                    Flip();
+                                }
+                                if (currentImage.rectTransform.anchoredPosition.x > 0)
+                                {
+                                    PositionFlip();
+                                }
+                            }
+                            else
+                            {
+                                if (currentImage.transform.localScale.x < 0)
+                                {
+                                    Flip();
+                                }
+                                if (currentImage.rectTransform.anchoredPosition.x < 0)
+                                {
+                                    PositionFlip();
+                                }
+                            }
                         }
-                        if (currentImage.rectTransform.anchoredPosition.x > 0)
+                        else
                         {
-                            PositionFlip();
+                            if (p_sentence == "l")
+                            {
+                                if (currentImage.transform.localScale.x < 0)
+                                {
+                                    Flip();
+                                }
+                                if (currentImage.rectTransform.anchoredPosition.x > 0)
+                                {
+                                    PositionFlip();
+                                }
+                            }
+                            else
+                            {
+                                if (currentImage.transform.localScale.x > 0)
+                                {
+                                    Flip();
+                                }
+                                if (currentImage.rectTransform.anchoredPosition.x < 0)
+                                {
+                                    PositionFlip();
+                                }
+                            }
                         }
                     }
                     else
                     {
-                        if (currentImage.transform.localScale.x < 0)
+                        if (i_sentence != "librarian")
                         {
-                            Flip();
+                            if (currentImage.transform.localScale.x > 0)
+                            {
+                                Flip();
+                            }
                         }
-                        if (currentImage.rectTransform.anchoredPosition.x < 0)
+                        else
                         {
-                            PositionFlip();
+                            if (currentImage.transform.localScale.x < 0)
+                            {
+                                Flip();
+                            }
                         }
                     }
+                    nextImage = Resources.Load(i_sentence, typeof(Sprite)) as Sprite;
+                    currentImage.sprite = nextImage;
                 }
                 else
                 {
-                    if (p_sentence == "l")
+                    if (isDissolving == false)
                     {
-                        if (currentImage.transform.localScale.x < 0)
+                        isDissolving = true;
+                        currentImage.rectTransform.anchoredPosition = new Vector2(-1450f, currentImage.rectTransform.anchoredPosition.y);
+                        nameTag.rectTransform.anchoredPosition = new Vector2(-600f, nameTag.rectTransform.anchoredPosition.y);
+                        resourceText.rectTransform.anchoredPosition = new Vector2(60f, resourceText.rectTransform.anchoredPosition.y);
+                        resourceText.rectTransform.sizeDelta = new Vector2(2020f, resourceText.rectTransform.sizeDelta.y);
+                        if (currentImage.sprite.name != "librarian")
                         {
-                            Flip();
+                            if (currentImage.transform.localScale.x > 0)
+                            {
+                                Flip();
+                            }
                         }
-                        if (currentImage.rectTransform.anchoredPosition.x > 0)
+                        else
                         {
-                            PositionFlip();
+                            if (currentImage.transform.localScale.x < 0)
+                            {
+                                Debug.Log("1");
+                                Flip();
+                            }
                         }
-                    }
-                    else
-                    {
-                        if (currentImage.transform.localScale.x > 0)
-                        {
-                            Flip();
-                        }
-                        if (currentImage.rectTransform.anchoredPosition.x < 0)
-                        {
-                            PositionFlip();
-                        }
+
                     }
                 }
-
-                nextImage = Resources.Load(i_sentence, typeof(Sprite)) as Sprite;
-                currentImage.sprite = nextImage;
                 sentence = tArray[t_num++];
                 sentence = sentence.Replace("&", "\n"); // &문자를 개행문자로 변경
                 StartCoroutine(TypeSentence(sentence));
@@ -195,15 +251,25 @@ public class DialogueManager : MonoBehaviour
 
     void EndDialogue() // 대화가 끝났을때 연출
     {
+        StartCoroutine(DissolveWitch());
+    }
+
+    IEnumerator DissolveWitch()
+    {
         isDialogue = false;
+        if (isDissolving)
+        {
+            isDissolving = false;
+            yield return new WaitForSeconds(1f);
+        }
         panel.gameObject.SetActive(false);
         if (option.currentLevel.LevelName == "08_Grand_Fall" || option.currentLevel.LevelName == "07_Honey_Bunny_Hop")
         {
-            theWide.NarrowMode();
+            Letterbox.Instance.NarrowMode();
         }
         else
         {
-            theWide.WideMode();
+            Letterbox.Instance.WideMode();
         }
         if (isStart == false)
         {
@@ -236,9 +302,29 @@ public class DialogueManager : MonoBehaviour
         //{
         //    ReadDialogue(1);
         //}
+
         if (isDialogue == true && Input.anyKeyDown)
         {
             DisplayNextSentence();
+        }
+
+        if (isDissolving == true) // 수정해야할거같은데 일단놔둠
+        {
+            fade += Time.deltaTime;
+            if (fade >= 1f)
+            {
+                fade = 1f;
+            }
+            material.SetFloat("_Fade", fade);
+        }
+        else
+        {
+            fade -= Time.deltaTime;
+            if (fade <= 0f)
+            {
+                fade = 0f;
+            }
+            material.SetFloat("_Fade", fade);
         }
     }
 }

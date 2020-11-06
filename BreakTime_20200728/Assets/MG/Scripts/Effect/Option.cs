@@ -151,25 +151,28 @@ public class Option : MonoBehaviour
     }
     public void Close()
     {
-        Time.timeScale = 1f;
-        fade = 1f;
-        isDissolving = true;
-        if (isDissolving)
+        if (isDissolving == false)
         {
-            fade -= Time.deltaTime;
-            dissolve.effectFactor += Time.deltaTime;
-            if (fade <= 0f)
+            Time.timeScale = 1f;
+            fade = 1f;
+            isDissolving = true;
+            if (isDissolving)
             {
-                fade = 0f;
-                dissolve.effectFactor = 1f;
-                panel.gameObject.SetActive(false);
-                retry.gameObject.SetActive(false);
-                select.gameObject.SetActive(false);
-                next.gameObject.SetActive(false);
-                isDissolving = false;
-                isActive = false;
+                fade -= Time.deltaTime;
+                dissolve.effectFactor += Time.deltaTime;
+                if (fade <= 0f)
+                {
+                    fade = 0f;
+                    dissolve.effectFactor = 1f;
+                    panel.gameObject.SetActive(false);
+                    retry.gameObject.SetActive(false);
+                    select.gameObject.SetActive(false);
+                    next.gameObject.SetActive(false);
+                    isDissolving = false;
+                    isActive = false;
+                }
+                material.SetFloat("_Fade", fade);
             }
-            material.SetFloat("_Fade", fade);
         }
     }
 
@@ -209,12 +212,15 @@ public class Option : MonoBehaviour
         Time.timeScale = 1f;
         isActive = false;
         material.SetFloat("_Fade", 0f);
+        dissolve.effectFactor = 1f;
         FadeManager.Instance.Fade();
         yield return new WaitForSeconds(1f);
         book = FindObjectOfType<AutoFlip>();
         book.transform.GetChild(0).gameObject.SetActive(false);
+        panel.gameObject.SetActive(false);
         gameManager = FindObjectOfType<GameManager>();
         gameManager.StartPosition();
+        SceneManager.LoadScene("Stage");
     }
 
     public void LevelSelect()
@@ -228,8 +234,11 @@ public class Option : MonoBehaviour
         Time.timeScale = 1f;
         isActive = false;
         material.SetFloat("_Fade", 0f);
+        dissolve.effectFactor = 1f;
         FadeManager.Instance.Fade();
         yield return new WaitForSeconds(1f);
+        panel.gameObject.SetActive(false);
+        Letterbox.Instance.initSetting();
         SceneManager.LoadScene("Level");
     }
 
@@ -242,16 +251,21 @@ public class Option : MonoBehaviour
     {
         isCandy = false;
         LevelChange();
+        StageScript();
         Time.timeScale = 1f;
         isActive = false;
         material.SetFloat("_Fade", 0f);
+        dissolve.effectFactor = 1f;
         FadeManager.Instance.Fade();
         yield return new WaitForSeconds(1f);
         book = FindObjectOfType<AutoFlip>();
         book.transform.GetChild(0).gameObject.SetActive(false);
+        panel.gameObject.SetActive(false);
         gameManager = FindObjectOfType<GameManager>();
         gameManager.NextStage();
         gameManager.StartPosition();
+        Letterbox.Instance.initSetting();
+        SceneManager.LoadScene("Stage");
         yield return new WaitForSeconds(0.5f);
     }
 

@@ -17,10 +17,10 @@ public class PoolingPaint : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            StartCoroutine(Splash());
-        }
+        //if (Input.GetKeyDown(KeyCode.A))
+        //{
+        //    StartCoroutine(Splash());
+        //}
     }
 
     private IEnumerator Splash()

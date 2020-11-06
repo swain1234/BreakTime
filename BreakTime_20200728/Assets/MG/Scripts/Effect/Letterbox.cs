@@ -3,18 +3,41 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class wide : MonoBehaviour
+public class Letterbox : MonoBehaviour
 {
+    static public Letterbox instance;
 
     [SerializeField] Image upImage;
     [SerializeField] Image downImage;
     [SerializeField] Image leftImage;
     [SerializeField] Image rightImage;
 
+    float smoothness = 0.005f;
+    float duration = 0.001f;
 
-    float smoothness = 0.005f; // 
-    float duration = 0.001f; // 
-    // Start is called before the first frame update
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            DontDestroyOnLoad(this.gameObject);
+            instance = this;
+        }
+        else
+            Destroy(this.gameObject);
+    }
+
+    public static Letterbox Instance
+    {
+        get
+        {
+            if (null == instance)
+            {
+                return null;
+            }
+            return instance;
+        }
+    }
+
     void Start()
     {
         upImage = upImage.GetComponent<Image>();
@@ -107,5 +130,17 @@ public class wide : MonoBehaviour
             } while (progress <= 400);
         }
         yield return true;
+    }
+
+    private void Update()
+    {
+        //if (Input.GetKeyDown("a"))
+        //{
+        //    WideMode();
+        //}
+        //if (Input.GetKeyDown("s"))
+        //{
+        //    NarrowMode();
+        //}
     }
 }
