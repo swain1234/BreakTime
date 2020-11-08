@@ -39,6 +39,9 @@ public class DialogueManager : MonoBehaviour
     float fade = 0f;
     bool isDissolving = false;
 
+    float duration = 0.8f;
+    float smoothness = 0.01f;
+
     private void Start()
     {
         tArray = new List<string>();
@@ -207,6 +210,7 @@ public class DialogueManager : MonoBehaviour
                     if (isDissolving == false)
                     {
                         isDissolving = true;
+                        StartCoroutine(DissolveUP());
                         currentImage.rectTransform.anchoredPosition = new Vector2(-1450f, currentImage.rectTransform.anchoredPosition.y);
                         nameTag.rectTransform.anchoredPosition = new Vector2(-600f, nameTag.rectTransform.anchoredPosition.y);
                         resourceText.rectTransform.anchoredPosition = new Vector2(60f, resourceText.rectTransform.anchoredPosition.y);
@@ -260,6 +264,7 @@ public class DialogueManager : MonoBehaviour
         if (isDissolving)
         {
             isDissolving = false;
+            StartCoroutine(DissolveDown());
             yield return new WaitForSeconds(1f);
         }
         panel.gameObject.SetActive(false);
@@ -292,39 +297,46 @@ public class DialogueManager : MonoBehaviour
         autoFlip.LevelClear();
     }
 
+    IEnumerator DissolveDown()
+    {
+        float increment = smoothness / duration;
+        fade = 1f;
+        while (fade >= 0f)
+        {
+            material.SetFloat("_Fade", fade);
+            fade -= increment;
+            yield return new WaitForSeconds(smoothness);
+        }
+        yield return true;
+    }
+
+    IEnumerator DissolveUP()
+    {
+        float increment = smoothness / duration;
+        fade = 0f;
+        while (fade <= 1f)
+        {
+            material.SetFloat("_Fade", fade);
+            fade += increment;
+            yield return new WaitForSeconds(smoothness);
+        }
+        yield return true;
+    }
+
     private void Update()
     {
-        //if (Input.GetKeyDown("a"))
-        //{
-        //    ReadDialogue(0);
-        //}
-        //if (Input.GetKeyDown("s"))
-        //{
-        //    ReadDialogue(1);
-        //}
+        if (Input.GetKeyDown("z"))
+        {
+            ReadDialogue(0);
+        }
+        if (Input.GetKeyDown("x"))
+        {
+            ReadDialogue(1);
+        }
 
         if (isDialogue == true && Input.anyKeyDown)
         {
             DisplayNextSentence();
-        }
-
-        if (isDissolving == true) // 수정해야할거같은데 일단놔둠
-        {
-            fade += Time.deltaTime;
-            if (fade >= 1f)
-            {
-                fade = 1f;
-            }
-            material.SetFloat("_Fade", fade);
-        }
-        else
-        {
-            fade -= Time.deltaTime;
-            if (fade <= 0f)
-            {
-                fade = 0f;
-            }
-            material.SetFloat("_Fade", fade);
         }
     }
 }

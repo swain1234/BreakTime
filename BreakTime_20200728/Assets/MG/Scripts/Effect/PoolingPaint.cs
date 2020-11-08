@@ -17,10 +17,10 @@ public class PoolingPaint : MonoBehaviour
 
     void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.A))
-        //{
-        //    StartCoroutine(Splash());
-        //}
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            StartCoroutine(Splash());
+        }
     }
 
     private IEnumerator Splash()
@@ -28,7 +28,6 @@ public class PoolingPaint : MonoBehaviour
         for (i = 0; i < Random.Range(3,6); i++)
         {
             Image paint = objectPoolClass.GetObject();
-            //Image paintImage = paint.GetComponent<Image>();
             j = Random.Range(0, 3);
             if (j == 0)
                 s = "r";
