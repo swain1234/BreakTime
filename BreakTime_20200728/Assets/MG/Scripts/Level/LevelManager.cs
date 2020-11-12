@@ -15,6 +15,8 @@ public class LevelManager : MonoBehaviour
     private SceneChanage sceneChange;
     private Option option;
     private Title title;
+    string backgroundMusic = "LevelScene";
+
     [SerializeField] TextMeshProUGUI resourceText;
     [SerializeField] GameObject choice;
 
@@ -27,6 +29,7 @@ public class LevelManager : MonoBehaviour
         option = FindObjectOfType<Option>();
         title = FindObjectOfType<Title>();
         StartCoroutine(SelectEffect());
+        AudioManager.Instance.FadeIn(backgroundMusic);
     }
 
     void Update()
@@ -114,6 +117,7 @@ public class LevelManager : MonoBehaviour
     IEnumerator SceneTransfer()
     {
         option.currentLevel = child.GetComponent<LevelParent>().levelData;
+        AudioManager.Instance.FadeOut(backgroundMusic);
         FadeManager.Instance.Fade();
         yield return new WaitForSeconds(1f);
         option.StageScript();

@@ -5,25 +5,42 @@ using UnityEngine.UI;
 
 public class PoolingPaint : MonoBehaviour
 {
+    static public PoolingPaint instance;
+
     private ObjectPoolClass objectPoolClass;
     public GameObject paintObjectPool;
     int i, j = 0;
     string s = "";
+
+    private void Awake()
+    {
+        if (instance == null)
+            instance = this;
+    }
 
     void Start()
     {
         objectPoolClass = GetComponent<ObjectPoolClass>();
     }
 
-    void Update()
+    public static PoolingPaint Instance
     {
-        if (Input.GetKeyDown(KeyCode.A))
+        get
         {
-            StartCoroutine(Splash());
+            if (null == instance)
+            {
+                return null;
+            }
+            return instance;
         }
     }
 
-    private IEnumerator Splash()
+    public void SplashPaint()
+    {
+        StartCoroutine(ISplash());
+    }
+
+    private IEnumerator ISplash()
     {
         for (i = 0; i < Random.Range(3,6); i++)
         {

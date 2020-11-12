@@ -41,6 +41,7 @@ public class Option : MonoBehaviour
     [SerializeField] Image panel;
     [SerializeField] Image candyImage;
     bool isActive = false;
+    bool isTransfer = false;
     public bool isCandy = false;
 
     private GameManager gameManager;
@@ -98,19 +99,21 @@ public class Option : MonoBehaviour
             {
                 if (Input.GetKeyDown(KeyCode.Escape) && isDissolving == false)
                 {
+                    AudioManager.Instance.Pause();
                     Candy();
                     fade = 0f;
                     panel.gameObject.SetActive(true);
                     retry.gameObject.SetActive(true);
                     select.gameObject.SetActive(true);
                     next.gameObject.SetActive(true);
+                    xImage.gameObject.SetActive(true);
                     isDissolving = true;
                 }
                 if (isDissolving)
                 {
                     fade += Time.deltaTime;
                     dissolve.effectFactor -= Time.deltaTime;
-                    if (fade >= 1f)
+                    if (fade > 1f)
                     {
                         fade = 1f;
                         dissolve.effectFactor = 0f;
@@ -128,12 +131,13 @@ public class Option : MonoBehaviour
                     Time.timeScale = 1f;
                     fade = 1f;
                     isDissolving = true;
+                    AudioManager.Instance.UnPause();
                 }
                 if (isDissolving)
                 {
                     fade -= Time.deltaTime;
                     dissolve.effectFactor += Time.deltaTime;
-                    if (fade <= 0f)
+                    if (fade < 0f)
                     {
                         fade = 0f;
                         dissolve.effectFactor = 1f;
@@ -141,6 +145,7 @@ public class Option : MonoBehaviour
                         retry.gameObject.SetActive(false);
                         select.gameObject.SetActive(false);
                         next.gameObject.SetActive(false);
+                        xImage.gameObject.SetActive(false);
                         isDissolving = false;
                         isActive = false;
                     }
@@ -156,11 +161,12 @@ public class Option : MonoBehaviour
             Time.timeScale = 1f;
             fade = 1f;
             isDissolving = true;
+            AudioManager.Instance.UnPause();
             if (isDissolving)
             {
                 fade -= Time.deltaTime;
                 dissolve.effectFactor += Time.deltaTime;
-                if (fade <= 0f)
+                if (fade < 0f)
                 {
                     fade = 0f;
                     dissolve.effectFactor = 1f;
@@ -168,6 +174,7 @@ public class Option : MonoBehaviour
                     retry.gameObject.SetActive(false);
                     select.gameObject.SetActive(false);
                     next.gameObject.SetActive(false);
+                    xImage.gameObject.SetActive(false);
                     isDissolving = false;
                     isActive = false;
                 }
@@ -203,70 +210,109 @@ public class Option : MonoBehaviour
 
     public void Retry()
     {
-        StartCoroutine(RetryLevel());
+        if (!isDissolving)
+        {
+            Time.timeScale = 1f;
+            if (isTransfer == false)
+            {
+                AudioManager.Instance.UnPause();
+                FadeMusic();
+            }
+            StartCoroutine(RetryLevel());
+        }
     }
 
     IEnumerator RetryLevel()
     {
-        isCandy = false;
-        Time.timeScale = 1f;
-        isActive = false;
-        material.SetFloat("_Fade", 0f);
-        dissolve.effectFactor = 1f;
-        FadeManager.Instance.Fade();
-        yield return new WaitForSeconds(1f);
-        book = FindObjectOfType<AutoFlip>();
-        book.transform.GetChild(0).gameObject.SetActive(false);
-        panel.gameObject.SetActive(false);
-        gameManager = FindObjectOfType<GameManager>();
-        gameManager.StartPosition();
-        SceneManager.LoadScene("Stage");
+        if (isTransfer == false)
+        {
+            isTransfer = true;
+            isCandy = false;
+            isActive = false;
+            material.SetFloat("_Fade", 0f);
+            dissolve.effectFactor = 1f;
+            FadeManager.Instance.Fade();
+            yield return new WaitForSeconds(1f);
+            book = FindObjectOfType<AutoFlip>();
+            book.transform.GetChild(0).gameObject.SetActive(false);
+            panel.gameObject.SetActive(false);
+            isTransfer = false;
+            gameManager = FindObjectOfType<GameManager>();
+            gameManager.StartPosition();
+            SceneManager.LoadScene("Stage");
+        }
     }
 
     public void LevelSelect()
     {
-        StartCoroutine(SelectLevel());
+        if (!isDissolving)
+        {
+            Time.timeScale = 1f;
+            if (isTransfer == false)
+            {
+                AudioManager.Instance.UnPause();
+                FadeMusic();
+            }
+            StartCoroutine(SelectLevel());
+        }
     }
 
     IEnumerator SelectLevel()
     {
-        isCandy = false;
-        Time.timeScale = 1f;
-        isActive = false;
-        material.SetFloat("_Fade", 0f);
-        dissolve.effectFactor = 1f;
-        FadeManager.Instance.Fade();
-        yield return new WaitForSeconds(1f);
-        panel.gameObject.SetActive(false);
-        Letterbox.Instance.initSetting();
-        SceneManager.LoadScene("Level");
+        if (isTransfer == false)
+        {
+            isTransfer = true;
+            isCandy = false;
+            isActive = false;
+            material.SetFloat("_Fade", 0f);
+            dissolve.effectFactor = 1f;
+            FadeManager.Instance.Fade();
+            yield return new WaitForSeconds(1f);
+            panel.gameObject.SetActive(false);
+            isTransfer = false;
+            Letterbox.Instance.initSetting();
+            SceneManager.LoadScene("Level");
+        }
     }
 
     public void NextLevel()
     {
-        StartCoroutine(LevelNext());
+        if (!isDissolving)
+        {
+            Time.timeScale = 1f;
+            if (currentLevel != level10)
+            {
+                StartCoroutine(LevelNext());
+            }
+        }
     }
 
     IEnumerator LevelNext()
     {
-        isCandy = false;
-        LevelChange();
-        StageScript();
-        Time.timeScale = 1f;
-        isActive = false;
-        material.SetFloat("_Fade", 0f);
-        dissolve.effectFactor = 1f;
-        FadeManager.Instance.Fade();
-        yield return new WaitForSeconds(1f);
-        book = FindObjectOfType<AutoFlip>();
-        book.transform.GetChild(0).gameObject.SetActive(false);
-        panel.gameObject.SetActive(false);
-        gameManager = FindObjectOfType<GameManager>();
-        gameManager.NextStage();
-        gameManager.StartPosition();
-        Letterbox.Instance.initSetting();
-        SceneManager.LoadScene("Stage");
-        yield return new WaitForSeconds(0.5f);
+        if (isTransfer == false)
+        {
+            isTransfer = true;
+            isCandy = false;
+            LevelChange();
+            StageScript();
+            AudioManager.Instance.UnPause();
+            FadeMusic();
+            isActive = false;
+            material.SetFloat("_Fade", 0f);
+            dissolve.effectFactor = 1f;
+            FadeManager.Instance.Fade();
+            yield return new WaitForSeconds(1f);
+            book = FindObjectOfType<AutoFlip>();
+            book.transform.GetChild(0).gameObject.SetActive(false);
+            panel.gameObject.SetActive(false);
+            isTransfer = false;
+            gameManager = FindObjectOfType<GameManager>();
+            gameManager.NextStage();
+            gameManager.StartPosition();
+            Letterbox.Instance.initSetting();
+            SceneManager.LoadScene("Stage");
+            yield return new WaitForSeconds(0.5f);
+        }
     }
 
     public void Candy()
@@ -275,5 +321,19 @@ public class Option : MonoBehaviour
         {
             candyImage.gameObject.SetActive(true);
         }
+    }
+
+    void FadeMusic()
+    {
+        if (currentLevel == level1 || currentLevel == level2 == currentLevel == level3 == currentLevel == level4)
+            AudioManager.Instance.FadeOut("Level1-4");
+        else if (currentLevel == level5 || currentLevel == level6)
+            AudioManager.Instance.FadeOut("Level5-6");
+        else if (currentLevel == level7 || currentLevel == level7)
+            AudioManager.Instance.FadeOut("Level7-8");
+        else if (currentLevel == level9)
+            AudioManager.Instance.FadeOut("Level9");
+        else if (currentLevel == level10)
+            AudioManager.Instance.BossStop();
     }
 }

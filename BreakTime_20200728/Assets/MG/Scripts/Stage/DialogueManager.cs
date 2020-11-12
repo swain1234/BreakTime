@@ -42,6 +42,9 @@ public class DialogueManager : MonoBehaviour
     float duration = 0.8f;
     float smoothness = 0.01f;
 
+    string[] stageString;
+    int stageNum;
+
     private void Start()
     {
         tArray = new List<string>();
@@ -88,6 +91,23 @@ public class DialogueManager : MonoBehaviour
             tArray.Add((string)data[i]["script"]);
             iArray.Add((string)data[i]["character"]);
             pArray.Add((string)data[i]["position"]);
+        }
+
+        if (a == 0)
+        {
+            if (option != null)
+            {
+                stageString = option.currentLevel.LevelName.Split('_');
+                stageNum = int.Parse(stageString[0]);
+                if (stageNum >= 1 && stageNum <= 4)
+                    AudioManager.Instance.FadeIn("Level1-4");
+                else if (stageNum == 5 || stageNum == 6)
+                    AudioManager.Instance.FadeIn("Level5-6");
+                else if (stageNum == 7 || stageNum == 8)
+                    AudioManager.Instance.FadeIn("Level7-8");
+                else if (stageNum == 9)
+                    AudioManager.Instance.FadeIn("Level9");
+            }
         }
 
         DisplayNextSentence();
@@ -226,7 +246,6 @@ public class DialogueManager : MonoBehaviour
                         {
                             if (currentImage.transform.localScale.x < 0)
                             {
-                                Debug.Log("1");
                                 Flip();
                             }
                         }
@@ -283,13 +302,26 @@ public class DialogueManager : MonoBehaviour
         else
         {
             stopManager.ScriptON();
+            if (stageNum == 10)
+                AudioManager.Instance.BossLoop();
         }
     }
 
     IEnumerator DialogueEnd()
     {
+        if (stageNum >= 1 && stageNum <= 4)
+            AudioManager.Instance.FadeOut("Level1-4");
+        else if (stageNum == 5 || stageNum == 6)
+            AudioManager.Instance.FadeOut("Level5-6");
+        else if (stageNum == 7 || stageNum == 8)
+            AudioManager.Instance.FadeOut("Level7-8");
+        else if (stageNum == 9)
+            AudioManager.Instance.FadeOut("Level9");
+        else if (stageNum == 10)
+            AudioManager.Instance.BossStop();
         FadeManager.Instance.Fade();
         yield return new WaitForSeconds(1f);
+        AudioManager.Instance.FadeIn("Title");
         autoFlip.transform.GetChild(0).gameObject.SetActive(true);
         textureManager.TextureCapture();
         bookLeft.TextureLeft();
@@ -301,12 +333,15 @@ public class DialogueManager : MonoBehaviour
     {
         float increment = smoothness / duration;
         fade = 1f;
-        while (fade >= 0f)
+        while (fade > 0f)
         {
             material.SetFloat("_Fade", fade);
             fade -= increment;
             yield return new WaitForSeconds(smoothness);
         }
+        if (fade < 0f)
+            fade = 0f;
+        material.SetFloat("_Fade", fade);
         yield return true;
     }
 
@@ -314,12 +349,15 @@ public class DialogueManager : MonoBehaviour
     {
         float increment = smoothness / duration;
         fade = 0f;
-        while (fade <= 1f)
+        while (fade < 1f)
         {
             material.SetFloat("_Fade", fade);
             fade += increment;
             yield return new WaitForSeconds(smoothness);
         }
+        if (fade > 1f)
+            fade = 1f;
+        material.SetFloat("_Fade", fade);
         yield return true;
     }
 

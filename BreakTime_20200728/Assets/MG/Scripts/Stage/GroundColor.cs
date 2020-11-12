@@ -29,18 +29,24 @@ public class GroundColor : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    void GroundChange() // 홍준이 이걸 쓰면됨.
     {
-        if (Input.GetKeyDown(KeyCode.A))
+        if (isDissolving == false)
         {
-            if (isDissolving == false)
-            {
-                Instantiate(this, transform.position, transform.rotation);
-                Invoke("ChangeSprite", 0.2f);
-            }
+            Instantiate(this, transform.position, transform.rotation);
+            PoolingPaint.Instance.SplashPaint();
+            Invoke("ChangeSprite", 0.2f);
         }
     }
+
+    // 이런식으로 쓰면될듯
+    //private void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    if (collision.transform.CompareTag("Player1"))
+    //    {
+    //        GroundChange();
+    //    }
+    //}
 
     void ChangeSprite()
     {

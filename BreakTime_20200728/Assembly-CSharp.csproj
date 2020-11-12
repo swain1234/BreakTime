@@ -127,6 +127,8 @@
     <Compile Include="Assets\MG\Scripts\Book\AutoFlip.cs" />
     <Compile Include="Assets\MG\Scripts\Book\Book.cs" />
     <Compile Include="Assets\MG\Scripts\Book\Convert.cs" />
+    <Compile Include="Assets\MG\Scripts\Book\UIText.cs" />
+    <Compile Include="Assets\MG\Scripts\Effect\AudioManager.cs" />
     <Compile Include="Assets\MG\Scripts\Effect\Dissolve.cs" />
     <Compile Include="Assets\MG\Scripts\Effect\FadeManager.cs" />
     <Compile Include="Assets\MG\Scripts\Effect\GlobalVolume.cs" />
@@ -149,13 +151,9 @@
     <Compile Include="Assets\MG\Scripts\Stage\StopManager.cs" />
     <Compile Include="Assets\MG\Scripts\Stage\TextureManager.cs" />
     <Compile Include="Assets\MG\Scripts\Stage\Title.cs" />
-    <Compile Include="Assets\MG\Scripts\test\CsSky.cs" />
+    <Compile Include="Assets\MG\Scripts\test\OnPressed.cs" />
     <Compile Include="Assets\MG\Scripts\test\SceneChanage.cs" />
-    <Compile Include="Assets\MG\Scripts\test\ScrollViewPractice.cs" />
-    <Compile Include="Assets\MG\Scripts\test\UIText.cs" />
-    <Compile Include="Assets\MG\Scripts\test\example1.cs" />
     <Compile Include="Assets\MG\Scripts\test\sample.cs" />
-    <Compile Include="Assets\MG\Scripts\test\test.cs" />
     <Compile Include="Assets\SampleScenes\Menu\Scripts\MenuSceneLoader.cs" />
     <Compile Include="Assets\SampleScenes\Menu\Scripts\PauseMenu.cs" />
     <Compile Include="Assets\SampleScenes\Menu\Scripts\SceneAndURLLoader.cs" />

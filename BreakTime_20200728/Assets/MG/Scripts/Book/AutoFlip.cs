@@ -194,6 +194,7 @@ public class AutoFlip : MonoBehaviour {
 
     public void Retry()
     {
+        AudioManager.Instance.FadeOut("Title");
         option.Retry();
         ImageOff();
         clear.gameObject.SetActive(false);
@@ -202,6 +203,7 @@ public class AutoFlip : MonoBehaviour {
 
     public void LevelSelect()
     {
+        AudioManager.Instance.FadeOut("Title");
         option.LevelSelect();
     }
 
@@ -242,6 +244,7 @@ public class AutoFlip : MonoBehaviour {
             }
             yield return new WaitForSeconds(1f);
             FadeManager.Instance.Fade();
+            AudioManager.Instance.FadeOut("Title");
             yield return new WaitForSeconds(1f);
             tmi.text = "";
             option.LevelChange();
