@@ -56,6 +56,7 @@ public class PoolingPaint : MonoBehaviour
             // 오브젝트를 받아와서
             if (paint == null) yield return null;
             // 없다면 종료
+            AudioManager.Instance.Play("brush");
             paint.rectTransform.anchoredPosition = new Vector2(Random.Range(0, 385) * 10, Random.Range(0, 217) * 10);
             paint.rectTransform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
             paint.GetComponent<PaintBehaviour>().Spawn();

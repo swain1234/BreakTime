@@ -34,4 +34,9 @@ public class Title : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         SceneManager.LoadScene("Level");
     }
+
+    public void EffectSound()
+    {
+        AudioManager.Instance.Play("flipBook");
+    }
 }

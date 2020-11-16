@@ -173,6 +173,7 @@ public class AutoFlip : MonoBehaviour {
             fakeClear.sprite = Resources.Load("clear", typeof(Sprite)) as Sprite;
         }
         clear.gameObject.SetActive(true);
+        AudioManager.Instance.Play("stamp");
         ImageOn();
     }
 
@@ -224,6 +225,7 @@ public class AutoFlip : MonoBehaviour {
         if (option.nextLevel != null)
         {
             FlipRightPage();
+            AudioManager.Instance.Play("flipBook");
             bookNext.rawImage.texture = ConvertSpriteToTexture(option.nextLevel.Icon);
             bookNext.TextureNext();
             yield return new WaitForSeconds(2f);

@@ -267,7 +267,8 @@ public class DialogueManager : MonoBehaviour
         foreach (char letter in sentence.ToCharArray())
         {
             resourceText.text += letter;
-            yield return new WaitForSeconds(0.04f);
+            AudioManager.Instance.Play("write");
+            yield return new WaitForSeconds(0.06f);
         }
         isCoroutine = false;
     }
@@ -293,7 +294,8 @@ public class DialogueManager : MonoBehaviour
         }
         else
         {
-            Letterbox.Instance.WideMode();
+            if (stageNum != 10)
+                Letterbox.Instance.WideMode();
         }
         if (isStart == false)
         {

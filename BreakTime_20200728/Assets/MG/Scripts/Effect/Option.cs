@@ -100,6 +100,7 @@ public class Option : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.Escape) && isDissolving == false)
                 {
                     AudioManager.Instance.Pause();
+                    AudioManager.Instance.Play("click");
                     Candy();
                     fade = 0f;
                     panel.gameObject.SetActive(true);
