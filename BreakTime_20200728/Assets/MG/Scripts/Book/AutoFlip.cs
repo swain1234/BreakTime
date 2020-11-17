@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Book))]
 public class AutoFlip : MonoBehaviour {
@@ -172,6 +173,7 @@ public class AutoFlip : MonoBehaviour {
             fakeClear.sprite = Resources.Load("clear", typeof(Sprite)) as Sprite;
         }
         clear.gameObject.SetActive(true);
+        AudioManager.Instance.Play("stamp");
         ImageOn();
     }
 
@@ -193,12 +195,16 @@ public class AutoFlip : MonoBehaviour {
 
     public void Retry()
     {
+        AudioManager.Instance.FadeOut("Title");
         option.Retry();
+        ImageOff();
+        clear.gameObject.SetActive(false);
         this.transform.GetChild(0).gameObject.SetActive(false);
     }
 
     public void LevelSelect()
     {
+        AudioManager.Instance.FadeOut("Title");
         option.LevelSelect();
     }
 
@@ -219,6 +225,7 @@ public class AutoFlip : MonoBehaviour {
         if (option.nextLevel != null)
         {
             FlipRightPage();
+            AudioManager.Instance.Play("flipBook");
             bookNext.rawImage.texture = ConvertSpriteToTexture(option.nextLevel.Icon);
             bookNext.TextureNext();
             yield return new WaitForSeconds(2f);
@@ -239,6 +246,7 @@ public class AutoFlip : MonoBehaviour {
             }
             yield return new WaitForSeconds(1f);
             FadeManager.Instance.Fade();
+            AudioManager.Instance.FadeOut("Title");
             yield return new WaitForSeconds(1f);
             tmi.text = "";
             option.LevelChange();
@@ -246,6 +254,7 @@ public class AutoFlip : MonoBehaviour {
             gameManager.NextStage();
             gameManager.StartPosition();
             this.transform.GetChild(0).gameObject.SetActive(false);
+            SceneManager.LoadScene("Stage");
             yield return new WaitForSeconds(0.5f);
         }
         else // 마지막레벨을 클리어했을때

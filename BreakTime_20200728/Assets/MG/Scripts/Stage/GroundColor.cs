@@ -5,44 +5,67 @@ using UnityEngine;
 public class GroundColor : MonoBehaviour
 {
     SpriteRenderer sr;
+    Color color;
     string SpriteName;
-    float duration = 2;
-    float smoothness = 0.05f;
+    float duration = 1;
+    float smoothness = 0.01f;
+
+    Material material;
+    bool isDissolving = false;
+    float fade = 1f;
 
     // Start is called before the first frame update
     void Start()
     {
         sr = GetComponent<SpriteRenderer>();
+        color = GetComponent<SpriteRenderer>().color;
         SpriteName = sr.sprite.name;
-        sr.color = Color.grey;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.S))
+        material = GetComponent<SpriteRenderer>().material;
+        if(transform.name.IndexOf("Clone") != -1)
         {
-            StartCoroutine(LerpColor());
+            sr.sortingOrder = 1;
+            StartCoroutine(Dissolve());
+            isDissolving = true;
         }
     }
 
-    IEnumerator LerpColor() // 자연스럽게 점차 색바꾸기
+    void GroundChange() // 홍준이 이걸 쓰면됨.
     {
-        float progress = 0; //This float will serve as the 3rd parameter of the lerp function.
-        float increment = smoothness / duration; //The amount of change to apply.
-        while (progress < 0.5f)
+        if (isDissolving == false)
         {
-            sr.color = Color.Lerp(Color.grey, Color.white, progress);
-            progress += increment;
-            yield return new WaitForSeconds(smoothness);
+            Instantiate(this, transform.position, transform.rotation);
+            PoolingPaint.Instance.SplashPaint();
+            Invoke("ChangeSprite", 0.2f);
         }
+    }
+
+    // 이런식으로 쓰면될듯
+    //private void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    if (collision.transform.CompareTag("Player1"))
+    //    {
+    //        GroundChange();
+    //    }
+    //}
+
+    void ChangeSprite()
+    {
         sr.sprite = Resources.Load(SpriteName + "_color", typeof(Sprite)) as Sprite;
-        while(progress < 1f)
+    }
+
+    IEnumerator Dissolve()
+    {
+        float increment = smoothness / duration;
+        fade = 1f;
+        while (fade >= 0f)
         {
-            sr.color = Color.Lerp(Color.grey, Color.white, progress);
-            progress += increment;
+            material.SetFloat("_Fade", fade);
+            fade -= increment;
             yield return new WaitForSeconds(smoothness);
         }
+        //isDissolving = false;
+        //땅이 다시 검게 변하지 않으니까 필요없을듯
         yield return true;
     }
+
 }

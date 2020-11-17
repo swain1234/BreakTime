@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+
 public class DialogueManager : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI resourceText;
@@ -29,10 +30,20 @@ public class DialogueManager : MonoBehaviour
     List<Dictionary<string, object>> data;
 
     private Option option;
-    private wide theWide;
     [SerializeField] FakeTextureManager bookLeft;
     [SerializeField] FakeTextureManager bookRight;
     [SerializeField] TextureManager textureManager;
+    [SerializeField] Image witch;
+
+    Material material;
+    float fade = 0f;
+    bool isDissolving = false;
+
+    float duration = 0.8f;
+    float smoothness = 0.01f;
+
+    string[] stageString;
+    int stageNum;
 
     private void Start()
     {
@@ -40,7 +51,8 @@ public class DialogueManager : MonoBehaviour
         iArray = new List<string>();
         pArray = new List<string>();
         option = FindObjectOfType<Option>();
-        theWide = FindObjectOfType<wide>();
+        material = witch.material;
+        material.SetFloat("_Fade", 0f);
     }
 
     public void ReadDialogue(int a) // 대화 및 이미지 불러오기, 0일경우 start 1or다른숫자는 end파일 불러옴
@@ -50,6 +62,7 @@ public class DialogueManager : MonoBehaviour
         //위치 초기화
         currentImage.rectTransform.anchoredPosition = new Vector2(-1450f, currentImage.rectTransform.anchoredPosition.y);
         resourceText.rectTransform.anchoredPosition = new Vector2(346.6f, resourceText.rectTransform.anchoredPosition.y);
+        resourceText.rectTransform.sizeDelta = new Vector2(2620f, resourceText.rectTransform.sizeDelta.y);
         nameTag.rectTransform.anchoredPosition = new Vector2(-600f, nameTag.rectTransform.anchoredPosition.y);
         if (currentImage.transform.localScale.x < 0)
             Flip();
@@ -78,6 +91,23 @@ public class DialogueManager : MonoBehaviour
             tArray.Add((string)data[i]["script"]);
             iArray.Add((string)data[i]["character"]);
             pArray.Add((string)data[i]["position"]);
+        }
+
+        if (a == 0)
+        {
+            if (option != null)
+            {
+                stageString = option.currentLevel.LevelName.Split('_');
+                stageNum = int.Parse(stageString[0]);
+                if (stageNum >= 1 && stageNum <= 4)
+                    AudioManager.Instance.FadeIn("Level1-4");
+                else if (stageNum == 5 || stageNum == 6)
+                    AudioManager.Instance.FadeIn("Level5-6");
+                else if (stageNum == 7 || stageNum == 8)
+                    AudioManager.Instance.FadeIn("Level7-8");
+                else if (stageNum == 9)
+                    AudioManager.Instance.FadeIn("Level9");
+            }
         }
 
         DisplayNextSentence();
@@ -120,59 +150,108 @@ public class DialogueManager : MonoBehaviour
                 nameTag.sprite = Resources.Load(i_sentence + "Tag", typeof(Sprite)) as Sprite; // 태그넣기
                 p_sentence = pArray[p_num++];
 
-                if(i_sentence != "librarian") // 캐릭터이미지 스케일을보고 flip하기, 이미지position을 보고 positionflip하기
+                if (i_sentence != "achromaticWitch")
                 {
-                    if (p_sentence == "l")
+                    if (isDissolving == false)
                     {
-                        if (currentImage.transform.localScale.x > 0)
+                        if (i_sentence != "librarian") // 캐릭터이미지 스케일을보고 flip하기, 이미지position을 보고 positionflip하기
                         {
-                            Flip();
+                            if (p_sentence == "l")
+                            {
+                                if (currentImage.transform.localScale.x > 0)
+                                {
+                                    Flip();
+                                }
+                                if (currentImage.rectTransform.anchoredPosition.x > 0)
+                                {
+                                    PositionFlip();
+                                }
+                            }
+                            else
+                            {
+                                if (currentImage.transform.localScale.x < 0)
+                                {
+                                    Flip();
+                                }
+                                if (currentImage.rectTransform.anchoredPosition.x < 0)
+                                {
+                                    PositionFlip();
+                                }
+                            }
                         }
-                        if (currentImage.rectTransform.anchoredPosition.x > 0)
+                        else
                         {
-                            PositionFlip();
+                            if (p_sentence == "l")
+                            {
+                                if (currentImage.transform.localScale.x < 0)
+                                {
+                                    Flip();
+                                }
+                                if (currentImage.rectTransform.anchoredPosition.x > 0)
+                                {
+                                    PositionFlip();
+                                }
+                            }
+                            else
+                            {
+                                if (currentImage.transform.localScale.x > 0)
+                                {
+                                    Flip();
+                                }
+                                if (currentImage.rectTransform.anchoredPosition.x < 0)
+                                {
+                                    PositionFlip();
+                                }
+                            }
                         }
                     }
                     else
                     {
-                        if (currentImage.transform.localScale.x < 0)
+                        if (i_sentence != "librarian")
                         {
-                            Flip();
+                            if (currentImage.transform.localScale.x > 0)
+                            {
+                                Flip();
+                            }
                         }
-                        if (currentImage.rectTransform.anchoredPosition.x < 0)
+                        else
                         {
-                            PositionFlip();
+                            if (currentImage.transform.localScale.x < 0)
+                            {
+                                Flip();
+                            }
                         }
                     }
+                    nextImage = Resources.Load(i_sentence, typeof(Sprite)) as Sprite;
+                    currentImage.sprite = nextImage;
                 }
                 else
                 {
-                    if (p_sentence == "l")
+                    if (isDissolving == false)
                     {
-                        if (currentImage.transform.localScale.x < 0)
+                        isDissolving = true;
+                        StartCoroutine(DissolveUP());
+                        currentImage.rectTransform.anchoredPosition = new Vector2(-1450f, currentImage.rectTransform.anchoredPosition.y);
+                        nameTag.rectTransform.anchoredPosition = new Vector2(-600f, nameTag.rectTransform.anchoredPosition.y);
+                        resourceText.rectTransform.anchoredPosition = new Vector2(60f, resourceText.rectTransform.anchoredPosition.y);
+                        resourceText.rectTransform.sizeDelta = new Vector2(2020f, resourceText.rectTransform.sizeDelta.y);
+                        if (currentImage.sprite.name != "librarian")
                         {
-                            Flip();
+                            if (currentImage.transform.localScale.x > 0)
+                            {
+                                Flip();
+                            }
                         }
-                        if (currentImage.rectTransform.anchoredPosition.x > 0)
+                        else
                         {
-                            PositionFlip();
+                            if (currentImage.transform.localScale.x < 0)
+                            {
+                                Flip();
+                            }
                         }
-                    }
-                    else
-                    {
-                        if (currentImage.transform.localScale.x > 0)
-                        {
-                            Flip();
-                        }
-                        if (currentImage.rectTransform.anchoredPosition.x < 0)
-                        {
-                            PositionFlip();
-                        }
+
                     }
                 }
-
-                nextImage = Resources.Load(i_sentence, typeof(Sprite)) as Sprite;
-                currentImage.sprite = nextImage;
                 sentence = tArray[t_num++];
                 sentence = sentence.Replace("&", "\n"); // &문자를 개행문자로 변경
                 StartCoroutine(TypeSentence(sentence));
@@ -188,22 +267,35 @@ public class DialogueManager : MonoBehaviour
         foreach (char letter in sentence.ToCharArray())
         {
             resourceText.text += letter;
-            yield return new WaitForSeconds(0.04f);
+            AudioManager.Instance.Play("write");
+            yield return new WaitForSeconds(0.06f);
         }
         isCoroutine = false;
     }
 
     void EndDialogue() // 대화가 끝났을때 연출
     {
+        StartCoroutine(DissolveWitch());
+    }
+
+    IEnumerator DissolveWitch()
+    {
         isDialogue = false;
+        if (isDissolving)
+        {
+            isDissolving = false;
+            StartCoroutine(DissolveDown());
+            yield return new WaitForSeconds(1f);
+        }
         panel.gameObject.SetActive(false);
         if (option.currentLevel.LevelName == "08_Grand_Fall" || option.currentLevel.LevelName == "07_Honey_Bunny_Hop")
         {
-            theWide.NarrowMode();
+            Letterbox.Instance.NarrowMode();
         }
         else
         {
-            theWide.WideMode();
+            if (stageNum != 10)
+                Letterbox.Instance.WideMode();
         }
         if (isStart == false)
         {
@@ -212,13 +304,26 @@ public class DialogueManager : MonoBehaviour
         else
         {
             stopManager.ScriptON();
+            if (stageNum == 10)
+                AudioManager.Instance.BossLoop();
         }
     }
 
     IEnumerator DialogueEnd()
     {
+        if (stageNum >= 1 && stageNum <= 4)
+            AudioManager.Instance.FadeOut("Level1-4");
+        else if (stageNum == 5 || stageNum == 6)
+            AudioManager.Instance.FadeOut("Level5-6");
+        else if (stageNum == 7 || stageNum == 8)
+            AudioManager.Instance.FadeOut("Level7-8");
+        else if (stageNum == 9)
+            AudioManager.Instance.FadeOut("Level9");
+        else if (stageNum == 10)
+            AudioManager.Instance.BossStop();
         FadeManager.Instance.Fade();
         yield return new WaitForSeconds(1f);
+        AudioManager.Instance.FadeIn("Title");
         autoFlip.transform.GetChild(0).gameObject.SetActive(true);
         textureManager.TextureCapture();
         bookLeft.TextureLeft();
@@ -226,16 +331,49 @@ public class DialogueManager : MonoBehaviour
         autoFlip.LevelClear();
     }
 
+    IEnumerator DissolveDown()
+    {
+        float increment = smoothness / duration;
+        fade = 1f;
+        while (fade > 0f)
+        {
+            material.SetFloat("_Fade", fade);
+            fade -= increment;
+            yield return new WaitForSeconds(smoothness);
+        }
+        if (fade < 0f)
+            fade = 0f;
+        material.SetFloat("_Fade", fade);
+        yield return true;
+    }
+
+    IEnumerator DissolveUP()
+    {
+        float increment = smoothness / duration;
+        fade = 0f;
+        while (fade < 1f)
+        {
+            material.SetFloat("_Fade", fade);
+            fade += increment;
+            yield return new WaitForSeconds(smoothness);
+        }
+        if (fade > 1f)
+            fade = 1f;
+        material.SetFloat("_Fade", fade);
+        yield return true;
+    }
+
     private void Update()
     {
-        //if (Input.GetKeyDown("a"))
-        //{
-        //    ReadDialogue(0);
-        //}
-        //if (Input.GetKeyDown("s"))
-        //{
-        //    ReadDialogue(1);
-        //}
+        if (Input.GetKeyDown("z"))
+        {
+            ReadDialogue(0);
+        }
+        if (Input.GetKeyDown("x"))
+        {
+            ReadDialogue(1);
+        }
+
         if (isDialogue == true && Input.anyKeyDown)
         {
             DisplayNextSentence();
