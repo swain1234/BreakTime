@@ -1,0 +1,100 @@
+{ "skeleton": { "images": "~/Desktop/바탕화면아이콘모음/PainterRedgirl/11/image/" },
+"bones": [
+	{ "name": "root" }
+],
+"slots": [
+	{ "name": "ob_33", "bone": "root", "attachment": "ob_33" },
+	{ "name": "ob_32", "bone": "root", "attachment": "ob_32" },
+	{ "name": "ob_31", "bone": "root", "attachment": "ob_31" },
+	{ "name": "ob_30", "bone": "root", "attachment": "ob_30" },
+	{ "name": "ob_29", "bone": "root", "attachment": "ob_29" },
+	{ "name": "ob_28", "bone": "root", "attachment": "ob_28" },
+	{ "name": "ob_26", "bone": "root", "attachment": "ob_26" },
+	{ "name": "ob_25", "bone": "root", "attachment": "ob_25" },
+	{ "name": "ob_21", "bone": "root", "attachment": "ob_21" },
+	{ "name": "ob_19", "bone": "root", "attachment": "ob_19" },
+	{ "name": "ob_17", "bone": "root", "attachment": "ob_17" },
+	{ "name": "ob_14", "bone": "root", "attachment": "ob_14" },
+	{ "name": "ob_13", "bone": "root", "attachment": "ob_13" },
+	{ "name": "ob_12", "bone": "root", "attachment": "ob_12" },
+	{ "name": "ob_10", "bone": "root", "attachment": "ob_10" },
+	{ "name": "ob_9", "bone": "root", "attachment": "ob_9" },
+	{ "name": "ob_8", "bone": "root", "attachment": "ob_8" },
+	{ "name": "ob_6", "bone": "root", "attachment": "ob_6" },
+	{ "name": "ob_5", "bone": "root", "attachment": "ob_5" },
+	{ "name": "ob_3", "bone": "root", "attachment": "ob_3" },
+	{ "name": "ob_2", "bone": "root", "attachment": "ob_2" },
+	{ "name": "ob_1", "bone": "root", "attachment": "ob_1" }
+],
+"skins": {
+	"default": {
+		"ob_33": {
+			"ob_33": { "x": 881, "y": -494, "width": 150, "height": 250 }
+		},
+		"ob_32": {
+			"ob_32": { "x": 927.5, "y": -528.5, "width": 87, "height": 155 }
+		},
+		"ob_31": {
+			"ob_31": { "x": 991, "y": -620, "width": 220, "height": 412 }
+		},
+		"ob_30": {
+			"ob_30": { "x": 1012.5, "y": -515, "width": 117, "height": 116 }
+		},
+		"ob_29": {
+			"ob_29": { "x": 992.5, "y": -278, "width": 593, "height": 318 }
+		},
+		"ob_28": {
+			"ob_28": { "x": 967, "y": -370, "width": 366, "height": 460 }
+		},
+		"ob_26": {
+			"ob_26": { "x": 937, "y": -307, "width": 176, "height": 20 }
+		},
+		"ob_25": {
+			"ob_25": { "x": 940, "y": -405.5, "width": 38, "height": 9 }
+		},
+		"ob_21": {
+			"ob_21": { "x": 941, "y": -347, "width": 154, "height": 58 }
+		},
+		"ob_19": {
+			"ob_19": { "x": 937, "y": -345.5, "width": 140, "height": 59 }
+		},
+		"ob_17": {
+			"ob_17": { "x": 939.5, "y": -331, "width": 181, "height": 50 }
+		},
+		"ob_14": {
+			"ob_14": { "x": 947, "y": -386.5, "width": 164, "height": 29 }
+		},
+		"ob_13": {
+			"ob_13": { "x": 922.5, "y": -356.5, "width": 221, "height": 143 }
+		},
+		"ob_12": {
+			"ob_12": { "x": 993.5, "y": -217, "width": 593, "height": 406 }
+		},
+		"ob_10": {
+			"ob_10": { "x": 490.5, "y": -606.5, "width": 185, "height": 143 }
+		},
+		"ob_9": {
+			"ob_9": { "x": 312.5, "y": -678, "width": 101, "height": 198 }
+		},
+		"ob_8": {
+			"ob_8": { "x": 391.5, "y": -682.5, "width": 115, "height": 207 }
+		},
+		"ob_6": {
+			"ob_6": { "x": 189.5, "y": -503, "width": 211, "height": 140 }
+		},
+		"ob_5": {
+			"ob_5": { "x": 366.5, "y": -445.5, "width": 295, "height": 359 }
+		},
+		"ob_3": {
+			"ob_3": { "x": 313, "y": -285.5, "width": 480, "height": 335 }
+		},
+		"ob_2": {
+			"ob_2": { "x": 442.5, "y": -456.5, "width": 257, "height": 355 }
+		},
+		"ob_1": {
+			"ob_1": { "x": 433, "y": -484, "width": 290, "height": 276 }
+		}
+	}
+},
+"animations": { "animation": {} }
+}

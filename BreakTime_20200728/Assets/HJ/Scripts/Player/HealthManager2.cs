@@ -63,7 +63,7 @@ public class HealthManager2 : MonoBehaviour
         //    }
         //}
 
-        if (collision.gameObject.tag == "Obstacle" || collision.gameObject.tag == "Gray")
+        if (collision.gameObject.tag == "Obstacle" || collision.gameObject.tag == "Gray" || collision.gameObject.tag == "Black")
         {
             health--;
             Die();

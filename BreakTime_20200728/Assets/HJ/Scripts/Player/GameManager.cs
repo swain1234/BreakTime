@@ -1,9 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class GameManager : MonoBehaviour
 {
+    CinemachineConfiner confiner;
+
     public P_Move player1;
     public P_Move player2;
 
@@ -11,9 +14,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] int tempNum = 5;
 
     public GameObject[] Stages;
-    public int stageIndex;
-
+    public GameObject[] Backgrounds;
     public Transform[] StartPositions;
+
+    public Collider2D[] Ranges;
+
+    public int stageIndex;
 
     public Vector3 startPos;
     Quaternion startRotate;
@@ -24,10 +30,11 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        confiner = GetComponent<CinemachineConfiner>();
 
         // Scene간의 연결 오브젝트는 싱글톤으로 만들 것
         // stageIndex = Linker.Instance.pickStageIndex;
-        //
+
         startPos = GameObject.FindGameObjectWithTag("Start1").transform.position;
         startRotate = GameObject.FindGameObjectWithTag("Start1").transform.rotation;
 
@@ -73,8 +80,13 @@ public class GameManager : MonoBehaviour
         if(stageIndex < Stages.Length-1)
         {
             Stages[stageIndex].SetActive(false);
+            Backgrounds[stageIndex].SetActive(false);
             stageIndex++;
             Stages[stageIndex].SetActive(true);
+            Backgrounds[stageIndex].SetActive(true);
+            
+            confiner.m_BoundingShape2D = Ranges[stageIndex];
+
             isStart = true;
         }
     }
