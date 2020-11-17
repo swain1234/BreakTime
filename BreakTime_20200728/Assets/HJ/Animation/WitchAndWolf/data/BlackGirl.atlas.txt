@@ -1,0 +1,97 @@
+
+BlackGirl.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ob_12
+  rotate: 270
+  xy: 228, 23
+  size: 326, 223
+  orig: 326, 223
+  offset: 0, 0
+  index: -1
+ob_14
+  rotate: false
+  xy: 1, 275
+  size: 90, 16
+  orig: 90, 16
+  offset: 0, 0
+  index: -1
+ob_17
+  rotate: false
+  xy: 1, 322
+  size: 100, 28
+  orig: 100, 28
+  offset: 0, 0
+  index: -1
+ob_19
+  rotate: false
+  xy: 1, 290
+  size: 77, 32
+  orig: 77, 32
+  offset: 0, 0
+  index: -1
+ob_21
+  rotate: false
+  xy: 280, 318
+  size: 85, 32
+  orig: 85, 32
+  offset: 0, 0
+  index: -1
+ob_25
+  rotate: false
+  xy: 100, 345
+  size: 21, 5
+  orig: 21, 5
+  offset: 0, 0
+  index: -1
+ob_26
+  rotate: false
+  xy: 395, 138
+  size: 97, 11
+  orig: 97, 11
+  offset: 0, 0
+  index: -1
+ob_28
+  rotate: false
+  xy: 1, 96
+  size: 201, 253
+  orig: 201, 253
+  offset: 0, 0
+  index: -1
+ob_29
+  rotate: 270
+  xy: 201, 23
+  size: 326, 175
+  orig: 326, 175
+  offset: 0, 0
+  index: -1
+ob_30
+  rotate: false
+  xy: 422, 150
+  size: 64, 55
+  orig: 64, 64
+  offset: 0, 9
+  index: -1
+ob_31
+  rotate: 270
+  xy: 74, 2
+  size: 121, 212
+  orig: 121, 227
+  offset: 0, 15
+  index: -1
+ob_32
+  rotate: 180
+  xy: 450, 184
+  size: 48, 85
+  orig: 48, 85
+  offset: 0, 0
+  index: -1
+ob_33
+  rotate: true
+  xy: 371, 269
+  size: 81, 138
+  orig: 83, 138
+  offset: 0, 0
+  index: -1

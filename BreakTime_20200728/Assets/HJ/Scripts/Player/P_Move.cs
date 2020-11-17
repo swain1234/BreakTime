@@ -17,6 +17,10 @@ public class P_Move : MonoBehaviour
     Option option;
     [SerializeField] StopManager stopManager;
 
+    public bool isAttack = false;
+    public bool isHide = false;
+    public GameObject range;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -58,6 +62,9 @@ public class P_Move : MonoBehaviour
             if (Input.GetButtonUp("Move2"))
             {
                 rigid.velocity = new Vector2(rigid.velocity.normalized.x * stopSpeed, rigid.velocity.y);
+
+
+
             }
 
             // 방향 전환 Default = right
@@ -66,12 +73,14 @@ public class P_Move : MonoBehaviour
                 // left
                 skeleton.initialFlipX = true;
                 Flip();
+                
             }
             else if (Input.GetAxisRaw("Move2") < 0 && faceRight)
             {
                 // right
                 skeleton.initialFlipX = false;
                 Flip();
+
             }
         }
 
@@ -86,7 +95,7 @@ public class P_Move : MonoBehaviour
         else
         {
             // 이동속도가 0.1 이하일 경우 isMove - false
-            if (Mathf.Abs(rigid.velocity.x) < 0.3)
+            if (Mathf.Abs(rigid.velocity.x) < 0.15)
             {
                 animator.SetBool("isMove", false);
 
@@ -95,7 +104,9 @@ public class P_Move : MonoBehaviour
             else
             {
                 animator.SetBool("isMove", true);
-          
+                animator.SetBool("isHide", false);
+                rigid.constraints = RigidbodyConstraints2D.FreezeRotation;
+                isHide = false;
             }
         }
     }
@@ -115,6 +126,26 @@ public class P_Move : MonoBehaviour
             {
                 rigid.velocity = new Vector2(maxSpeed * (-1), rigid.velocity.y);
             }
+
+            // 공격
+            if (Input.GetKeyDown(KeyCode.LeftControl) &&
+                !animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+            {
+                animator.SetTrigger("Attack");
+                isAttack = true;
+                range.SetActive(true);
+
+                rigid.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
+            }
+            if (animator.GetCurrentAnimatorStateInfo(0).IsName("Attack") &&
+                animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.8f)
+            {
+                isAttack = false;
+                range.SetActive(false);
+
+                rigid.constraints = RigidbodyConstraints2D.FreezeRotation;
+
+            }
         }
 
         else if (gameObject.tag == "Player2")
@@ -122,7 +153,7 @@ public class P_Move : MonoBehaviour
             // 이동
             float move = Input.GetAxisRaw("Move2");
             rigid.AddForce(Vector2.right * move, ForceMode2D.Impulse);
-
+           
             // 최대 속도 조절
             if (rigid.velocity.x > maxSpeed)
                 rigid.velocity = new Vector2(maxSpeed, rigid.velocity.y);
@@ -130,8 +161,38 @@ public class P_Move : MonoBehaviour
             {
                 rigid.velocity = new Vector2(maxSpeed * (-1), rigid.velocity.y);
             }
+
+            // 공격
+            if (Input.GetKeyDown(KeyCode.LeftShift) &&
+                !animator.GetCurrentAnimatorStateInfo(0).IsName("action") &&
+                !animator.GetCurrentAnimatorStateInfo(0).IsName("action_loof"))
+            {
+                animator.SetTrigger("Skill");
+                isHide = true;
+
+                CapsuleCollider2D capsule = gameObject.GetComponent<CapsuleCollider2D>();
+                capsule.enabled = false;
+                CircleCollider2D circle = gameObject.GetComponent<CircleCollider2D>();
+                circle.enabled = false;
+
+                rigid.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
+            }
+
+            if (animator.GetCurrentAnimatorStateInfo(0).IsName("action") &&
+                animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.8f)
+            {
+                animator.SetBool("isHide", true);
+                isHide = true;
+
+                rigid.constraints = RigidbodyConstraints2D.FreezeAll;
+            }
+
+            //if(animator.GetCurrentAnimatorStateInfo(0).IsName("run") )
+            //{
+            //    rigid.constraints = RigidbodyConstraints2D.FreezeRotation;
+            //    isHide = false;
+            //}
         }
-        
 
     }
 
