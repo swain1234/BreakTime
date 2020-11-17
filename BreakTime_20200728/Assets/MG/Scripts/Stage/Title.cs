@@ -10,33 +10,32 @@ public class Title : MonoBehaviour
     [SerializeField] private Image title;
     Animator animator;
     string backgroundMusic = "Title";
+    bool isEnd = false;
 
     private void Start()
     {
         animator = GetComponent<Animator>();
         AudioManager.Instance.Play(backgroundMusic);
+        isEnd = false;
     }
 
     private void Update()
     {
         if(animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f)
         {
-            StartCoroutine(SceneTransfer());
+            if (!isEnd)
+            {
+                isEnd = true;
+                SceneTransition();
+            }
         }
         if(Input.GetKeyDown(KeyCode.P))
-            StartCoroutine(SceneTransfer());
+            SceneTransition();
     }
 
-    IEnumerator SceneTransfer()
+    void SceneTransition()
     {
         AudioManager.Instance.FadeOut(backgroundMusic);
-        FadeManager.Instance.Fade();
-        yield return new WaitForSeconds(0.5f);
-        SceneManager.LoadScene("Level");
-    }
-
-    public void EffectSound()
-    {
-        AudioManager.Instance.Play("flipBook");
+        LevelLoader.Instance.LoadLevel("Level");
     }
 }

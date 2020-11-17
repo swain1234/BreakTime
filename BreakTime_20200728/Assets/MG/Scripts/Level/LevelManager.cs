@@ -111,17 +111,10 @@ public class LevelManager : MonoBehaviour
 
     public void LevelSceneChange()
     {
-        StartCoroutine(SceneTransfer());
-    }
-
-    IEnumerator SceneTransfer()
-    {
         option.currentLevel = child.GetComponent<LevelParent>().levelData;
         AudioManager.Instance.FadeOut(backgroundMusic);
-        FadeManager.Instance.Fade();
-        yield return new WaitForSeconds(1f);
         option.StageScript();
-        SceneManager.LoadScene("Stage");
+        LevelLoader.Instance.LoadLevel("Stage");
     }
 
     public void LevelChoice()
