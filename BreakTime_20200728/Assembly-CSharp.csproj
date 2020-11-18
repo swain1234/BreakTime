@@ -143,6 +143,7 @@
     <Compile Include="Assets\MG\Scripts\Effect\Dissolve.cs" />
     <Compile Include="Assets\MG\Scripts\Effect\FadeManager.cs" />
     <Compile Include="Assets\MG\Scripts\Effect\GlobalVolume.cs" />
+    <Compile Include="Assets\MG\Scripts\Effect\LeafEffect.cs" />
     <Compile Include="Assets\MG\Scripts\Effect\Letterbox.cs" />
     <Compile Include="Assets\MG\Scripts\Effect\ObjectPoolClass.cs" />
     <Compile Include="Assets\MG\Scripts\Effect\Option.cs" />
@@ -158,8 +159,10 @@
     <Compile Include="Assets\MG\Scripts\Stage\DialogueManager.cs" />
     <Compile Include="Assets\MG\Scripts\Stage\FakeTextureManager.cs" />
     <Compile Include="Assets\MG\Scripts\Stage\GroundColor.cs" />
+    <Compile Include="Assets\MG\Scripts\Stage\LevelLoader.cs" />
     <Compile Include="Assets\MG\Scripts\Stage\StageMenu.cs" />
     <Compile Include="Assets\MG\Scripts\Stage\StopManager.cs" />
+    <Compile Include="Assets\MG\Scripts\Stage\StopScript.cs" />
     <Compile Include="Assets\MG\Scripts\Stage\TextureManager.cs" />
     <Compile Include="Assets\MG\Scripts\Stage\Title.cs" />
     <Compile Include="Assets\MG\Scripts\test\OnPressed.cs" />
@@ -240,10 +243,8 @@
     <None Include="Assets\Coffee\UIExtensions\MeshEffectForTextMeshPro\Shaders\TMP_Sprite (UIDissolve).shader" />
     <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Anton OFL.txt" />
     <None Include="Assets\Coffee\UIExtensions\UIEffect\Shaders\UI-Effect.cginc" />
-    <None Include="Assets\MG\StreamingAssets\test1.txt" />
     <None Include="Assets\SampleScenes\Shaders\Skybox-Procedural.shader" />
     <None Include="Assets\Coffee\UIExtensions\MeshEffectForTextMeshPro\Shaders\TMP_SDF-Mobile (UIDissolve).shader" />
-    <None Include="Assets\MG\StreamingAssets\test.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\Coffee\UIExtensions\UIEffect\Shaders\UI-Effect-Transition.shader" />
     <None Include="Assets\HJ\Plugins\Pixelplacement\iTween\ReadMe!\ReadMe!.txt" />

@@ -40,11 +40,12 @@ public class Option : MonoBehaviour
     [SerializeField] TextMeshProUGUI stageText;
     [SerializeField] Image panel;
     [SerializeField] Image candyImage;
-    bool isActive = false;
+    public bool isActive = false;
     bool isTransfer = false;
     public bool isCandy = false;
 
     private GameManager gameManager;
+    private DialogueManager dialogueManager;
     private AutoFlip book;
 
     private void Awake()
@@ -120,6 +121,7 @@ public class Option : MonoBehaviour
                         dissolve.effectFactor = 0f;
                         isDissolving = false;
                         isActive = true;
+                        StopScript.Instance.ScriptOFF();
                         Time.timeScale = 0f;
                     }
                     material.SetFloat("_Fade", fade);
@@ -149,6 +151,9 @@ public class Option : MonoBehaviour
                         xImage.gameObject.SetActive(false);
                         isDissolving = false;
                         isActive = false;
+                        dialogueManager = FindObjectOfType<DialogueManager>();
+                        if (!dialogueManager.isDialogue)
+                            StopScript.Instance.ScriptON();
                     }
                     material.SetFloat("_Fade", fade);
                 }
@@ -178,6 +183,9 @@ public class Option : MonoBehaviour
                     xImage.gameObject.SetActive(false);
                     isDissolving = false;
                     isActive = false;
+                    dialogueManager = FindObjectOfType<DialogueManager>();
+                    if (!dialogueManager.isDialogue)
+                        StopScript.Instance.ScriptON();
                 }
                 material.SetFloat("_Fade", fade);
             }
@@ -191,22 +199,23 @@ public class Option : MonoBehaviour
             stageText.text = currentLevel.LevelName;
             for (int i = 0; i < levelArray.Count; i++)
             {
-                if (currentLevel.LevelName == levelArray[i].LevelName && i < 9)
-                    nextLevel = levelArray[i + 1];
+                if (currentLevel.LevelName == levelArray[i].LevelName)
+                {
+                    if (i != 9)
+                    {
+                        nextLevel = levelArray[i + 1];
+                        break;
+                    }
+                    else
+                        nextLevel = null;
+                }
             }
         }
     }
     public void LevelChange()
     {
         if (nextLevel != null)
-        {
             currentLevel = nextLevel;
-            for (int i = 0; i < levelArray.Count; i++)
-            {
-                if (currentLevel.LevelName == levelArray[i].LevelName && i < 9)
-                    nextLevel = levelArray[i + 1];
-            }
-        }
     }
 
     public void Retry()
@@ -219,28 +228,18 @@ public class Option : MonoBehaviour
                 AudioManager.Instance.UnPause();
                 FadeMusic();
             }
-            StartCoroutine(RetryLevel());
-        }
-    }
-
-    IEnumerator RetryLevel()
-    {
-        if (isTransfer == false)
-        {
             isTransfer = true;
             isCandy = false;
             isActive = false;
             material.SetFloat("_Fade", 0f);
             dissolve.effectFactor = 1f;
-            FadeManager.Instance.Fade();
-            yield return new WaitForSeconds(1f);
             book = FindObjectOfType<AutoFlip>();
+            LevelLoader.Instance.LoadLevel("Stage");
             book.transform.GetChild(0).gameObject.SetActive(false);
             panel.gameObject.SetActive(false);
             isTransfer = false;
             gameManager = FindObjectOfType<GameManager>();
             gameManager.StartPosition();
-            SceneManager.LoadScene("Stage");
         }
     }
 
@@ -254,25 +253,15 @@ public class Option : MonoBehaviour
                 AudioManager.Instance.UnPause();
                 FadeMusic();
             }
-            StartCoroutine(SelectLevel());
-        }
-    }
-
-    IEnumerator SelectLevel()
-    {
-        if (isTransfer == false)
-        {
             isTransfer = true;
             isCandy = false;
             isActive = false;
             material.SetFloat("_Fade", 0f);
             dissolve.effectFactor = 1f;
-            FadeManager.Instance.Fade();
-            yield return new WaitForSeconds(1f);
+            LevelLoader.Instance.LoadLevel("Level");
             panel.gameObject.SetActive(false);
             isTransfer = false;
             Letterbox.Instance.initSetting();
-            SceneManager.LoadScene("Level");
         }
     }
 
@@ -301,8 +290,7 @@ public class Option : MonoBehaviour
             isActive = false;
             material.SetFloat("_Fade", 0f);
             dissolve.effectFactor = 1f;
-            FadeManager.Instance.Fade();
-            yield return new WaitForSeconds(1f);
+            LevelLoader.Instance.LoadLevel("Level");
             book = FindObjectOfType<AutoFlip>();
             book.transform.GetChild(0).gameObject.SetActive(false);
             panel.gameObject.SetActive(false);
@@ -311,7 +299,6 @@ public class Option : MonoBehaviour
             gameManager.NextStage();
             gameManager.StartPosition();
             Letterbox.Instance.initSetting();
-            SceneManager.LoadScene("Stage");
             yield return new WaitForSeconds(0.5f);
         }
     }

@@ -45,6 +45,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField]
     Sound[] sounds;
 
+
     float duration = 1f;
 
     float bossDuration = 0;
@@ -221,6 +222,7 @@ public class AudioManager : MonoBehaviour
 
     IEnumerator IBossLoop()
     {
+        bossSource.volume = 0.3f;
         int i = 0;
         bossSource.clip = bossMusic[0];
         bossSource.Play();

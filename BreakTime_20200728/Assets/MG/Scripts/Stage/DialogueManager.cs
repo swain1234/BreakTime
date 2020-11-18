@@ -12,7 +12,6 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] Image nameTag;
     [SerializeField] Image panel;
     [SerializeField] AutoFlip autoFlip;
-    [SerializeField] StopManager stopManager;
     Sprite nextImage;
 
     List<string> tArray; // 쉼표로 구분된 대화들을 저장하는 리스트
@@ -34,8 +33,10 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] FakeTextureManager bookRight;
     [SerializeField] TextureManager textureManager;
     [SerializeField] Image witch;
+    [SerializeField] Image library;
 
     Material material;
+    Material materialLibrary;
     float fade = 0f;
     bool isDissolving = false;
 
@@ -43,7 +44,10 @@ public class DialogueManager : MonoBehaviour
     float smoothness = 0.01f;
 
     string[] stageString;
+    [SerializeField]
     int stageNum;
+
+    Coroutine coroutine;
 
     private void Start()
     {
@@ -52,6 +56,8 @@ public class DialogueManager : MonoBehaviour
         pArray = new List<string>();
         option = FindObjectOfType<Option>();
         material = witch.material;
+        materialLibrary = library.material;
+        materialLibrary.SetFloat("_Fade", 0f);
         material.SetFloat("_Fade", 0f);
     }
 
@@ -109,7 +115,7 @@ public class DialogueManager : MonoBehaviour
                     AudioManager.Instance.FadeIn("Level9");
             }
         }
-
+        StopScript.Instance.ScriptOFF();
         DisplayNextSentence();
     }
 
@@ -138,7 +144,9 @@ public class DialogueManager : MonoBehaviour
         }
         if (isCoroutine) // 다른 코루틴이랑 겹칠수도있음 조심
         {
-            StopAllCoroutines();
+            if(coroutine != null)
+                StopCoroutine(coroutine);
+            //StopAllCoroutines();
             resourceText.text = sentence;
             isCoroutine = false;
         }
@@ -254,7 +262,20 @@ public class DialogueManager : MonoBehaviour
                 }
                 sentence = tArray[t_num++];
                 sentence = sentence.Replace("&", "\n"); // &문자를 개행문자로 변경
-                StartCoroutine(TypeSentence(sentence));
+                if(stageNum == 10)
+                {
+                    Debug.Log("1");
+                    if (!isStart)
+                    {
+                        Debug.Log("2");
+                        if (t_num == 3)
+                        {
+                            Debug.Log("3");
+                            StartCoroutine(DissolveLibrary());
+                        }
+                    }
+                }
+                coroutine = StartCoroutine(TypeSentence(sentence));
             }
         }
     }
@@ -297,13 +318,13 @@ public class DialogueManager : MonoBehaviour
             if (stageNum != 10)
                 Letterbox.Instance.WideMode();
         }
-        if (isStart == false)
+        if (isStart == false) // 스테이지 종료
         {
             StartCoroutine(DialogueEnd());
         }
         else
         {
-            stopManager.ScriptON();
+            StopScript.Instance.ScriptON();
             if (stageNum == 10)
                 AudioManager.Instance.BossLoop();
         }
@@ -363,6 +384,23 @@ public class DialogueManager : MonoBehaviour
         yield return true;
     }
 
+    IEnumerator DissolveLibrary()
+    {
+        Debug.Log("4");
+        float increment = smoothness / duration;
+        fade = 0f;
+        while (fade < 1f)
+        {
+            materialLibrary.SetFloat("_Fade", fade);
+            fade += increment;
+            yield return new WaitForSeconds(smoothness);
+        }
+        if (fade > 1f)
+            fade = 1f;
+        materialLibrary.SetFloat("_Fade", fade);
+        yield return true;
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown("z"))
@@ -374,9 +412,10 @@ public class DialogueManager : MonoBehaviour
             ReadDialogue(1);
         }
 
-        if (isDialogue == true && Input.anyKeyDown)
+        if (isDialogue == true)
         {
-            DisplayNextSentence();
+            if(Input.anyKeyDown && !Input.GetKeyDown(KeyCode.Escape) && option.isActive == false)
+                DisplayNextSentence();
         }
     }
 }

@@ -244,9 +244,8 @@ public class AutoFlip : MonoBehaviour {
                 else
                     yield return new WaitForSeconds(0.03f);
             }
-            yield return new WaitForSeconds(1f);
-            FadeManager.Instance.Fade();
             AudioManager.Instance.FadeOut("Title");
+            LevelLoader.Instance.LoadLevel("Stage");
             yield return new WaitForSeconds(1f);
             tmi.text = "";
             option.LevelChange();
@@ -254,16 +253,10 @@ public class AutoFlip : MonoBehaviour {
             gameManager.NextStage();
             gameManager.StartPosition();
             this.transform.GetChild(0).gameObject.SetActive(false);
-            SceneManager.LoadScene("Stage");
-            yield return new WaitForSeconds(0.5f);
         }
         else // 마지막레벨을 클리어했을때
         {
-            FadeManager.Instance.Fade();
-            yield return new WaitForSeconds(1f);
-            //클리어했을떄의 무언가 연출 후 끝내기
-            this.transform.GetChild(0).gameObject.SetActive(false);
-            yield return new WaitForSeconds(0.5f);
+            LevelLoader.Instance.LoadLevel("Level");
         }
     }
 }
