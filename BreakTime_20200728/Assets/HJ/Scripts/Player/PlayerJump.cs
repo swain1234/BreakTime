@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 
 public class PlayerJump : MonoBehaviour
 {
@@ -81,14 +80,6 @@ public class PlayerJump : MonoBehaviour
                 hit.transform.gameObject.tag = "Ground";
                 return;
             }
-
-            //else if (hit.transform.CompareTag("Launcher"))
-            //{
-            //    animator.SetBool("isJumpUp", true);
-            //    animator.SetBool("isJump", true);
-            //    animator.SetBool("isJumpDown", false);
-            //    return;
-            //}
         }
         else
             isGround = false;
@@ -107,6 +98,7 @@ public class PlayerJump : MonoBehaviour
                     jumpCount++;
                     animator.SetBool("isJump", true);
                     animator.SetBool("isJumpUp", true);
+                    AudioManager.Instance.Play("jump");
                 }
             }
             Jump();
@@ -145,6 +137,5 @@ public class PlayerJump : MonoBehaviour
             animator.SetBool("isJump", true);
             animator.SetBool("isJumpDown", false);
         }
-
     }
 }

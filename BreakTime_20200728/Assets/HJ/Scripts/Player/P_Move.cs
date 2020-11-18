@@ -105,8 +105,7 @@ public class P_Move : MonoBehaviour
             {
                 animator.SetBool("isMove", true);
                 animator.SetBool("isHide", false);
-                rigid.constraints = RigidbodyConstraints2D.FreezeRotation;
-                isHide = false;
+                
             }
         }
     }
@@ -187,11 +186,17 @@ public class P_Move : MonoBehaviour
                 rigid.constraints = RigidbodyConstraints2D.FreezeAll;
             }
 
-            //if(animator.GetCurrentAnimatorStateInfo(0).IsName("run") )
-            //{
-            //    rigid.constraints = RigidbodyConstraints2D.FreezeRotation;
-            //    isHide = false;
-            //}
+            if (animator.GetCurrentAnimatorStateInfo(0).IsName("action_loof") && (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D)))
+            {
+                isHide = false;
+                CapsuleCollider2D capsule = gameObject.GetComponent<CapsuleCollider2D>();
+                capsule.enabled = true;
+                CircleCollider2D circle = gameObject.GetComponent<CircleCollider2D>();
+                circle.enabled = true;
+
+                rigid.constraints = RigidbodyConstraints2D.FreezeRotation;
+            }
+
         }
 
     }
@@ -211,6 +216,7 @@ public class P_Move : MonoBehaviour
             ScoreManager.setCandy(10);
             option.isCandy = true;
             collision.gameObject.SetActive(false);
+            AudioManager.Instance.Play("candy");
         }
         else if (collision.gameObject.tag == "Finish")
         {

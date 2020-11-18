@@ -23,10 +23,10 @@ public class ButtonTile : MonoBehaviour
         {
             collision.transform.SetParent(transform);
         }
-        else if (collision.transform.CompareTag("Player1"))
-        {
-            collision.transform.SetParent(transform);
-        }
+        //else if (collision.transform.CompareTag("Player1"))
+        //{
+        //    collision.transform.SetParent(transform);
+        //}
     }
 
     private void OnCollisionExit2D(Collision2D collision)
@@ -35,9 +35,9 @@ public class ButtonTile : MonoBehaviour
         {
             collision.transform.SetParent(null);
         }
-        else if(collision.transform.CompareTag("Player1"))
-        {
-            collision.transform.SetParent(null);
-        }
+        //else if(collision.transform.CompareTag("Player1"))
+        //{
+        //    collision.transform.SetParent(null);
+        //}
     }
 }

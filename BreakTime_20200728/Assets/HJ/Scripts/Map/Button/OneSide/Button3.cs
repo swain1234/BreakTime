@@ -20,13 +20,12 @@ public class Button3 : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.transform.CompareTag("Player1") || collision.transform.CompareTag("Player2"))
         {
             iTween.MoveTo(tile, iTween.Hash("islocal", true, "x", endPos, "time", time,
                 "easetype", iTween.EaseType.linear, "loopType", iTween.LoopType.none));
-
         }
     }
 }

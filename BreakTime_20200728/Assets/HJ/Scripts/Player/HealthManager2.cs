@@ -46,24 +46,8 @@ public class HealthManager2 : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        //if(gameObject.tag == "Player2")
-        //{
-        //    if (collision.gameObject.tag == "Gray" || collision.gameObject.tag == "Black")
-        //    {
-        //        health--;
-        //        Die();
-        //        Invoke("CollMake", 1.5f);
-        //    }
-        //}
-        //else if(gameObject.tag == "Player1")
-        //{
-        //    if(collision.gameObject.tag == "Gray")
-        //    {
-        //        grayTile.gameObject.tag = "Ground";
-        //    }
-        //}
-
-        if (collision.gameObject.tag == "Obstacle" || collision.gameObject.tag == "Gray" || collision.gameObject.tag == "Black")
+        if (collision.gameObject.tag == "Obstacle" || collision.gameObject.tag == "Gray" || 
+            collision.gameObject.tag == "Black" || collision.gameObject.tag == "Thron")
         {
             health--;
             Die();
@@ -72,6 +56,12 @@ public class HealthManager2 : MonoBehaviour
         else if (collision.gameObject.tag == "Bottom")
         {
             health = 0;
+        }
+        else if (collision.gameObject.tag == "Enemy")
+        {
+            health--;
+            Die();
+            Invoke("CollMake", 1.5f);
         }
     }
 

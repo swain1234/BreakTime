@@ -22,7 +22,7 @@ public class Button2 : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.transform.CompareTag("Player2") || collision.transform.CompareTag("Player1"))
         {
@@ -31,14 +31,12 @@ public class Button2 : MonoBehaviour
         }
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.transform.CompareTag("Player2") || collision.transform.CompareTag("Player1"))
         {
             iTween.MoveTo(tile, iTween.Hash("islocal", true, "x", startPos, "time", time,
                 "easetype", iTween.EaseType.linear, "loopType", iTween.LoopType.none));
-
         }
-
     }
 }

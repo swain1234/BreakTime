@@ -14,11 +14,14 @@ public class Player2Jump : MonoBehaviour
     public int candyValue = 100;
     public bool isGround = false;
 
+    // 점프대에서 높이
+    public float launcher;
+
     Animator animator;
     Rigidbody2D rigid;
-    public GameObject grayTile;
 
     private HealthManager2 healthManager;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -33,6 +36,11 @@ public class Player2Jump : MonoBehaviour
     void Update()
     {
         CheckGround();
+
+        if(Input.GetKeyDown(KeyCode.P))
+        {
+            transform.position = new Vector3(58, 155, 0);
+        }
     }
 
     // 레이캐스트
@@ -67,35 +75,20 @@ public class Player2Jump : MonoBehaviour
 
     private void FixedUpdate()
     {
-
         if (isGround)
         {
-            //if (gameObject.tag == "Player1")
-            //{
-            //    if (Input.GetKeyDown(KeyCode.UpArrow) && !animator.GetBool("isJump"))
-            //    {
-            //        if (currentCount < jumpCount)
-            //        {
-            //            isJump = true;
-            //            jumpCount++;
-            //            animator.SetBool("isJump", true);
-            //            animator.SetBool("isJumpUp", true);
-            //        }
-            //    }
-            //}
-            //else if (gameObject.tag == "Player2")
-            //{
-                if (Input.GetKeyDown(KeyCode.W) && !animator.GetBool("isJump"))
+            if (Input.GetKeyDown(KeyCode.W) && !animator.GetBool("isJump"))
+            {
+                if (currentCount < jumpCount)
                 {
-                    if (currentCount < jumpCount)
-                    {
-                        isJump = true;
-                        jumpCount++;
-                        animator.SetBool("isJump", true);
-                        animator.SetBool("isJumpUp", true);
-                    }
+                    isJump = true;
+                    jumpCount++;
+                    animator.SetBool("isJump", true);
+                    animator.SetBool("isJumpUp", true);
+                    AudioManager.Instance.Play("jump");
                 }
-            //}
+            }
+            
             Jump();
         }
 
@@ -120,4 +113,17 @@ public class Player2Jump : MonoBehaviour
         isGround = false;
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Launcher")
+        {
+            rigid.velocity = new Vector2(0, 0);
+            Vector2 launch = new Vector2(0, launcher);
+            rigid.AddForce(launch, ForceMode2D.Impulse);
+
+            animator.SetBool("isJumpUp", true);
+            animator.SetBool("isJump", true);
+            animator.SetBool("isJumpDown", false);
+        }
+    }
 }

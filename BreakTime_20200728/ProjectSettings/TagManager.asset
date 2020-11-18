@@ -23,6 +23,9 @@ TagManager:
   - Button
   - Attack
   - Launcher
+  - Fire
+  - Thron
+  - BossMode
   layers:
   - Default
   - TransparentFX

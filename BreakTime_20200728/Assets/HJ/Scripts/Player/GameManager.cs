@@ -17,8 +17,6 @@ public class GameManager : MonoBehaviour
     public GameObject[] Backgrounds;
     public Transform[] StartPositions;
 
-    public Collider2D[] Ranges;
-
     public int stageIndex;
 
     public Vector3 startPos;
@@ -27,6 +25,7 @@ public class GameManager : MonoBehaviour
 
     DialogueManager dialogueManager;
     Option option;
+    ChangeTarget changeTarget;
 
     private void Start()
     {
@@ -40,6 +39,7 @@ public class GameManager : MonoBehaviour
 
         dialogueManager = FindObjectOfType<DialogueManager>();
         option = FindObjectOfType<Option>();
+        changeTarget = FindObjectOfType<ChangeTarget>();
 
         if (option != null)
         {
@@ -60,6 +60,8 @@ public class GameManager : MonoBehaviour
         player1.transform.position = StartPositions[stageIndex * 2].position;
         player2.transform.position = StartPositions[stageIndex * 2 + 1].position;
         OnStage(stageIndex);
+        changeTarget.test(stageIndex);
+
         if (isStart == true)
         {
             stopManager.ScriptOFF();
@@ -84,8 +86,6 @@ public class GameManager : MonoBehaviour
             stageIndex++;
             Stages[stageIndex].SetActive(true);
             Backgrounds[stageIndex].SetActive(true);
-            
-            confiner.m_BoundingShape2D = Ranges[stageIndex];
 
             isStart = true;
         }
@@ -113,17 +113,22 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void OnStage(int index)
+    public void OnStage(int index)
     {
         for(int i = 0; i < Stages.Length; i++)
         {
-            if( i == stageIndex)
+            if(i == stageIndex)
             {
                 Stages[i].SetActive(true);
+                Backgrounds[i].SetActive(true);
+
             }
+
             else
             {
                 Stages[i].SetActive(false);
+                Backgrounds[i].SetActive(false);
+
             }
         }
     }
