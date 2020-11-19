@@ -37,7 +37,7 @@ public class BossCam : MonoBehaviour
             transform.position = currentPos + nextPos;
 
             this.transform.position = new Vector3(transform.position.x,
-                                                10f,
+                                                154.7f,
                                                 transform.position.z);
 
         }

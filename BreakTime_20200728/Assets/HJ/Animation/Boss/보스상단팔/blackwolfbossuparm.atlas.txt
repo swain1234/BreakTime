@@ -1,0 +1,62 @@
+
+blackwolfbossuparm.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Bossmonster_25
+  rotate: false
+  xy: 108, 371
+  size: 53, 45
+  orig: 53, 45
+  offset: 0, 0
+  index: -1
+Bossmonster_29
+  rotate: false
+  xy: 47, 395
+  size: 9, 21
+  orig: 9, 21
+  offset: 0, 0
+  index: -1
+Bossmonster_30
+  rotate: false
+  xy: 47, 375
+  size: 8, 18
+  orig: 8, 18
+  offset: 0, 0
+  index: -1
+Bossmonster_31
+  rotate: false
+  xy: 13, 365
+  size: 8, 19
+  orig: 8, 19
+  offset: 0, 0
+  index: -1
+Bossmonster_32
+  rotate: false
+  xy: 2, 359
+  size: 10, 24
+  orig: 10, 24
+  offset: 0, 0
+  index: -1
+Bossmonster_33
+  rotate: false
+  xy: 2, 259
+  size: 413, 157
+  orig: 413, 211
+  offset: 0, 54
+  index: -1
+Bossmonster_37
+  rotate: false
+  xy: 24, 386
+  size: 21, 30
+  orig: 21, 30
+  offset: 0, 0
+  index: -1
+Bossmonster_38
+  rotate: false
+  xy: 2, 385
+  size: 21, 31
+  orig: 21, 31
+  offset: 0, 0
+  index: -1

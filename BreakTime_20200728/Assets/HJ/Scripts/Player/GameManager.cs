@@ -11,13 +11,12 @@ public class GameManager : MonoBehaviour
     public P_Move player2;
 
     [SerializeField] StopManager stopManager;
-    [SerializeField] int tempNum = 5;
+    [SerializeField] int tempNum;
+    public int stageIndex;
 
     public GameObject[] Stages;
     public GameObject[] Backgrounds;
     public Transform[] StartPositions;
-
-    public int stageIndex;
 
     public Vector3 startPos;
     Quaternion startRotate;
@@ -30,9 +29,6 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         confiner = GetComponent<CinemachineConfiner>();
-
-        // Scene간의 연결 오브젝트는 싱글톤으로 만들 것
-        // stageIndex = Linker.Instance.pickStageIndex;
 
         startPos = GameObject.FindGameObjectWithTag("Start1").transform.position;
         startRotate = GameObject.FindGameObjectWithTag("Start1").transform.rotation;
@@ -101,13 +97,11 @@ public class GameManager : MonoBehaviour
         if (collision.gameObject.tag == "Player1")
         {
             // 플레이어 원위치
-            //collision.attachedRigidbody.velocity = Vector2.zero;
             collision.transform.position = StartPositions[stageIndex * 2].position;
         }
 
         else if (collision.gameObject.tag == "Player2")
         {
-            //collision.attachedRigidbody.velocity = Vector2.zero;
             collision.transform.position = StartPositions[stageIndex * 2 + 1].position;
 
         }
@@ -121,14 +115,16 @@ public class GameManager : MonoBehaviour
             {
                 Stages[i].SetActive(true);
                 Backgrounds[i].SetActive(true);
-
+                Stages[0].SetActive(true);
+                Backgrounds[0].SetActive(true);
             }
 
             else
             {
                 Stages[i].SetActive(false);
                 Backgrounds[i].SetActive(false);
-
+                Stages[0].SetActive(true);
+                Backgrounds[0].SetActive(true);
             }
         }
     }

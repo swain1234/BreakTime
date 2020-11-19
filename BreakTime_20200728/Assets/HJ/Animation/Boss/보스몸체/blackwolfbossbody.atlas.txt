@@ -1,0 +1,342 @@
+
+blackwolfbossbody.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Bossmonster_1
+  rotate: false
+  xy: 618, 997
+  size: 10, 25
+  orig: 10, 25
+  offset: 0, 0
+  index: -1
+Bossmonster_10
+  rotate: false
+  xy: 610, 286
+  size: 41, 22
+  orig: 41, 22
+  offset: 0, 0
+  index: -1
+Bossmonster_11
+  rotate: false
+  xy: 594, 592
+  size: 24, 20
+  orig: 24, 20
+  offset: 0, 0
+  index: -1
+Bossmonster_12
+  rotate: false
+  xy: 525, 635
+  size: 32, 33
+  orig: 32, 33
+  offset: 0, 0
+  index: -1
+Bossmonster_13
+  rotate: true
+  xy: 1000, 999
+  size: 22, 21
+  orig: 22, 21
+  offset: 0, 0
+  index: -1
+Bossmonster_14
+  rotate: false
+  xy: 610, 889
+  size: 24, 21
+  orig: 24, 21
+  offset: 0, 0
+  index: -1
+Bossmonster_15
+  rotate: false
+  xy: 106, 280
+  size: 36, 22
+  orig: 36, 22
+  offset: 0, 0
+  index: -1
+Bossmonster_16
+  rotate: false
+  xy: 69, 278
+  size: 36, 24
+  orig: 36, 24
+  offset: 0, 0
+  index: -1
+Bossmonster_17
+  rotate: false
+  xy: 183, 283
+  size: 37, 19
+  orig: 37, 19
+  offset: 0, 0
+  index: -1
+Bossmonster_18
+  rotate: false
+  xy: 437, 276
+  size: 33, 26
+  orig: 33, 26
+  offset: 0, 0
+  index: -1
+Bossmonster_19
+  rotate: false
+  xy: 852, 270
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1
+Bossmonster_2
+  rotate: false
+  xy: 405, 994
+  size: 11, 28
+  orig: 11, 28
+  offset: 0, 0
+  index: -1
+Bossmonster_20
+  rotate: true
+  xy: 973, 625
+  size: 42, 42
+  orig: 42, 42
+  offset: 0, 0
+  index: -1
+Bossmonster_21
+  rotate: false
+  xy: 540, 392
+  size: 31, 31
+  orig: 31, 31
+  offset: 0, 0
+  index: -1
+Bossmonster_22
+  rotate: false
+  xy: 594, 613
+  size: 25, 33
+  orig: 27, 33
+  offset: 2, 0
+  index: -1
+Bossmonster_23
+  rotate: false
+  xy: 141, 263
+  size: 39, 40
+  orig: 39, 46
+  offset: 0, 6
+  index: -1
+Bossmonster_26
+  rotate: true
+  xy: 655, 248
+  size: 92, 102
+  orig: 92, 106
+  offset: 0, 0
+  index: -1
+Bossmonster_27
+  rotate: 270
+  xy: 756, 270
+  size: 90, 122
+  orig: 90, 125
+  offset: 0, 0
+  index: -1
+Bossmonster_28
+  rotate: true
+  xy: 405, 645
+  size: 377, 229
+  orig: 393, 229
+  offset: 0, 0
+  index: -1
+Bossmonster_28_1
+  rotate: true
+  xy: 489, 308
+  size: 81, 201
+  orig: 88, 229
+  offset: 7, 28
+  index: -1
+Bossmonster_3
+  rotate: false
+  xy: 1010, 977
+  size: 8, 21
+  orig: 8, 21
+  offset: 0, 0
+  index: -1
+Bossmonster_4
+  rotate: false
+  xy: 1000, 976
+  size: 8, 21
+  orig: 8, 21
+  offset: 0, 0
+  index: -1
+Bossmonster_5
+  rotate: false
+  xy: 489, 387
+  size: 49, 37
+  orig: 49, 38
+  offset: 0, 1
+  index: -1
+Bossmonster_6
+  rotate: false
+  xy: 816, 363
+  size: 39, 20
+  orig: 39, 20
+  offset: 0, 0
+  index: -1
+Bossmonster_7
+  rotate: false
+  xy: 221, 270
+  size: 33, 18
+  orig: 33, 18
+  offset: 0, 0
+  index: -1
+Bossmonster_8
+  rotate: false
+  xy: 437, 304
+  size: 40, 24
+  orig: 40, 24
+  offset: 0, 0
+  index: -1
+Bossmonster_9
+  rotate: false
+  xy: 559, 631
+  size: 25, 14
+  orig: 25, 14
+  offset: 0, 0
+  index: -1
+ef_1
+  rotate: true
+  xy: 621, 546
+  size: 169, 309
+  orig: 215, 393
+  offset: 16, 46
+  index: -1
+ef_2
+  rotate: false
+  xy: 636, 727
+  size: 186, 294
+  orig: 215, 393
+  offset: 20, 53
+  index: -1
+ef_3
+  rotate: false
+  xy: 824, 717
+  size: 174, 304
+  orig: 215, 393
+  offset: 17, 48
+  index: -1
+ef_4
+  rotate: true
+  xy: 303, 467
+  size: 161, 289
+  orig: 215, 393
+  offset: 21, 56
+  index: -1
+ef_5
+  rotate: true
+  xy: 2, 469
+  size: 159, 299
+  orig: 215, 393
+  offset: 18, 51
+  index: -1
+ef_6
+  rotate: true
+  xy: 594, 384
+  size: 160, 284
+  orig: 215, 393
+  offset: 22, 58
+  index: -1
+ef_blackrotationwater_1
+  rotate: false
+  xy: 2, 630
+  size: 401, 391
+  orig: 402, 392
+  offset: 0, 0
+  index: -1
+ef_blackrotationwater_2
+  rotate: true
+  xy: 229, 330
+  size: 135, 258
+  orig: 402, 392
+  offset: 116, 57
+  index: -1
+ef_blackrotationwater_3
+  rotate: false
+  xy: 880, 283
+  size: 121, 261
+  orig: 402, 392
+  offset: 126, 58
+  index: -1
+ef_blackrotationwater_4
+  rotate: true
+  xy: 2, 304
+  size: 163, 225
+  orig: 402, 392
+  offset: 106, 77
+  index: -1
+ef_blackwater_1
+  rotate: false
+  xy: 973, 551
+  size: 42, 27
+  orig: 189, 350
+  offset: 75, 301
+  index: -1
+ef_blackwater_10
+  rotate: true
+  xy: 543, 271
+  size: 42, 65
+  orig: 189, 350
+  offset: 86, 24
+  index: -1
+ef_blackwater_2
+  rotate: true
+  xy: 973, 669
+  size: 46, 41
+  orig: 189, 350
+  offset: 73, 281
+  index: -1
+ef_blackwater_3
+  rotate: false
+  xy: 489, 264
+  size: 52, 66
+  orig: 189, 350
+  offset: 74, 259
+  index: -1
+ef_blackwater_4
+  rotate: true
+  xy: 405, 633
+  size: 47, 118
+  orig: 189, 350
+  offset: 76, 207
+  index: -1
+ef_blackwater_5
+  rotate: false
+  xy: 932, 550
+  size: 39, 165
+  orig: 189, 350
+  offset: 84, 157
+  index: -1
+ef_blackwater_6
+  rotate: true
+  xy: 229, 290
+  size: 38, 206
+  orig: 189, 350
+  offset: 88, 114
+  index: -1
+ef_blackwater_7
+  rotate: true
+  xy: 686, 341
+  size: 41, 128
+  orig: 189, 350
+  offset: 88, 90
+  index: -1
+ef_blackwater_8
+  rotate: true
+  xy: 489, 425
+  size: 40, 98
+  orig: 189, 350
+  offset: 88, 68
+  index: -1
+ef_blackwater_9
+  rotate: true
+  xy: 2, 263
+  size: 39, 65
+  orig: 189, 350
+  offset: 87, 45
+  index: -1
+eye_close
+  rotate: false
+  xy: 973, 580
+  size: 44, 45
+  orig: 63, 59
+  offset: 9, 7
+  index: -1

@@ -59,12 +59,24 @@ public class HealthManager2 : MonoBehaviour
         }
         else if (collision.gameObject.tag == "Enemy")
         {
-            health--;
-            Die();
-            Invoke("CollMake", 1.5f);
+            if (rigid.velocity.y < 0 && transform.position.y > collision.transform.position.y)
+            {
+                Attack(collision.transform);
+            }
+            else
+            {
+                health--;
+                Die();
+                Invoke("CollMake", 1.5f);
+            }
         }
     }
 
+    void Attack(Transform monster)
+    {
+        MonsterHealth monsterHealth = monster.GetComponent<MonsterHealth>();
+        monsterHealth.Damaged();
+    }
 
     void CollMake()
     {

@@ -36,10 +36,15 @@ public class P_Move : MonoBehaviour
     {
         if(gameObject.tag == "Player1")
         {
+            if (Input.GetButtonDown("Move1"))
+            {
+                AudioManager.instance.Play("walk1");
+            }
             // 키보드에서 손을 땠을 때 미끄러지면서 멈춤
             if (Input.GetButtonUp("Move1"))
             {
                 rigid.velocity = new Vector2(rigid.velocity.normalized.x * stopSpeed, rigid.velocity.y);
+                AudioManager.instance.Stop("walk1");
             }
 
             // 방향 전환 Default = left
@@ -58,13 +63,15 @@ public class P_Move : MonoBehaviour
         }
         else if(gameObject.tag == "Player2")
         {
+            if (Input.GetButtonDown("Move2"))
+            {
+                AudioManager.instance.Play("walk2");
+            }
             // 키보드에서 손을 땠을 때 미끄러지면서 멈춤
             if (Input.GetButtonUp("Move2"))
             {
                 rigid.velocity = new Vector2(rigid.velocity.normalized.x * stopSpeed, rigid.velocity.y);
-
-
-
+                AudioManager.instance.Stop("walk2");
             }
 
             // 방향 전환 Default = right
@@ -133,7 +140,8 @@ public class P_Move : MonoBehaviour
                 animator.SetTrigger("Attack");
                 isAttack = true;
                 range.SetActive(true);
-
+                AudioManager.Instance.Play("brush");
+                
                 rigid.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
             }
             if (animator.GetCurrentAnimatorStateInfo(0).IsName("Attack") &&
@@ -168,6 +176,7 @@ public class P_Move : MonoBehaviour
             {
                 animator.SetTrigger("Skill");
                 isHide = true;
+                AudioManager.Instance.Play("bush");
 
                 CapsuleCollider2D capsule = gameObject.GetComponent<CapsuleCollider2D>();
                 capsule.enabled = false;

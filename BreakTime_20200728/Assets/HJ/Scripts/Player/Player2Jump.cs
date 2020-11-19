@@ -75,22 +75,19 @@ public class Player2Jump : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (isGround)
+        if (Input.GetKeyDown(KeyCode.W) && !animator.GetBool("isJump") && isGround)
         {
-            if (Input.GetKeyDown(KeyCode.W) && !animator.GetBool("isJump"))
+            if (currentCount < jumpCount)
             {
-                if (currentCount < jumpCount)
-                {
-                    isJump = true;
-                    jumpCount++;
-                    animator.SetBool("isJump", true);
-                    animator.SetBool("isJumpUp", true);
-                    AudioManager.Instance.Play("jump");
-                }
+                isJump = true;
+                jumpCount++;
+                animator.SetBool("isJump", true);
+                animator.SetBool("isJumpUp", true);
+                AudioManager.Instance.Play("jump2");
             }
-            
-            Jump();
         }
+        Jump();
+
 
         // JumpDown
         if (rigid.velocity.y < -0.05f)
@@ -98,7 +95,6 @@ public class Player2Jump : MonoBehaviour
             animator.SetBool("isJumpDown", true);
             //animator.SetBool("isJump", true);
         }
-
     }
 
     void Jump()
@@ -111,6 +107,14 @@ public class Player2Jump : MonoBehaviour
         rigid.AddForce(jumpVelocity, ForceMode2D.Impulse);
         isJump = false;
         isGround = false;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Ground")
+        {
+            isGround = true;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

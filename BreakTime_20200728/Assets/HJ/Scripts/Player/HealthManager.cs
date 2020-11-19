@@ -46,7 +46,7 @@ public class HealthManager : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {   
-        if (collision.gameObject.tag == "Obstacle" || collision.gameObject.tag == "Thron")
+        if (/*collision.gameObject.tag == "Obstacle" || */collision.gameObject.tag == "Thron")
         {
             health--;
             Die();
