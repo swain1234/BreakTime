@@ -52,7 +52,7 @@ public class PoolingPaint : MonoBehaviour
                 s = "g";
             else
                 s = "b";
-            paint.sprite = Resources.Load(s + Random.Range(1, 4), typeof(Sprite)) as Sprite;
+            paint.sprite = Resources.Load("Paint/"+s + Random.Range(1, 4), typeof(Sprite)) as Sprite;
             // 오브젝트를 받아와서
             if (paint == null) yield return null;
             // 없다면 종료

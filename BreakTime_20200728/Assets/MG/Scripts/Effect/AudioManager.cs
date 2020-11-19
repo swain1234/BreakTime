@@ -217,6 +217,7 @@ public class AudioManager : MonoBehaviour
 
     public void BossStop()
     {
+        StopAllCoroutines();
         bossSource.Stop();
     }
 

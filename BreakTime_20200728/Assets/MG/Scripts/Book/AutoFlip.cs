@@ -29,6 +29,7 @@ public class AutoFlip : MonoBehaviour {
     [SerializeField] FakeTextureManager bookLeft;
     [SerializeField] FakeTextureManager bookRight;
     [SerializeField] FakeTextureManager bookNext;
+    [SerializeField] Ending ending;
 
     List<string> tArray; // 쉼표로 구분된 대화들을 저장하는 리스트
     List<string> bArray; // 쉼표로 구분된 대화들을 저장하는 리스트
@@ -222,7 +223,7 @@ public class AutoFlip : MonoBehaviour {
 
     IEnumerator LevelNext()
     {
-        if (option.nextLevel != null)
+        if (option.nextLevel != option.level1)
         {
             FlipRightPage();
             AudioManager.Instance.Play("flipBook");
@@ -256,7 +257,10 @@ public class AutoFlip : MonoBehaviour {
         }
         else // 마지막레벨을 클리어했을때
         {
-            LevelLoader.Instance.LoadLevel("Level");
+            AudioManager.Instance.Play("flipBook");
+            FadeManager.Instance.Fade();
+            yield return new WaitForSeconds(1f);
+            ending.gameObject.SetActive(true);
         }
     }
 }

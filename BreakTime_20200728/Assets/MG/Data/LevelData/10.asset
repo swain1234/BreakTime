@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelName: 10_Black_Howling
   script: 10 Black Howling
-  icon: {fileID: 21300000, guid: 77a5732991290834a983d7f7a0a535a9, type: 3}
+  icon: {fileID: 21300000, guid: 646aa2e66c6a6bc4983a74624d2ce16b, type: 3}

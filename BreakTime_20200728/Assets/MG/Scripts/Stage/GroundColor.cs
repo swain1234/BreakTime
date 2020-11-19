@@ -34,19 +34,16 @@ public class GroundColor : MonoBehaviour
         if (isDissolving == false)
         {
             Instantiate(this, transform.position, transform.rotation);
-            PoolingPaint.Instance.SplashPaint();
+            //PoolingPaint.Instance.SplashPaint();
             Invoke("ChangeSprite", 0.2f);
         }
     }
 
-    // 이런식으로 쓰면될듯
-    //private void OnCollisionEnter2D(Collision2D collision)
-    //{
-    //    if (collision.transform.CompareTag("Player1"))
-    //    {
-    //        GroundChange();
-    //    }
-    //}
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.A))
+            GroundChange();
+    }
 
     void ChangeSprite()
     {
@@ -63,6 +60,7 @@ public class GroundColor : MonoBehaviour
             fade -= increment;
             yield return new WaitForSeconds(smoothness);
         }
+        Destroy(this.gameObject);
         //isDissolving = false;
         //땅이 다시 검게 변하지 않으니까 필요없을듯
         yield return true;

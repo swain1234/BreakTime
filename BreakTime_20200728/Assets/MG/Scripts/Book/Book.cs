@@ -225,7 +225,7 @@ public class Book : MonoBehaviour {
         Right.texture = ConvertSpriteToTexture((currentPage < bookPages.Length - 1) ? bookPages[currentPage + 1] : background);
         //RightNext.texture = ConvertSpriteToTexture((currentPage < bookPages.Length - 2) ? bookPages[currentPage + 2] : background);
 
-        LeftNext.transform.SetAsFirstSibling();
+        LeftNext.transform.SetSiblingIndex(2);
         if (enableShadowEffect) Shadow.gameObject.SetActive(true);
         UpdateBookRTLToPoint(f);
     }

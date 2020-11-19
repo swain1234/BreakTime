@@ -16,6 +16,7 @@ public class LevelManager : MonoBehaviour
     private Option option;
     private Title title;
     string backgroundMusic = "LevelScene";
+    bool isSelect = false;
 
     [SerializeField] TextMeshProUGUI resourceText;
     [SerializeField] GameObject choice;
@@ -30,6 +31,7 @@ public class LevelManager : MonoBehaviour
         title = FindObjectOfType<Title>();
         StartCoroutine(SelectEffect());
         AudioManager.Instance.FadeIn(backgroundMusic);
+        isSelect = false;
     }
 
     void Update()
@@ -111,10 +113,14 @@ public class LevelManager : MonoBehaviour
 
     public void LevelSceneChange()
     {
-        option.currentLevel = child.GetComponent<LevelParent>().levelData;
-        AudioManager.Instance.FadeOut(backgroundMusic);
-        option.StageScript();
-        LevelLoader.Instance.LoadLevel("Stage");
+        if (!isSelect)
+        {
+            isSelect = true;
+            option.currentLevel = child.GetComponent<LevelParent>().levelData;
+            AudioManager.Instance.FadeOut(backgroundMusic);
+            option.StageScript();
+            LevelLoader.Instance.LoadLevel("Stage");
+        }
     }
 
     public void LevelChoice()

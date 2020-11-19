@@ -12,7 +12,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] Image nameTag;
     [SerializeField] Image panel;
     [SerializeField] AutoFlip autoFlip;
-    Sprite nextImage;
+    [SerializeField] Sprite nextImage;
 
     List<string> tArray; // 쉼표로 구분된 대화들을 저장하는 리스트
     List<string> iArray; // 이미지구분을 위한 리스트
@@ -34,6 +34,10 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] TextureManager textureManager;
     [SerializeField] Image witch;
     [SerializeField] Image library;
+    [SerializeField] GameObject letterBox;
+    [SerializeField] LeafEffect p1;
+    [SerializeField] LeafEffect p2;
+    [SerializeField] LeafEffect p3;
 
     Material material;
     Material materialLibrary;
@@ -46,6 +50,8 @@ public class DialogueManager : MonoBehaviour
     string[] stageString;
     [SerializeField]
     int stageNum;
+    string[] characterName;
+    string[] currentch;
 
     Coroutine coroutine;
 
@@ -65,6 +71,7 @@ public class DialogueManager : MonoBehaviour
     {
         panel.gameObject.SetActive(true);
         isDialogue = true;
+        
         //위치 초기화
         currentImage.rectTransform.anchoredPosition = new Vector2(-1450f, currentImage.rectTransform.anchoredPosition.y);
         resourceText.rectTransform.anchoredPosition = new Vector2(346.6f, resourceText.rectTransform.anchoredPosition.y);
@@ -106,13 +113,35 @@ public class DialogueManager : MonoBehaviour
                 stageString = option.currentLevel.LevelName.Split('_');
                 stageNum = int.Parse(stageString[0]);
                 if (stageNum >= 1 && stageNum <= 4)
+                {
                     AudioManager.Instance.FadeIn("Level1-4");
+                    p1.ChangeLeaf("leaf1_" + p1.gameObject.name, 0.5f, 0.7f);
+                    p2.ChangeLeaf("leaf1_" + p2.gameObject.name, 0.5f, 0.7f);
+                    p3.ChangeLeaf("leaf1_" + p3.gameObject.name, 0.5f, 0.7f);
+                }
                 else if (stageNum == 5 || stageNum == 6)
+                {
                     AudioManager.Instance.FadeIn("Level5-6");
+                    p1.ChangeLeaf("leaf2_" + p1.gameObject.name, 0.5f, 0.7f);
+                    p2.ChangeLeaf("leaf2_" + p2.gameObject.name, 0.5f, 0.7f);
+                    p3.ChangeLeaf("leaf2_" + p3.gameObject.name, 0.5f, 0.7f);
+                }
                 else if (stageNum == 7 || stageNum == 8)
+                {
                     AudioManager.Instance.FadeIn("Level7-8");
+                    p1.ChangeLeaf("leaf3_" + p1.gameObject.name, 0.3f, 0.5f);
+                    p2.ChangeLeaf("leaf3_" + p2.gameObject.name, 0.7f, 0.9f);
+                    p3.ChangeLeaf("leaf3_" + p3.gameObject.name, 0.7f, 0.9f);
+                }
                 else if (stageNum == 9)
                     AudioManager.Instance.FadeIn("Level9");
+                else
+                {
+                    //StopScript.Instance.BossOFF();
+                    p1.ChangeLeaf("leaf4_" + p1.gameObject.name, 0.3f, 0.5f);
+                    p2.ChangeLeaf("leaf4_" + p2.gameObject.name, 0.3f, 0.5f);
+                    p3.ChangeLeaf("leaf4_" + p3.gameObject.name, 0.3f, 0.5f);
+                }
             }
         }
         StopScript.Instance.ScriptOFF();
@@ -146,7 +175,6 @@ public class DialogueManager : MonoBehaviour
         {
             if(coroutine != null)
                 StopCoroutine(coroutine);
-            //StopAllCoroutines();
             resourceText.text = sentence;
             isCoroutine = false;
         }
@@ -155,14 +183,15 @@ public class DialogueManager : MonoBehaviour
             if (i_num < iArray.Count && t_num < tArray.Count)
             {
                 i_sentence = iArray[i_num++];
-                nameTag.sprite = Resources.Load(i_sentence + "Tag", typeof(Sprite)) as Sprite; // 태그넣기
+                characterName = i_sentence.Split('_');
+                nameTag.sprite = Resources.Load("Character/"+ characterName[0] + "Tag", typeof(Sprite)) as Sprite; // 태그넣기
                 p_sentence = pArray[p_num++];
 
-                if (i_sentence != "achromaticWitch")
+                if (characterName[0] != "achromaticWitch")
                 {
                     if (isDissolving == false)
                     {
-                        if (i_sentence != "librarian") // 캐릭터이미지 스케일을보고 flip하기, 이미지position을 보고 positionflip하기
+                        if (characterName[0] != "librarian") // 캐릭터이미지 스케일을보고 flip하기, 이미지position을 보고 positionflip하기
                         {
                             if (p_sentence == "l")
                             {
@@ -215,7 +244,7 @@ public class DialogueManager : MonoBehaviour
                     }
                     else
                     {
-                        if (i_sentence != "librarian")
+                        if (characterName[0] != "librarian")
                         {
                             if (currentImage.transform.localScale.x > 0)
                             {
@@ -230,7 +259,7 @@ public class DialogueManager : MonoBehaviour
                             }
                         }
                     }
-                    nextImage = Resources.Load(i_sentence, typeof(Sprite)) as Sprite;
+                    nextImage = Resources.Load("Character/"+i_sentence, typeof(Sprite)) as Sprite;
                     currentImage.sprite = nextImage;
                 }
                 else
@@ -243,7 +272,8 @@ public class DialogueManager : MonoBehaviour
                         nameTag.rectTransform.anchoredPosition = new Vector2(-600f, nameTag.rectTransform.anchoredPosition.y);
                         resourceText.rectTransform.anchoredPosition = new Vector2(60f, resourceText.rectTransform.anchoredPosition.y);
                         resourceText.rectTransform.sizeDelta = new Vector2(2020f, resourceText.rectTransform.sizeDelta.y);
-                        if (currentImage.sprite.name != "librarian")
+                        currentch = currentImage.sprite.name.Split('_');
+                        if (currentch[0] != "librarian")
                         {
                             if (currentImage.transform.localScale.x > 0)
                             {
@@ -264,13 +294,10 @@ public class DialogueManager : MonoBehaviour
                 sentence = sentence.Replace("&", "\n"); // &문자를 개행문자로 변경
                 if(stageNum == 10)
                 {
-                    Debug.Log("1");
                     if (!isStart)
                     {
-                        Debug.Log("2");
                         if (t_num == 3)
                         {
-                            Debug.Log("3");
                             StartCoroutine(DissolveLibrary());
                         }
                     }
@@ -326,7 +353,12 @@ public class DialogueManager : MonoBehaviour
         {
             StopScript.Instance.ScriptON();
             if (stageNum == 10)
+            {
                 AudioManager.Instance.BossLoop();
+                letterBox.gameObject.SetActive(true);
+                //Invoke(StopScript.Instance.BossON(), 0.5f);
+                //Invoke(StopScript.Instance.onlyBoss(), 3f);
+            }
         }
     }
 
@@ -386,7 +418,6 @@ public class DialogueManager : MonoBehaviour
 
     IEnumerator DissolveLibrary()
     {
-        Debug.Log("4");
         float increment = smoothness / duration;
         fade = 0f;
         while (fade < 1f)
@@ -403,14 +434,14 @@ public class DialogueManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown("z"))
-        {
-            ReadDialogue(0);
-        }
-        if (Input.GetKeyDown("x"))
-        {
-            ReadDialogue(1);
-        }
+        //if (Input.GetKeyDown("z"))
+        //{
+        //    ReadDialogue(0);
+        //}
+        //if (Input.GetKeyDown("x"))
+        //{
+        //    ReadDialogue(1);
+        //}
 
         if (isDialogue == true)
         {

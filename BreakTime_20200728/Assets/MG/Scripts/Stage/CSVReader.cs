@@ -13,7 +13,7 @@ public class CSVReader
     public static List<Dictionary<string, object>> Read(string file) // 다른 스크립트에서 ~~~ = CSVReader.Read(" ")로 씀
     {
         var list = new List<Dictionary<string, object>>();
-        TextAsset data = Resources.Load(file) as TextAsset;
+        TextAsset data = Resources.Load("Dialogue/"+file) as TextAsset;
 
         var lines = Regex.Split(data.text, LINE_SPLIT_RE);
 
