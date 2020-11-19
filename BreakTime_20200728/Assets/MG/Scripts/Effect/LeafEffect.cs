@@ -16,15 +16,9 @@ public class LeafEffect : MonoBehaviour
         pMain = ps.main;
     }
 
-    private void Update()
-    {
-        //if(Input.GetKeyDown(KeyCode.A))
-        //    ChangeLeaf("b", 1f, 2f);
-    }
-
     public void ChangeLeaf(string s,float a = 0.3f, float b = 0.3f)
     {
-        psr.material = Resources.Load(s, typeof(Material)) as Material;
+        psr.material = Resources.Load("Leaves/"+s, typeof(Material)) as Material;
         pMain.startSize = new ParticleSystem.MinMaxCurve(a, b);
     }
 }

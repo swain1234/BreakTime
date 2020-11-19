@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelName: 08_Grand_Fall
   script: 08 Grand Fall
-  icon: {fileID: 21300000, guid: 77a5732991290834a983d7f7a0a535a9, type: 3}
+  icon: {fileID: 21300000, guid: dcbcff495fcba7e4a8e0c1df80366746, type: 3}

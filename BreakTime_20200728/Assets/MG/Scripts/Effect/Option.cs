@@ -15,7 +15,7 @@ public class Option : MonoBehaviour
     public Button next;
     public Button xImage;
 
-    [SerializeField] LevelData level1;
+    public LevelData level1;
     [SerializeField] LevelData level2;
     [SerializeField] LevelData level3;
     [SerializeField] LevelData level4;

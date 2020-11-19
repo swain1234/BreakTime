@@ -6,8 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class Title : MonoBehaviour
 {
-
-    [SerializeField] private Image title;
     Animator animator;
     string backgroundMusic = "Title";
     bool isEnd = false;
