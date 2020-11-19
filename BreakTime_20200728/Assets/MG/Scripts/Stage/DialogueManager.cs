@@ -357,6 +357,8 @@ public class DialogueManager : MonoBehaviour
                 AudioManager.Instance.BossLoop();
                 letterBox.gameObject.SetActive(true);
                 //Invoke(StopScript.Instance.BossON(), 0.5f);
+                //Invoke(AudioManager.Instance.Play("bossArm"), 0.8f);
+                //Invoke(AudioManager.Instance.Play("boss"), 1.2f);
                 //Invoke(StopScript.Instance.onlyBoss(), 3f);
             }
         }
@@ -441,7 +443,7 @@ public class DialogueManager : MonoBehaviour
         //if (Input.GetKeyDown("x"))
         //{
         //    ReadDialogue(1);
-        //}
+        //
 
         if (isDialogue == true)
         {

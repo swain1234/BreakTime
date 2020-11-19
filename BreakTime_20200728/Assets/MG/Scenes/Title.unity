@@ -1739,6 +1739,18 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
+  - name: boss
+    clip: {fileID: 8300000, guid: fc1572a64f8150c45beb06d39bc0296e, type: 3}
+    volume: 0.7
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: bossArm
+    clip: {fileID: 8300000, guid: 281c31cf5e453ba498515ece6f35c477, type: 3}
+    volume: 0.7
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
   bossMusic:
   - {fileID: 8300000, guid: 0903ed53549811c4cb7706ca2112ab22, type: 3}
   - {fileID: 8300000, guid: abf4f79837f9b4d42a06fb8dd725d764, type: 3}

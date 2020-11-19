@@ -230,13 +230,29 @@ public class AudioManager : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(1f);
-            if (!bossSource.isPlaying)
+            //if (!bossSource.isPlaying)
+            //{
+            //    i = i + 1;
+            //    if (i >= 3)
+            //        i = 2;
+            //    bossSource.clip = bossMusic[i];
+            //    bossSource.Play();
+            //}
+            if(i == 0 && bossSource.time>= 66f)
             {
-                i = i + 1;
-                if (i >= 3)
-                    i = 2;
+                i++;
                 bossSource.clip = bossMusic[i];
                 bossSource.Play();
+            }
+            if(i == 1 && bossSource.time >= 36f)
+            {
+                i++;
+                bossSource.clip = bossMusic[i];
+                bossSource.Play();
+            }
+            if(i == 2 && bossSource.time >= 65f)
+            {
+                break;
             }
         }
     }
