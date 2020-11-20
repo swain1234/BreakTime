@@ -1,0 +1,14 @@
+﻿character,script,position
+librarian,흐읍… 후~,l
+librarian,역시 이 숲은 공기가 좋은걸.,l
+librarian,아마 이 쯤에서…,l
+redHood,앗! 낯선 사람!,r
+librarian,"아, 찾았다. 안녕. ",l
+redHood,착한 사람이다! 안녕하세요!,r
+librarian,응… 혹시 다친 곳은 없니?,l
+redHood_Happy,친절하셔! 네! 없어요!,r
+librarian,이야기 초반은 멀쩡한 것 같네… 좀 더 살펴봐야겠어.,l
+librarian,"꼬마야, 길을 잃었지? 내가 안내해 줄 테니 따라오렴.",l
+redHood,안돼요!,r
+librarian,음… 과자를 사줄게.,l
+redHood_Happy,좋아!,r

@@ -137,7 +137,7 @@ public class DialogueManager : MonoBehaviour
                     AudioManager.Instance.FadeIn("Level9");
                 else
                 {
-                    //StopScript.Instance.BossOFF();
+                    StopScript.Instance.BossOFF();
                     p1.ChangeLeaf("leaf4_" + p1.gameObject.name, 0.3f, 0.5f);
                     p2.ChangeLeaf("leaf4_" + p2.gameObject.name, 0.3f, 0.5f);
                     p3.ChangeLeaf("leaf4_" + p3.gameObject.name, 0.3f, 0.5f);
@@ -356,12 +356,32 @@ public class DialogueManager : MonoBehaviour
             {
                 AudioManager.Instance.BossLoop();
                 letterBox.gameObject.SetActive(true);
-                //Invoke(StopScript.Instance.BossON(), 0.5f);
-                //Invoke(AudioManager.Instance.Play("bossArm"), 0.8f);
-                //Invoke(AudioManager.Instance.Play("boss"), 1.2f);
-                //Invoke(StopScript.Instance.onlyBoss(), 3f);
+                Invoke("onlyBoss", 0.5f);
+                Invoke("playBossArm", 0.8f);
+                Invoke("playBoss", 1.2f);
+                Invoke("BossON", 3f);
             }
         }
+    }
+
+    void BossON()
+    {
+        StopScript.Instance.BossON();
+    }
+
+    void playBossArm()
+    {
+        AudioManager.Instance.Play("bossArm");
+    }
+
+    void playBoss()
+    {
+        AudioManager.Instance.Play("boss");
+    }
+
+    void onlyBoss()
+    {
+        StopScript.Instance.onlyBoss();
     }
 
     IEnumerator DialogueEnd()

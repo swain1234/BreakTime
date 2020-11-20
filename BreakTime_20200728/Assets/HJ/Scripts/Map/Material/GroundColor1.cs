@@ -53,7 +53,7 @@ public class GroundColor1 : MonoBehaviour
 
     void ChangeSprite()
     {
-        sr.sprite = Resources.Load(SpriteName + "_color", typeof(Sprite)) as Sprite;
+        sr.sprite = Resources.Load("Ground/"+SpriteName + "_color", typeof(Sprite)) as Sprite;
     }
 
     IEnumerator Dissolve()

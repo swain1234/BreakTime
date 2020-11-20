@@ -21,6 +21,8 @@ public class P_Move : MonoBehaviour
     public bool isHide = false;
     public GameObject range;
 
+    public bool isTouch = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,7 +30,7 @@ public class P_Move : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         skeleton = GetComponentInChildren<SkeletonAnimation>();
-
+        isTouch = false;
     }
 
     // Update is called once per frame
@@ -229,10 +231,19 @@ public class P_Move : MonoBehaviour
         }
         else if (collision.gameObject.tag == "Finish")
         {
-            collision.enabled = false;
-            gameManager.Clear();
-            animator.SetBool("isMove", false);
-            stopManager.ScriptOFF();
+            if(isTouch == false)
+            {
+                Debug.Log("끝");
+                isTouch = true;
+                collision.enabled = false;
+                gameManager.Clear();
+                animator.SetBool("isMove", false);
+                stopManager.ScriptOFF();
+                AudioManager.instance.Stop("walk1");
+                AudioManager.instance.Stop("walk2");
+
+            }
         }
     }
+
 }
