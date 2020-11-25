@@ -9,12 +9,29 @@ public class ChangePortrait : MonoBehaviour
     [SerializeField] Image red;
 
     bool isLib = true;
+    Option option;
+    DialogueManager dialogue;
+    AutoFlip flip;
+
+    private void Start()
+    {
+        option = FindObjectOfType<Option>();
+        dialogue = FindObjectOfType<DialogueManager>();
+        flip = FindObjectOfType<AutoFlip>();
+    }
 
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.Space))
+            ChangeImage();
+    }
+
+    void ChangeImage()
+    {
+        if (!option.isActive && !dialogue.transform.GetChild(0).gameObject.activeSelf &&
+            !flip.transform.GetChild(0).gameObject.activeSelf)
         {
-            if(isLib)
+            if (isLib)
             {
                 lib.gameObject.SetActive(false);
                 red.gameObject.SetActive(true);
@@ -27,7 +44,5 @@ public class ChangePortrait : MonoBehaviour
                 isLib = true;
             }
         }
-
     }
-
 }

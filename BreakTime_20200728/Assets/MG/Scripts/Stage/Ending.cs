@@ -8,10 +8,14 @@ public class Ending : MonoBehaviour
     bool isEnd = false;
     string backgroundMusic = "Title";
 
+    Option option;
+
     private void Start()
     {
+        option = FindObjectOfType<Option>();
         animator = GetComponent<Animator>();
         isEnd = false;
+        option.isEnd = true;
     }
 
     private void Update()
@@ -30,6 +34,7 @@ public class Ending : MonoBehaviour
 
     void SceneTransition()
     {
+        option.isEnd = false;
         AudioManager.Instance.FadeOut(backgroundMusic);
         LevelLoader.Instance.LoadLevel("Level");
     }
