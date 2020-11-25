@@ -94,17 +94,18 @@ public class GameManager : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Player1")
+        if (collision.gameObject.tag == "Player1" || collision.gameObject.tag == "Player2")
         {
             // 플레이어 원위치
-            collision.transform.position = StartPositions[stageIndex * 2].position;
+            Restart();
         }
 
-        else if (collision.gameObject.tag == "Player2")
-        {
-            collision.transform.position = StartPositions[stageIndex * 2 + 1].position;
+    }
 
-        }
+    public void Restart()
+    {
+        player1.transform.position = StartPositions[stageIndex * 2].position;
+        player2.transform.position = StartPositions[stageIndex * 2 + 1].position;
     }
 
     public void OnStage(int index)

@@ -18,10 +18,13 @@ public class P_Move : MonoBehaviour
     [SerializeField] StopManager stopManager;
 
     public bool isAttack = false;
+    public int skillCount1 = 0;
     public bool isHide = false;
+    public int skillCount2 = 0;
     public GameObject range;
 
     public bool isTouch = false;
+    public bool isPlay = false;
 
     // Start is called before the first frame update
     void Start()
@@ -38,15 +41,11 @@ public class P_Move : MonoBehaviour
     {
         if(gameObject.tag == "Player1")
         {
-            if (Input.GetButtonDown("Move1"))
-            {
-                AudioManager.instance.Play("walk1");
-            }
             // 키보드에서 손을 땠을 때 미끄러지면서 멈춤
             if (Input.GetButtonUp("Move1"))
             {
                 rigid.velocity = new Vector2(rigid.velocity.normalized.x * stopSpeed, rigid.velocity.y);
-                AudioManager.instance.Stop("walk1");
+                //AudioManager.instance.Stop("walk1");
             }
 
             // 방향 전환 Default = left
@@ -65,15 +64,11 @@ public class P_Move : MonoBehaviour
         }
         else if(gameObject.tag == "Player2")
         {
-            if (Input.GetButtonDown("Move2"))
-            {
-                AudioManager.instance.Play("walk2");
-            }
             // 키보드에서 손을 땠을 때 미끄러지면서 멈춤
             if (Input.GetButtonUp("Move2"))
             {
                 rigid.velocity = new Vector2(rigid.velocity.normalized.x * stopSpeed, rigid.velocity.y);
-                AudioManager.instance.Stop("walk2");
+                //AudioManager.instance.Stop("walk2");
             }
 
             // 방향 전환 Default = right
@@ -98,7 +93,6 @@ public class P_Move : MonoBehaviour
         if (animator.GetBool("isJump"))
         {
             animator.SetBool("isMove", false);
-
         }
         // 이동 중
         else
@@ -107,14 +101,12 @@ public class P_Move : MonoBehaviour
             if (Mathf.Abs(rigid.velocity.x) < 0.15)
             {
                 animator.SetBool("isMove", false);
-
             }
             // 그 외에는 isMove - true
             else
             {
                 animator.SetBool("isMove", true);
                 animator.SetBool("isHide", false);
-                
             }
         }
     }
@@ -123,6 +115,28 @@ public class P_Move : MonoBehaviour
     {
         if (gameObject.tag == "Player1")
         {
+            //if (Input.GetAxisRaw("Move1") == 1)
+            //{
+            //    AudioManager.instance.Play("walk1");
+            //    isPlay = true;
+
+            //}
+            //else if (Input.GetAxisRaw("Move1") < 0.99 || !animator.GetCurrentAnimatorStateInfo(0).IsName("run"))
+            //{
+            //    AudioManager.instance.Stop("walk1");
+            //    isPlay = false;
+            //}
+            if ((Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.LeftArrow)))
+            {
+                AudioManager.instance.Play("walk1");
+                isPlay = true;
+            }
+            else if (!animator.GetCurrentAnimatorStateInfo(0).IsName("run"))
+            {
+                AudioManager.instance.Stop("walk1");
+                isPlay = false;
+            }
+
             // 이동
             float move = Input.GetAxisRaw("Move1");
             rigid.AddForce(Vector2.right * move, ForceMode2D.Impulse);
@@ -136,14 +150,25 @@ public class P_Move : MonoBehaviour
             }
 
             // 공격
-            if (Input.GetKeyDown(KeyCode.LeftControl) &&
-                !animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+            if (Input.GetAxisRaw("Skill1") == 1 && skillCount1 == 0)
+            {
+                isAttack = true;
+                skillCount1 += 1;
+            }
+            else if (Input.GetAxisRaw("Skill1") < 0.99)
+            {
+                isAttack = false;
+                skillCount1 = 0;
+            }
+
+            if (isAttack && !animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
             {
                 animator.SetTrigger("Attack");
-                isAttack = true;
+                //isAttack = true;
                 range.SetActive(true);
                 AudioManager.Instance.Play("brush");
-                
+                AudioManager.instance.Stop("walk1");
+
                 rigid.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
             }
             if (animator.GetCurrentAnimatorStateInfo(0).IsName("Attack") &&
@@ -159,6 +184,28 @@ public class P_Move : MonoBehaviour
 
         else if (gameObject.tag == "Player2")
         {
+            //if (Input.GetAxisRaw("Move2") == 1)
+            //{
+            //    AudioManager.instance.Play("walk2");
+            //    isPlay = true;
+
+            //}
+            //else if(Input.GetAxisRaw("Move2") < 0.99 || !animator.GetCurrentAnimatorStateInfo(0).IsName("run"))
+            //{
+            //    AudioManager.instance.Stop("walk2");
+            //    isPlay = false;
+            //}
+            if ((Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D)))
+            {
+                AudioManager.instance.Play("walk2");
+                isPlay = true;
+            }
+            else if (!animator.GetCurrentAnimatorStateInfo(0).IsName("run"))
+            {
+                AudioManager.instance.Stop("walk2");
+                isPlay = false;
+            }
+
             // 이동
             float move = Input.GetAxisRaw("Move2");
             rigid.AddForce(Vector2.right * move, ForceMode2D.Impulse);
@@ -171,14 +218,25 @@ public class P_Move : MonoBehaviour
                 rigid.velocity = new Vector2(maxSpeed * (-1), rigid.velocity.y);
             }
 
-            // 공격
-            if (Input.GetKeyDown(KeyCode.LeftShift) &&
+            // 무적스킬
+            if (Input.GetAxisRaw("Skill2") == 1 && skillCount2 == 0)
+            {
+                isHide = true;
+                skillCount2 += 1;
+            }
+            else if (Input.GetAxisRaw("Skill2") < 0.99)
+            {
+                isHide = false;
+                skillCount2 = 0;
+            }
+            if (isHide &&
                 !animator.GetCurrentAnimatorStateInfo(0).IsName("action") &&
                 !animator.GetCurrentAnimatorStateInfo(0).IsName("action_loof"))
             {
                 animator.SetTrigger("Skill");
                 isHide = true;
                 AudioManager.Instance.Play("bush");
+                AudioManager.instance.Stop("walk2");
 
                 CapsuleCollider2D capsule = gameObject.GetComponent<CapsuleCollider2D>();
                 capsule.enabled = false;
@@ -231,17 +289,20 @@ public class P_Move : MonoBehaviour
         }
         else if (collision.gameObject.tag == "Finish")
         {
-            if(isTouch == false)
+            if (gameObject.tag == "Player2")
             {
-                Debug.Log("끝");
-                isTouch = true;
-                collision.enabled = false;
-                gameManager.Clear();
-                animator.SetBool("isMove", false);
-                stopManager.ScriptOFF();
-                AudioManager.instance.Stop("walk1");
-                AudioManager.instance.Stop("walk2");
+                if (isTouch == false)
+                {
+                    Debug.Log("끝");
+                    isTouch = true;
+                    collision.enabled = false;
+                    gameManager.Clear();
+                    animator.SetBool("isMove", false);
+                    stopManager.ScriptOFF();
+                    AudioManager.instance.Stop("walk1");
+                    AudioManager.instance.Stop("walk2");
 
+                }
             }
         }
     }

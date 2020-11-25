@@ -63,11 +63,10 @@ public class Player2Jump : MonoBehaviour
                 currentCount = 0;
                 return;
             }
-            else if (hit.transform.CompareTag("Gray") || hit.transform.CompareTag("Black"))
-            {
-
-                hit.transform.gameObject.tag = "Obstacle";
-            }
+            //else if (hit.transform.CompareTag("Gray"))
+            //{
+            //    hit.transform.gameObject.tag = "Obstacle";
+            //}
         }
         else
             isGround = false;
@@ -75,7 +74,7 @@ public class Player2Jump : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.W) && !animator.GetBool("isJump") && isGround)
+        if (Input.GetButtonDown("Jump2") && isGround)
         {
             if (currentCount < jumpCount)
             {
@@ -85,8 +84,9 @@ public class Player2Jump : MonoBehaviour
                 animator.SetBool("isJumpUp", true);
                 AudioManager.Instance.Play("jump2");
             }
+            Jump();
         }
-        Jump();
+
 
 
         // JumpDown
@@ -115,10 +115,7 @@ public class Player2Jump : MonoBehaviour
         {
             isGround = true;
         }
-    }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
         if (collision.gameObject.tag == "Launcher")
         {
             rigid.velocity = new Vector2(0, 0);
@@ -130,4 +127,18 @@ public class Player2Jump : MonoBehaviour
             animator.SetBool("isJumpDown", false);
         }
     }
+
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if (collision.gameObject.tag == "Launcher")
+    //    {
+    //        rigid.velocity = new Vector2(0, 0);
+    //        Vector2 launch = new Vector2(0, launcher);
+    //        rigid.AddForce(launch, ForceMode2D.Impulse);
+
+    //        animator.SetBool("isJumpUp", true);
+    //        animator.SetBool("isJump", true);
+    //        animator.SetBool("isJumpDown", false);
+    //    }
+    //}
 }

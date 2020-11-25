@@ -5,7 +5,7 @@ using UnityEngine;
 public class Bullets : MonoBehaviour
 {
     public GameObject cannonBoll;
-    public int speed = 5;
+    public int speed = 6;
 
     public bool isDelay;
     public float delay = 3f;
@@ -39,6 +39,6 @@ public class Bullets : MonoBehaviour
     {
         GameObject bullet = Instantiate(cannonBoll, transform.position, transform.rotation);
         Rigidbody2D rigid = bullet.GetComponent<Rigidbody2D>();
-        rigid.AddForce(Vector2.right * speed, ForceMode2D.Impulse);
+        rigid.AddForce(Vector2.left * speed, ForceMode2D.Impulse);
     }
 }

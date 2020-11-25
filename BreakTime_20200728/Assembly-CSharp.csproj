@@ -104,8 +104,12 @@
     <Compile Include="Assets\HJ\Scripts\Map\BackGround\BossBG.cs" />
     <Compile Include="Assets\HJ\Scripts\Map\BackGround\TreeAlpha.cs" />
     <Compile Include="Assets\HJ\Scripts\Map\Boss\BossCam.cs" />
+    <Compile Include="Assets\HJ\Scripts\Map\Button\ButtonCount.cs" />
     <Compile Include="Assets\HJ\Scripts\Map\Button\ButtonTile.cs" />
+    <Compile Include="Assets\HJ\Scripts\Map\Button\ChangeButton\ButtonTrigger.cs" />
+    <Compile Include="Assets\HJ\Scripts\Map\Button\ChangeButton\Permanent.cs" />
     <Compile Include="Assets\HJ\Scripts\Map\Button\DownToUp\Button1.cs" />
+    <Compile Include="Assets\HJ\Scripts\Map\Button\DownToUp\ButtonWall.cs" />
     <Compile Include="Assets\HJ\Scripts\Map\Button\MoveTile1.cs" />
     <Compile Include="Assets\HJ\Scripts\Map\Button\MoveTile2.cs" />
     <Compile Include="Assets\HJ\Scripts\Map\Button\OneSide\Button3.cs" />
@@ -117,9 +121,13 @@
     <Compile Include="Assets\HJ\Scripts\Map\GrayBlack.cs" />
     <Compile Include="Assets\HJ\Scripts\Map\Manager.cs" />
     <Compile Include="Assets\HJ\Scripts\Map\Material\GroundColor1.cs" />
+    <Compile Include="Assets\HJ\Scripts\Map\Restart.cs" />
     <Compile Include="Assets\HJ\Scripts\Map\ScoreManager.cs" />
     <Compile Include="Assets\HJ\Scripts\Map\Stage3\Bullets.cs" />
     <Compile Include="Assets\HJ\Scripts\Map\Stage3\Cannon.cs" />
+    <Compile Include="Assets\HJ\Scripts\Map\Stage3\CannonL.cs" />
+    <Compile Include="Assets\HJ\Scripts\Map\Stage3\CannonR.cs" />
+    <Compile Include="Assets\HJ\Scripts\Map\Stage8\Jumping.cs" />
     <Compile Include="Assets\HJ\Scripts\Map\StageManager.cs" />
     <Compile Include="Assets\HJ\Scripts\Pjump.cs" />
     <Compile Include="Assets\HJ\Scripts\Player\Action1.cs" />
@@ -130,6 +138,8 @@
     <Compile Include="Assets\HJ\Scripts\Player\P_Move.cs" />
     <Compile Include="Assets\HJ\Scripts\Player\Player2Jump.cs" />
     <Compile Include="Assets\HJ\Scripts\Player\PlayerJump.cs" />
+    <Compile Include="Assets\HJ\Scripts\Player\PlayerJump_1.cs" />
+    <Compile Include="Assets\HJ\Scripts\Player\PlayerJump_2.cs" />
     <Compile Include="Assets\HJ\Scripts\PlayerSpine\PlayerAnim.cs" />
     <Compile Include="Assets\HJ\Scripts\Pmove1.cs" />
     <Compile Include="Assets\HJ\Scripts\TestJump.cs" />

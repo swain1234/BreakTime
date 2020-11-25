@@ -10,6 +10,8 @@ public class HealthManager2 : MonoBehaviour
     int health = 1;
     bool isDie = false;
 
+    [SerializeField] GameManager gameManager;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -46,12 +48,14 @@ public class HealthManager2 : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Obstacle" || collision.gameObject.tag == "Gray" || 
-            collision.gameObject.tag == "Black" || collision.gameObject.tag == "Thron")
+        if (collision.gameObject.tag == "Gray" || collision.gameObject.tag == "Black" ||
+            collision.gameObject.tag == "Obstacle" || collision.gameObject.tag == "Thron")
         {
             health--;
             Die();
-            Invoke("CollMake", 1.5f);
+            Invoke("CollMake", 2f);
+            Invoke("RestartPos", 2.2f);
+
         }
         else if (collision.gameObject.tag == "Bottom")
         {
@@ -67,9 +71,28 @@ public class HealthManager2 : MonoBehaviour
             {
                 health--;
                 Die();
-                Invoke("CollMake", 1.5f);
+                Invoke("CollMake", 2f);
+                Invoke("RestartPos", 2.2f);
+
             }
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Cannon")
+        {
+            health--;
+            Die();
+            Invoke("CollMake", 2f);
+            Invoke("RestartPos", 2.2f);
+
+        }
+    }
+
+    public void RestartPos()
+    {
+        gameManager.Restart();
     }
 
     void Attack(Transform monster)

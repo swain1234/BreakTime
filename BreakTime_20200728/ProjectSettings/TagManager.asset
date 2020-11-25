@@ -26,6 +26,8 @@ TagManager:
   - Fire
   - Thron
   - BossMode
+  - Border
+  - Cannon
   layers:
   - Default
   - TransparentFX

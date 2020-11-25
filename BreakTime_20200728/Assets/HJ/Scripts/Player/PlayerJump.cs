@@ -8,7 +8,7 @@ public class PlayerJump : MonoBehaviour
     public int currentCount = 0;
     public int jumpCount = 1;
     public float rayDistance;
-    public bool isJump = false;
+    //public bool isJump = false;
     // ray 시작위치 조절
     public float rayPosition = 0.3f;
     public int candyValue = 100;
@@ -47,7 +47,8 @@ public class PlayerJump : MonoBehaviour
 
         if (hit.collider != null)
         {
-            if (hit.transform.CompareTag("Ground") || hit.transform.CompareTag("Black"))
+            if (hit.transform.CompareTag("Ground") || 
+                hit.transform.CompareTag("Black") || hit.transform.CompareTag("Gray"))
             {
                 //Debug.Log("Ground");
                 animator.SetBool("isJump", false);
@@ -58,28 +59,27 @@ public class PlayerJump : MonoBehaviour
                 return;
             }
 
-            else if (hit.transform.CompareTag("Gray"))
-            {
-                animator.SetBool("isJump", false);
-                animator.SetBool("isJumpDown", false);
-                animator.SetBool("isJumpUp", false);
-                isGround = true;
-                currentCount = 0;
-                hit.transform.gameObject.tag = "Ground";
+            //else if (hit.transform.CompareTag("Gray"))
+            //{
+            //    animator.SetBool("isJump", false);
+            //    animator.SetBool("isJumpDown", false);
+            //    animator.SetBool("isJumpUp", false);
+            //    isGround = true;
+            //    currentCount = 0;
+            //    hit.transform.gameObject.tag = "Ground";
+            //    return;
+            //}
 
-                return;
-            }
-
-            else if (hit.transform.CompareTag("Obstacle"))
-            {
-                animator.SetBool("isJump", false);
-                animator.SetBool("isJumpDown", false);
-                animator.SetBool("isJumpUp", false);
-                isGround = true;
-                currentCount = 0;
-                hit.transform.gameObject.tag = "Ground";
-                return;
-            }
+            //else if (hit.transform.CompareTag("Obstacle"))
+            //{
+            //    animator.SetBool("isJump", false);
+            //    animator.SetBool("isJumpDown", false);
+            //    animator.SetBool("isJumpUp", false);
+            //    isGround = true;
+            //    currentCount = 0;
+            //    hit.transform.gameObject.tag = "Ground";
+            //    return;
+            //}
         }
         else
             isGround = false;
@@ -87,18 +87,29 @@ public class PlayerJump : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.UpArrow) && !animator.GetBool("isJump") && isGround)
+        if (Input.GetButtonDown("Jump1") && isGround /*&& !animator.GetBool("isJump")*/)
         {
-            if (currentCount < jumpCount)
-            {
-                isJump = true;
-                jumpCount++;
-                animator.SetBool("isJump", true);
-                animator.SetBool("isJumpUp", true);
-                AudioManager.Instance.Play("jump1");
-            }
+            //if (currentCount < jumpCount)
+            //{
+            //    isJump = true;
+            //    jumpCount++;
+            //    animator.SetBool("isJump", true);
+            //    animator.SetBool("isJumpUp", true);
+            //    AudioManager.Instance.Play("jump1");
+            //    Jump();
+            //}
+            //isJump = true;
+            jumpCount++;
+            animator.SetBool("isJump", true);
+            animator.SetBool("isJumpUp", true);
+            AudioManager.Instance.Play("jump1");
+            //AudioManager.instance.Stop("walk1");
+
+            Vector2 jumpVelocity = new Vector2(0f, jumpPower);
+            rigid.AddForce(jumpVelocity, ForceMode2D.Impulse);
+            //isJump = false;
+            isGround = false;
         }
-        Jump();
 
 
         // JumpDown
@@ -109,28 +120,30 @@ public class PlayerJump : MonoBehaviour
         }
     }
 
-    void Jump()
-    {
-        if (!isJump)
-            return;
-        rigid.velocity = Vector2.zero;
+    //void Jump()
+    //{
+    //    if (!isJump)
+    //        return;
+    //    //rigid.velocity = Vector2.zero;
 
-        Vector2 jumpVelocity = new Vector2(0f, jumpPower);
-        rigid.AddForce(jumpVelocity, ForceMode2D.Impulse);
-        isJump = false;
-        isGround = false;
-    }
+
+    //    float jump = Input.GetAxisRaw("Jump1");
+    //    rigid.AddForce(Vector2.up * jump, ForceMode2D.Impulse);
+
+
+    //    Vector2 jumpVelocity = new Vector2(0f, jumpPower);
+    //    rigid.AddForce(jumpVelocity, ForceMode2D.Impulse);
+    //    isJump = false;
+    //    isGround = false;
+    //}
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Ground")
+        if (collision.gameObject.tag == "Gray")
         {
-            isGround = true;
+            collision.transform.gameObject.tag = "Ground";
         }
-    }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
         if (collision.gameObject.tag == "Launcher")
         {
             rigid.velocity = new Vector2(0, 0);
@@ -141,5 +154,20 @@ public class PlayerJump : MonoBehaviour
             animator.SetBool("isJump", true);
             animator.SetBool("isJumpDown", false);
         }
+
     }
+
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if (collision.gameObject.tag == "Launcher")
+    //    {
+    //        rigid.velocity = new Vector2(0, 0);
+    //        Vector2 launch = new Vector2(0, launcher);
+    //        rigid.AddForce(launch, ForceMode2D.Impulse);
+
+    //        animator.SetBool("isJumpUp", true);
+    //        animator.SetBool("isJump", true);
+    //        animator.SetBool("isJumpDown", false);
+    //    }
+    //}
 }
