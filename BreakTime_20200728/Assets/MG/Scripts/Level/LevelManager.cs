@@ -17,9 +17,17 @@ public class LevelManager : MonoBehaviour
     private Title title;
     string backgroundMusic = "LevelScene";
     bool isSelect = false;
+    bool isFlip = false;
+
+    Animator pieceAnimator;
+
+    string currentState;
+    const string LevelPiece = "LevelPiece";
+    const string LevelPieceFlip = "LevelPieceFlip";
 
     [SerializeField] TextMeshProUGUI resourceText;
     [SerializeField] GameObject choice;
+    [SerializeField] Image piece;
 
     void Start()
     {
@@ -29,7 +37,7 @@ public class LevelManager : MonoBehaviour
         sampleImage.sprite = child.GetComponent<LevelParent>().levelData.Icon;
         option = FindObjectOfType<Option>();
         title = FindObjectOfType<Title>();
-        StartCoroutine(SelectEffect());
+        pieceAnimator = piece.GetComponent<Animator>();
         AudioManager.Instance.FadeIn(backgroundMusic);
         isSelect = false;
     }
@@ -64,10 +72,10 @@ public class LevelManager : MonoBehaviour
 
     public void NextButton()
     {
-        child.GetComponent<Image>().color = new Color(1, 1, 1, 1);
         num++;
         if (num >= transform.childCount)
             num = 0;
+        MovePiece();
         child = transform.GetChild(num).gameObject;
 
         resourceText.text = child.GetComponent<LevelParent>().levelData.Script;
@@ -76,14 +84,66 @@ public class LevelManager : MonoBehaviour
 
     public void PreviousButton()
     {
-        child.GetComponent<Image>().color = new Color(1, 1, 1, 1);
         num--;
         if (num < 0)
             num = transform.childCount - 1;
+        MovePiece();
         child = transform.GetChild(num).gameObject;
 
         resourceText.text = child.GetComponent<LevelParent>().levelData.Script;
         sampleImage.sprite = child.GetComponent<LevelParent>().levelData.Icon;
+    }
+
+    private void ChangeAnimationState(string newState)
+    {
+        if (currentState == newState) return;
+
+        pieceAnimator.Play(newState);
+
+        currentState = newState;
+    }
+
+    private void FlipPiece()
+    {
+        Vector3 scale = piece.rectTransform.localScale;
+        if (piece.transform.localScale.x > 0)
+            scale.x = -Mathf.Abs(scale.x);
+        else
+            scale.x = Mathf.Abs(scale.x);
+        piece.rectTransform.localScale = scale;
+    }
+
+    public void MovePiece()
+    {
+        if (num == 0)
+        {
+            piece.rectTransform.anchoredPosition = new Vector2(981f, -275f);
+            ChangeAnimationState(LevelPiece);
+        }
+        else if (num == 1)
+        {
+            piece.rectTransform.anchoredPosition = new Vector2(2441f, 305f);
+            ChangeAnimationState(LevelPieceFlip);
+            FlipPiece();
+            isFlip = true;
+            return;
+        }
+        else if(num == 2)
+        {
+            piece.rectTransform.anchoredPosition = new Vector2(1015f, 271f);
+            ChangeAnimationState(LevelPiece);
+        }
+        else
+        {
+            piece.rectTransform.anchoredPosition = new Vector2(1750f, 895f);
+            ChangeAnimationState(LevelPiece);
+        }
+
+        if (isFlip)
+        {
+            FlipPiece();
+            isFlip = false;
+        }
     }
 
     public void Close()
@@ -91,24 +151,6 @@ public class LevelManager : MonoBehaviour
         RectTransform rect = choice.GetComponent<RectTransform>();
         rect.offsetMin = new Vector2(5000, rect.offsetMin.y); //Left 5000
         rect.offsetMax = new Vector2(5000, rect.offsetMax.y); //Right -5000
-    }
-
-    IEnumerator SelectEffect() // 현재 선택중인 오브젝트에 효과부여
-    {
-        WaitForSeconds wait = new WaitForSeconds(0.01f);
-        while (true)
-        {
-            if (time <= 0.3f)
-                child.GetComponent<Image>().color = new Color(1 - time, 1 - time, 1 - time, 1);
-            else
-            {
-                child.GetComponent<Image>().color = new Color(0.4f + time, 0.4f + time, 0.4f + time, 1);
-                if (time >= 0.6f)
-                    time = 0;
-            }
-            time += Time.deltaTime;
-            yield return wait;
-        }
     }
 
     public void LevelSceneChange()

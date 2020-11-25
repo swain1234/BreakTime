@@ -223,7 +223,7 @@ public class AutoFlip : MonoBehaviour {
 
     IEnumerator LevelNext()
     {
-        if (option.nextLevel != option.level1)
+        if (option.nextLevel != option.level_1)
         {
             FlipRightPage();
             AudioManager.Instance.Play("flipBook");
@@ -233,7 +233,7 @@ public class AutoFlip : MonoBehaviour {
             if (tArray[t_num] != null)
                 sentence = tArray[t_num++];
             else
-                sentence = "아직 안만들어졌어요";
+                sentence = "";
             sentence = sentence.Replace("%", ",");
             sentence = sentence.Replace(". ", ".\n");
             tmi.text = "";
@@ -252,7 +252,6 @@ public class AutoFlip : MonoBehaviour {
             option.LevelChange();
             option.StageScript();
             gameManager.NextStage();
-            gameManager.StartPosition();
             this.transform.GetChild(0).gameObject.SetActive(false);
         }
         else // 마지막레벨을 클리어했을때

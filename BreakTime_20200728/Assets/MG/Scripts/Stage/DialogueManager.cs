@@ -43,6 +43,7 @@ public class DialogueManager : MonoBehaviour
     Material materialLibrary;
     float fade = 0f;
     bool isDissolving = false;
+    bool isEffect = false;
 
     float duration = 0.8f;
     float smoothness = 0.01f;
@@ -69,6 +70,8 @@ public class DialogueManager : MonoBehaviour
 
     public void ReadDialogue(int a) // 대화 및 이미지 불러오기, 0일경우 start 1or다른숫자는 end파일 불러옴
     {
+        fade = 0f;
+        material.SetFloat("_Fade", 0f);
         panel.gameObject.SetActive(true);
         isDialogue = true;
         
@@ -331,9 +334,9 @@ public class DialogueManager : MonoBehaviour
         isDialogue = false;
         if (isDissolving)
         {
-            isDissolving = false;
             StartCoroutine(DissolveDown());
-            yield return new WaitForSeconds(1f);
+            isDissolving = false;
+            yield return new WaitForSeconds(1.5f);
         }
         panel.gameObject.SetActive(false);
         if (option.currentLevel.LevelName == "08_Grand_Fall" || option.currentLevel.LevelName == "07_Honey_Bunny_Hop")
@@ -408,6 +411,7 @@ public class DialogueManager : MonoBehaviour
 
     IEnumerator DissolveDown()
     {
+        isEffect = true;
         float increment = smoothness / duration;
         fade = 1f;
         while (fade > 0f)
@@ -419,11 +423,13 @@ public class DialogueManager : MonoBehaviour
         if (fade < 0f)
             fade = 0f;
         material.SetFloat("_Fade", fade);
+        isEffect = false;
         yield return true;
     }
 
     IEnumerator DissolveUP()
     {
+        isEffect = true;
         float increment = smoothness / duration;
         fade = 0f;
         while (fade < 1f)
@@ -435,11 +441,13 @@ public class DialogueManager : MonoBehaviour
         if (fade > 1f)
             fade = 1f;
         material.SetFloat("_Fade", fade);
+        isEffect = false;
         yield return true;
     }
 
     IEnumerator DissolveLibrary()
     {
+        isEffect = true;
         float increment = smoothness / duration;
         fade = 0f;
         while (fade < 1f)
@@ -451,6 +459,7 @@ public class DialogueManager : MonoBehaviour
         if (fade > 1f)
             fade = 1f;
         materialLibrary.SetFloat("_Fade", fade);
+        isEffect = false;
         yield return true;
     }
 
@@ -463,12 +472,10 @@ public class DialogueManager : MonoBehaviour
         //if (Input.GetKeyDown("x"))
         //{
         //    ReadDialogue(1);
-        //
+        //}
 
-        if (isDialogue == true)
-        {
-            if(Input.anyKeyDown && !Input.GetKeyDown(KeyCode.Escape) && option.isActive == false)
+        if (Input.anyKeyDown && !Input.GetKeyDown(KeyCode.Escape))
+            if (isDialogue && !isEffect && !option.isActive)
                 DisplayNextSentence();
-        }
     }
 }

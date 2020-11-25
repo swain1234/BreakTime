@@ -11,5 +11,6 @@ public class UIPointer : MonoBehaviour, IPointerClickHandler
     public void OnPointerClick(PointerEventData eventData)
     {
         levelManager.num = int.Parse(eventData.selectedObject.name) - 1;
+        levelManager.MovePiece();
     }
 }

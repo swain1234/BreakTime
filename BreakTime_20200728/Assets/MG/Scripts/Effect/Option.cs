@@ -15,16 +15,10 @@ public class Option : MonoBehaviour
     public Button next;
     public Button xImage;
 
-    public LevelData level1;
-    [SerializeField] LevelData level2;
-    [SerializeField] LevelData level3;
-    [SerializeField] LevelData level4;
-    [SerializeField] LevelData level5;
-    [SerializeField] LevelData level6;
-    [SerializeField] LevelData level7;
-    [SerializeField] LevelData level8;
-    [SerializeField] LevelData level9;
-    [SerializeField] LevelData level10;
+    public LevelData level_1;
+    [SerializeField] LevelData level_2;
+    [SerializeField] LevelData level_3;
+    [SerializeField] LevelData level_4;
 
     List<LevelData> levelArray; // 레벨데이터를 담는 리스트
 
@@ -43,6 +37,7 @@ public class Option : MonoBehaviour
     public bool isActive = false;
     bool isTransfer = false;
     public bool isCandy = false;
+    public bool isEnd = false;
 
     private GameManager gameManager;
     private DialogueManager dialogueManager;
@@ -71,16 +66,10 @@ public class Option : MonoBehaviour
         dissolve = stageText.GetComponent<UIDissolve>();
         for (var i = 0; i < 10; i++)
         {
-            levelArray.Add((level1));
-            levelArray.Add((level2));
-            levelArray.Add((level3));
-            levelArray.Add((level4));
-            levelArray.Add((level5));
-            levelArray.Add((level6));
-            levelArray.Add((level7));
-            levelArray.Add((level8));
-            levelArray.Add((level9));
-            levelArray.Add((level10));
+            levelArray.Add((level_1));
+            levelArray.Add((level_2));
+            levelArray.Add((level_3));
+            levelArray.Add((level_4));
         }
         material.SetFloat("_Fade", 0f);
         dissolve.effectFactor = 1f;
@@ -94,7 +83,7 @@ public class Option : MonoBehaviour
 
     private void OptionActivate()
     {
-        if (SceneManager.GetActiveScene().name == "Stage")
+        if (SceneManager.GetActiveScene().name == "Stage" && !isEnd)
         {
             if (isActive == false)
             {
@@ -201,7 +190,7 @@ public class Option : MonoBehaviour
             {
                 if (currentLevel.LevelName == levelArray[i].LevelName)
                 {
-                    if (i != 9)
+                    if (i != levelArray.Count-1)
                     {
                         nextLevel = levelArray[i + 1];
                         break;
@@ -239,7 +228,6 @@ public class Option : MonoBehaviour
             panel.gameObject.SetActive(false);
             isTransfer = false;
             gameManager = FindObjectOfType<GameManager>();
-            gameManager.StartPosition();
         }
     }
 
@@ -270,7 +258,7 @@ public class Option : MonoBehaviour
         if (!isDissolving)
         {
             Time.timeScale = 1f;
-            if (currentLevel != level10)
+            if (currentLevel != level_4)
             {
                 StartCoroutine(LevelNext());
             }
@@ -283,21 +271,21 @@ public class Option : MonoBehaviour
         {
             isTransfer = true;
             isCandy = false;
-            LevelChange();
-            StageScript();
             AudioManager.Instance.UnPause();
             FadeMusic();
             isActive = false;
             material.SetFloat("_Fade", 0f);
             dissolve.effectFactor = 1f;
-            LevelLoader.Instance.LoadLevel("Level");
+            LevelLoader.Instance.LoadLevel("Stage");
+            yield return new WaitForSeconds(0.5f);
             book = FindObjectOfType<AutoFlip>();
             book.transform.GetChild(0).gameObject.SetActive(false);
             panel.gameObject.SetActive(false);
             isTransfer = false;
+            LevelChange();
+            StageScript();
             gameManager = FindObjectOfType<GameManager>();
             gameManager.NextStage();
-            gameManager.StartPosition();
             Letterbox.Instance.initSetting();
             yield return new WaitForSeconds(0.5f);
         }
@@ -313,15 +301,14 @@ public class Option : MonoBehaviour
 
     void FadeMusic()
     {
-        if (currentLevel == level1 || currentLevel == level2 == currentLevel == level3 == currentLevel == level4)
+        if(currentLevel == level_1)
             AudioManager.Instance.FadeOut("Level1-4");
-        else if (currentLevel == level5 || currentLevel == level6)
+        else if (currentLevel == level_2)
             AudioManager.Instance.FadeOut("Level5-6");
-        else if (currentLevel == level7 || currentLevel == level7)
+        else if (currentLevel == level_3)
             AudioManager.Instance.FadeOut("Level7-8");
-        else if (currentLevel == level9)
-            AudioManager.Instance.FadeOut("Level9");
-        else if (currentLevel == level10)
+        else
             AudioManager.Instance.BossStop();
+        AudioManager.Instance.FadeOut("Title");
     }
 }
