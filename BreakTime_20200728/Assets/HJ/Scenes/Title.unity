@@ -380,7 +380,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: 0
+  m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -568,9 +568,9 @@ MonoBehaviour:
   next: {fileID: 2118490710}
   xImage: {fileID: 1489171468}
   level_1: {fileID: 11400000, guid: a01714b76884c004694309bcf950f862, type: 2}
-  level_2: {fileID: 11400000, guid: f82c835f31821c34d80c08b097c61dd9, type: 2}
-  level_3: {fileID: 11400000, guid: 0ada20317b9844f46982d775174ac526, type: 2}
-  level_4: {fileID: 11400000, guid: 5e839ff7e1569fd4fb74147bc289d5ea, type: 2}
+  level_2: {fileID: 11400000, guid: 60ecc5539e61b01458c18444a46e14eb, type: 2}
+  level_3: {fileID: 11400000, guid: fffcabef628e8804d8fc7247fb347eaa, type: 2}
+  level_4: {fileID: 11400000, guid: 6bfe9440e6cd8234abc12fbe58952bff, type: 2}
   currentLevel: {fileID: 0}
   nextLevel: {fileID: 0}
   stageText: {fileID: 97030037}

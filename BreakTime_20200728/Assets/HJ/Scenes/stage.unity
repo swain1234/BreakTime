@@ -56272,7 +56272,7 @@ MonoBehaviour:
   bookLeft: {fileID: 1255633417}
   bookRight: {fileID: 1293718522}
   bookNext: {fileID: 1862641464}
-  ending: {fileID: 0}
+  ending: {fileID: 1633311807}
 --- !u!114 &1031139073
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -99708,7 +99708,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -70.59717, y: -101.549805}
-  m_SizeDelta: {x: 4315.2095, y: 7471.384}
+  m_SizeDelta: {x: 3545.5044, y: 6143.191}
   m_Pivot: {x: 0, y: 0.1}
 --- !u!114 &1819194972
 MonoBehaviour:
@@ -101127,7 +101127,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -299.99994, y: -450.00006}
-  m_SizeDelta: {x: 4315.2095, y: 7471.384}
+  m_SizeDelta: {x: 3545.5044, y: 6143.191}
   m_Pivot: {x: 1, y: 0.1}
 --- !u!114 &1869359129
 MonoBehaviour:
@@ -104093,7 +104093,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 238.49512, y: 639.4223}
-  m_SizeDelta: {x: 8630.419, y: 13512.677}
+  m_SizeDelta: {x: 7091.009, y: 11106.897}
   m_Pivot: {x: 1, y: 0.12}
 --- !u!114 &1916778328
 MonoBehaviour:
@@ -111501,7 +111501,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 238.49512, y: 638.4108}
-  m_SizeDelta: {x: 4315.2095, y: 7471.384}
+  m_SizeDelta: {x: 3545.5044, y: 6143.191}
   m_Pivot: {x: 0.000000020489097, y: 0.12}
 --- !u!114 &2067651475
 MonoBehaviour:
