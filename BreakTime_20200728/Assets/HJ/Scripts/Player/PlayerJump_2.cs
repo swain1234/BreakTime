@@ -33,6 +33,10 @@ public class PlayerJump_2 : MonoBehaviour
     {
         CheckGround();
 
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            transform.position = new Vector3(-57.5f, 155, 0);
+        }
     }
 
     void CheckGround()

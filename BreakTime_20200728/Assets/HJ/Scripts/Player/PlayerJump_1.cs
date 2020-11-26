@@ -112,6 +112,11 @@ public class PlayerJump_1 : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (collision.gameObject.tag == "Gray")
+        {
+            collision.transform.gameObject.tag = "Ground";
+        }
+
         if (collision.gameObject.tag == "Launcher")
         {
             rigid.velocity = new Vector2(0, 0);

@@ -16,6 +16,9 @@ public class AutoFlip : MonoBehaviour {
     public int AnimationFramesCount = 40;
     bool isFlipping = false;
 
+    private string[] stageString;
+    private int stageNum;
+
     private TextureManager textureManager;
     private Option option;
     private GameManager gameManager;
@@ -230,8 +233,12 @@ public class AutoFlip : MonoBehaviour {
             bookNext.rawImage.texture = ConvertSpriteToTexture(option.nextLevel.Icon);
             bookNext.TextureNext();
             yield return new WaitForSeconds(2f);
-            if (tArray[t_num] != null)
-                sentence = tArray[t_num++];
+            stageString = option.currentLevel.LevelName.Split('_');
+            stageNum = int.Parse(stageString[0]) - 1;
+            if (tArray[stageNum] != null)
+                sentence = tArray[stageNum];
+            //if (tArray[t_num] != null)
+            //    sentence = tArray[t_num++];
             else
                 sentence = "";
             sentence = sentence.Replace("%", ",");
