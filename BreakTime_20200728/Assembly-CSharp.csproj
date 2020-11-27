@@ -162,6 +162,7 @@
     <Compile Include="Assets\MG\Scripts\Effect\PaintBehaviour.cs" />
     <Compile Include="Assets\MG\Scripts\Effect\PoolingPaint.cs" />
     <Compile Include="Assets\MG\Scripts\Effect\UIDissolve.cs" />
+    <Compile Include="Assets\MG\Scripts\Level\EndGame.cs" />
     <Compile Include="Assets\MG\Scripts\Level\LevelData.cs" />
     <Compile Include="Assets\MG\Scripts\Level\LevelManager.cs" />
     <Compile Include="Assets\MG\Scripts\Level\LevelMenu.cs" />
